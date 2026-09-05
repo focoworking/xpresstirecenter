@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 280" role="img" aria-label="Semi truck silhouette">
+  <g fill="#132340">
+    <rect x="200" y="70" width="330" height="120" rx="6"/>
+    <path d="M40 190V110h50l38-40h60v120z"/>
+    <rect x="60" y="120" width="55" height="34" rx="4" fill="#1f3355"/>
+  </g>
+  <g fill="#0b1220">
+    <circle cx="110" cy="200" r="30"/><circle cx="420" cy="200" r="30"/><circle cx="490" cy="200" r="30"/>
+  </g>
+  <g fill="none" stroke="#ff8a00" stroke-width="4">
+    <circle cx="110" cy="200" r="30"/><circle cx="420" cy="200" r="30"/><circle cx="490" cy="200" r="30"/>
+  </g>
+  <rect x="0" y="234" width="640" height="4" fill="#1f3355"/>
+</svg>

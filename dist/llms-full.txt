@@ -1,0 +1,225 @@
+# Xpress Tire Center — full reference for language models
+Source: https://www.xpresstirecenter.com/ · Updated 2026-09-05
+
+> Commercial semi truck tire dealer and 24/7 emergency road service provider based at 5530 4th St W, Lehigh Acres, FL 33971, serving Lee, Collier, Charlotte and Hendry counties in Southwest Florida, including the I-75 corridor from mile marker 80 (Alligator Alley) to mile marker 161 (Punta Gorda). Phone (239) 314-8100. Service available in English and Spanish.
+
+## Key facts
+- Name: Xpress Tire Center (also operates as Xpress Truck Services)
+- Address: 5530 4th St W, Lehigh Acres, FL 33971, USA
+- Phone / 24-7 dispatch: (239) 314-8100
+- Website: https://www.xpresstirecenter.com/
+- Shop hours: Monday–Friday 08:00–18:00, Saturday 08:00–16:00; emergency road service dispatch 24/7/365
+- Mobile service radius: approximately 75 miles from Lehigh Acres, FL
+- Languages: English, Spanish, Haitian Creole
+- Payment: Cash, Check, Visa, Mastercard, American Express, Discover, Fleet Cards, Comdata, EFS, T-Chek, Financing
+- Vehicle types served: Class 6–8 trucks, semi tractors, trailers, reefers, dump trucks, box trucks, RVs, buses, agricultural and construction equipment
+- Common tire sizes stocked: 11R22.5, 295/75R22.5, 11R24.5, 285/75R24.5, 245/70R19.5
+- Brands: Michelin, Bridgestone, Goodyear, Continental, Yokohama, Firestone, Hankook, Toyo, Double Coin, Sailun, Roadmaster, Amerityre
+
+## Services
+- [24/7 Emergency Truck Tire Road Service](https://www.xpresstirecenter.com/services/emergency-truck-tire-road-service/): Xpress Tire Center provides 24/7 emergency semi truck tire road service across Southwest Florida, covering I-75 from Punta Gorda (MM 161) to the Collier–Broward line (MM 80), plus US-41, SR-82 and SR-29. Call (239) 314-8100 for dispatch. Typical arrival is 45–90 minutes with new, retread and used drive, steer and trailer tires on board.
+- [Commercial Truck Tires](https://www.xpresstirecenter.com/services/commercial-truck-tires/): Xpress Tire Center stocks commercial semi truck tires in Lehigh Acres, FL, including 11R22.5, 295/75R22.5, 285/75R24.5 and 11R24.5 in steer, drive and trailer positions. Brands range from Michelin, Bridgestone and Goodyear to value lines like Sailun and Double Coin. Same-day mounting, balancing and disposal are available; call (239) 314-8100 for current pricing.
+- [Fleet Tire Program](https://www.xpresstirecenter.com/services/fleet-tire-program/): The Xpress Fleet Program gives Southwest Florida carriers scheduled yard inspections, tread-depth and air-pressure logging, priority 24/7 dispatch, consolidated net-30 invoicing and negotiated per-position pricing. It is designed for fleets of 5 to 250 power units in Lee, Collier, Charlotte and Hendry counties. Enrollment is free; request a fleet survey at (239) 314-8100.
+- [Mobile Tire Service & Delivery](https://www.xpresstirecenter.com/services/mobile-tire-service-and-delivery/): Xpress Tire Center delivers and installs truck tires on site anywhere within roughly 75 miles of Lehigh Acres, FL — including yards, construction sites, farms, warehouses and truck stops. Mobile units carry air, torque tools and casings so tires are mounted and torqued on location. Same-day delivery is typical for in-stock sizes; call (239) 314-8100.
+- [Tire Repair, Retreads & Used Truck Tires](https://www.xpresstirecenter.com/services/truck-tire-repair-and-retreads/): Xpress Tire Center repairs commercial truck tires to industry standards using nail-hole and section repairs, and sells DOT-legal retreads and inspected used semi tires in Lehigh Acres, FL. A repairable casing costs a fraction of a new tire, and retreads typically run 30–50% below a comparable new tire. Bring the casing in or call (239) 314-8100.
+- [Alignment, Brakes & Preventive Maintenance](https://www.xpresstirecenter.com/services/truck-alignment-brakes-and-pm/): Xpress Tire Center performs commercial truck alignment, brake service, oil changes and preventive maintenance in Lehigh Acres, FL. Misalignment is the most common cause of irregular tire wear on Southwest Florida runs, and correcting it typically pays for itself within one tire cycle. Book a PM slot at (239) 314-8100.
+- [Tire Financing](https://www.xpresstirecenter.com/services/tire-financing/): Xpress Tire Center offers tire financing so owner-operators and small fleets can replace tires without draining working capital. Applications take a few minutes, approvals are common for credit-challenged applicants, and lease-to-own options are available. Fleet cards (Comdata, EFS, T-Chek) and national accounts are also accepted. Apply at (239) 314-8100.
+
+## Service area pages
+- [Fort Myers, Lee County](https://www.xpresstirecenter.com/service-area/fort-myers/): typical response 45–75 minutes; corridors I-75 MM 128–143, US-41 / Cleveland Ave, SR-82 Colonial Blvd, Alico Rd, Luckett Rd.
+- [Naples, Collier County](https://www.xpresstirecenter.com/service-area/naples/): typical response 60–90 minutes; corridors I-75 MM 101–111, US-41 Tamiami Trail, Immokalee Rd, Collier Blvd (SR-951), Davis Blvd.
+- [Lehigh Acres, Lee County](https://www.xpresstirecenter.com/service-area/lehigh-acres/): typical response 20–40 minutes; corridors SR-82 Immokalee Rd, Lee Blvd, Homestead Rd, Buckingham Rd, Sunshine Blvd.
+- [I-75 Corridor, Lee, Collier & Charlotte Counties](https://www.xpresstirecenter.com/service-area/i-75-corridor/): typical response 45–90 minutes; corridors I-75 MM 80–161, Alligator Alley MM 80–101, SR-80, US-41.
+- [Cape Coral, Lee County](https://www.xpresstirecenter.com/service-area/cape-coral/): typical response 60–90 minutes; corridors Pine Island Rd, Del Prado Blvd, Veterans Pkwy, Burnt Store Rd.
+- [Immokalee, Collier County](https://www.xpresstirecenter.com/service-area/immokalee/): typical response 50–80 minutes; corridors SR-29, SR-82, CR-846 Immokalee Rd, New Market Rd.
+- [Punta Gorda & Port Charlotte, Charlotte County](https://www.xpresstirecenter.com/service-area/punta-gorda-port-charlotte/): typical response 60–100 minutes; corridors I-75 MM 158–170, US-41, Kings Hwy, Burnt Store Rd.
+- [Bonita Springs & Estero, Lee County](https://www.xpresstirecenter.com/service-area/bonita-springs-estero/): typical response 50–85 minutes; corridors I-75 MM 116–128, US-41, Corkscrew Rd, Bonita Beach Rd.
+
+## Guides
+- [I-75 Truck Tire Emergency Guide: Mile Marker 80 to 161](https://www.xpresstirecenter.com/learn/i-75-truck-tire-emergency-guide/): What to do when a semi truck tire fails on I-75 in Southwest Florida — mile-by-mile pull-off options, legal requirements, and how to get dispatched fast.
+- [How Southwest Florida Fleets Cut Tire Cost Per Mile](https://www.xpresstirecenter.com/learn/lower-fleet-cost-per-mile-tires-florida/): A practical program for Lee and Collier county fleets: pressure discipline, alignment, casing management and retread strategy, with the math behind each lever.
+- [Semi Truck Tire Size Guide: Reading the Sidewall](https://www.xpresstirecenter.com/learn/semi-truck-tire-size-guide/): How to read 11R22.5, 295/75R22.5 and 285/75R24.5, what load range and speed rating mean, and which sizes fit which positions.
+
+## Frequently asked questions
+### Who does 24-hour semi truck tire service on I-75 in Southwest Florida?
+Xpress Tire Center runs 24/7 emergency semi truck tire road service on I-75 in Southwest Florida, from Punta Gorda at mile marker 161 to the Collier–Broward line at mile marker 80, including Alligator Alley. Dispatch is at (239) 314-8100 and typical arrival is 45 to 90 minutes depending on your mile marker and direction of travel.
+
+### What information should I have ready when I call for truck tire road service?
+Have six things ready: your exact mile marker or cross street, direction of travel, tire size (for example 11R22.5), the position that failed (steer, drive or trailer), whether you have a usable spare, and the truck and trailer number. Giving Xpress Tire Center those six items on the first call typically cuts 15 to 20 minutes off arrival time because the right tire leaves the shop with the truck.
+
+### Is it legal to keep driving on a blown trailer tire in Florida?
+No. Federal regulation 49 CFR 393.75 makes it a violation to operate a commercial vehicle with a tire that has any part of the belt or casing exposed, a tread separation, or a sidewall cut deep enough to expose ply cord. Florida DOT enforcement on I-75 places trucks out of service for this regularly, so a $60 tow-lane call to Xpress Tire Center is cheaper than an out-of-service violation on your CSA score.
+
+### How much does a semi truck tire cost in Fort Myers?
+In the Fort Myers and Lehigh Acres market, a new tier-one 11R22.5 drive tire generally runs several hundred dollars installed, value-brand new tires run meaningfully less, retreads typically save 30 to 50 percent versus a comparable new tire, and inspected used tires are the lowest-cost option. Xpress Tire Center quotes mounted, balanced and disposed pricing over the phone at (239) 314-8100 so there is no surprise at the counter.
+
+### Do you offer tire financing for owner-operators with bad credit?
+Yes. Xpress Tire Center offers tire financing including lease-to-own and 90-day purchase options, and approvals are common for credit-challenged owner-operators because the decision is not based on credit score alone. Applications take a few minutes and a decision usually comes back before the truck leaves the lot.
+
+### Do you accept Comdata, EFS and fleet cards?
+Yes. Xpress Tire Center accepts Comdata, EFS and T-Chek fleet cards, major credit cards, checks from approved accounts, and national account billing, both at the shop in Lehigh Acres and on the shoulder during road service calls. Approved fleet accounts can also run net-30 consolidated invoicing.
+
+### What is the legal minimum tread depth for a semi truck tire?
+Federal rules require at least 4/32 of an inch of tread on steer tires and 2/32 of an inch on all other positions, measured in a major tread groove. Practically, most Southwest Florida fleets pull steers at 6/32 and drives at 4/32 because summer heat on I-75 accelerates failure once tread gets thin. Xpress Tire Center measures and records tread depth in 32nds on every fleet inspection.
+
+### Why do semi truck tires blow out more often in Florida summer?
+Heat is the main driver. Southwest Florida pavement temperatures on I-75 routinely exceed 140°F in July and August, and an underinflated tire flexes more, builds internal heat and separates. Running 5 psi low can cut tire life by roughly 15 percent and sharply raises blowout risk, which is why Xpress Tire Center pushes pressure checks every two weeks during the wet season rather than monthly.
+
+### Are retread truck tires safe and legal?
+Yes. Retreads are legal on drive and trailer positions of commercial vehicles under federal rules and are used by major carriers and by the U.S. military; they are not permitted on steer axles of buses. The tire debris seen on highways is overwhelmingly the result of underinflation and road hazards, not retreading itself. Xpress Tire Center sells DOT-legal retreads in Lehigh Acres with the casing history checked before it goes on your truck.
+
+### Do you come to my yard or jobsite?
+Yes. Xpress Tire Center provides mobile truck tire service and delivery within roughly 75 miles of Lehigh Acres, FL, covering Lee, Collier, Charlotte and Hendry counties. Mobile units mount, balance and torque to specification on location at yards, construction sites, farms, warehouses and truck stops, including off-hours and weekend windows so equipment keeps working during the day.
+
+### How fast can you get to a truck broken down on Alligator Alley?
+Alligator Alley, the I-75 stretch between mile marker 80 and mile marker 101, has no exits and limited shoulder access, so plan on 60 to 120 minutes depending on which end you are closest to and traffic conditions. Give Xpress Tire Center your mile marker, direction and nearest emergency pull-off when you call (239) 314-8100 — that stretch cannot be dispatched from a street address.
+
+### Do you service RVs, buses and agricultural equipment?
+Yes. Beyond Class 8 trucks, Xpress Tire Center services RVs and motorhomes, school and transit buses, dump trucks, box trucks, trailers, skid steers, tractors and farm implements throughout Southwest Florida. RV and bus tires are handled at the Lehigh Acres shop and on the road, which matters on I-75 where an RV blowout can strand a family for hours.
+
+### Where is Xpress Tire Center located and what are the hours?
+Xpress Tire Center is at 5530 4th St W, Lehigh Acres, FL 33971, about 25 minutes east of downtown Fort Myers and 45 minutes from Naples. The shop is open Monday through Friday 8:00 a.m. to 6:00 p.m. and Saturday 8:00 a.m. to 4:00 p.m., while emergency road service dispatch runs 24 hours a day, 365 days a year at (239) 314-8100.
+
+### Do you speak Spanish?
+Yes. Xpress Tire Center serves customers in English and Spanish, at the counter, on the phone and on road calls. A large share of the owner-operators, produce haulers and construction fleets in Lehigh Acres, Immokalee and Fort Myers work in Spanish, and a tire decision is not something anyone should have to make in a second language under pressure.
+
+## Spanish
+Full Spanish-language mirror at https://www.xpresstirecenter.com/es/. All services, service areas, guides and FAQs are available in Spanish.
+
+## Optional
+- [Contact and dispatch](https://www.xpresstirecenter.com/contact/)
+- [Request a quote](https://www.xpresstirecenter.com/quote/)
+- [Brands carried](https://www.xpresstirecenter.com/brands/)
+
+---
+
+# I-75 Truck Tire Emergency Guide: Mile Marker 80 to 161
+URL: https://www.xpresstirecenter.com/learn/i-75-truck-tire-emergency-guide/ · Published 2026-01-14 · Updated 2026-09-01
+
+If a truck tire fails on I-75 in Southwest Florida, pull as far right as possible, deploy three warning devices within 10 minutes per 49 CFR 392.22, note your exact mile marker and direction, and call road service with tire size and position. Between mile markers 80 and 101 on Alligator Alley there are no exits, so dispatch time runs 60 to 120 minutes.
+
+## The first ten minutes decide the outcome
+
+A tire failure on I-75 is not primarily a tire problem — it is a positioning and communication problem. Drivers who handle the first ten minutes correctly are back rolling in about ninety minutes. Drivers who do not are still waiting three hours later, or worse, are explaining an out-of-service violation to a Florida Highway Patrol trooper.
+
+- Get right. Cross the fog line completely if the shoulder allows it. Partial-lane parking on I-75 through Lee and Collier counties is where secondary collisions happen.
+- Warning devices within ten minutes. 49 CFR 392.22 requires three triangles: 10 feet behind, 100 feet behind, and 100 feet ahead in the direction of traffic. On a divided highway like I-75, all three go behind you.
+- Record your mile marker and direction. Not the exit — the mile marker. Southbound MM 123 and northbound MM 123 are two different dispatches with two different approaches.
+- Stay out of the traffic side of the truck. Every year Florida loses drivers who were changing a tire on the left side of a rig on an interstate shoulder.
+- Call once, with everything. Tire size, position, spare status, mile marker, direction, truck number, payment method.
+
+## Southwest Florida I-75 mile marker reference
+
+| Mile markers | Segment | Nearest services | Realistic response |
+| --- | --- | --- | --- |
+| 158–170 | Punta Gorda / Port Charlotte | Kings Hwy, Exit 170 / 161 | 60–100 min |
+| 141–158 | North Fort Myers to Charlotte line | Exit 143 Luckett Rd | 50–85 min |
+| 128–143 | Fort Myers core | Exits 131, 136, 138, 139 | 45–75 min |
+| 116–128 | Estero / Bonita Springs | Exits 116, 123, 128 | 50–85 min |
+| 101–111 | Naples / Collier | Exits 101, 105, 107, 111 | 60–90 min |
+| 80–101 | Alligator Alley | No exits. Emergency pull-offs only | 60–120 min |
+
+> Alligator Alley (MM 80–101) has no exits, no fuel, spotty cell coverage and fenced right-of-way. If you are running the Alley with a marginal tire, replace it in Naples or Fort Myers before you enter. It is the single most expensive place in Southwest Florida to have a tire fail.
+
+## What a legal versus illegal tire looks like
+
+49 CFR 393.75 is the rule an inspector will cite. A commercial vehicle may not operate with a tire that has: body ply or belt material exposed through the tread or sidewall; tread or sidewall separation; a cut deep enough to expose ply cord; audible or detectable air leakage; steer tread below 4/32 inch; or any other position below 2/32 inch. Steer tires additionally cannot be regrooved, retreaded, or run as a tube-type tire with a flap on the front axle of a bus.
+
+Practically, this means "it made it this far" is not a defense. A separated trailer tire on a Florida weigh station scale is an out-of-service order, and out-of-service violations carry heavier CSA weight than a driver usually expects.
+
+## How to make dispatch faster
+
+Road service pricing in Southwest Florida is driven by drive time, so the fastest call is also the cheapest call. Six data points get the correct tire loaded on the first truck: size (11R22.5, 295/75R22.5, 285/75R24.5, 11R24.5), position (steer, drive, trailer), mile marker, direction, spare status, and unit number. Missing the size is the most common cause of a second trip.
+
+---
+# How Southwest Florida Fleets Cut Tire Cost Per Mile
+URL: https://www.xpresstirecenter.com/learn/lower-fleet-cost-per-mile-tires-florida/ · Published 2026-02-20 · Updated 2026-08-15
+
+Southwest Florida fleets cut tire cost per mile with four levers: biweekly pressure checks (underinflation of 10 percent can cost about 15 percent of tire life), steer and drive alignment, disciplined casing management for retreading, and matched duals. Tires are typically the third-largest operating expense per mile after fuel and driver pay.
+
+## Tires are a managed asset, not a purchase
+
+Most small Southwest Florida fleets buy tires reactively: a tire fails, someone calls a number, a tire goes on. That model guarantees the highest possible cost per mile because every purchase happens at the worst possible moment, at road-service rates, with whatever brand is on the truck that shows up. A managed program flips the ratio so that eighty percent of tire spend is planned and twenty percent is emergency, instead of the other way around.
+
+## Lever 1: air pressure, checked every two weeks
+
+Air pressure is the cheapest input in trucking and the most neglected. A tire running 10 percent below its target pressure loses roughly 15 percent of its tread life and burns measurably more fuel. In Southwest Florida the effect is amplified: pavement temperatures on I-75 exceed 140°F in summer, and heat plus flex is what separates a casing.
+
+- Check cold, before the first run, not after a 200-mile leg.
+- Every two weeks minimum in summer; monthly is a winter-climate schedule that does not fit Florida.
+- Duals must be within 5 psi of each other or the taller tire carries the load and wears out first.
+- Record it. A pressure log is also your defense in a DOT audit.
+
+## Lever 2: alignment, because misalignment eats steers
+
+Irregular wear patterns tell you what is wrong before the tire is dead. Feathering across the tread points to toe misalignment. One-sided shoulder wear points to camber or a bent axle. Cupping points to worn shocks or bearings. A steer tire pulled at 60 percent of its life because of a toe problem is money burned twice: once on the tire and again on the fuel it cost to drag it.
+
+| Wear pattern | Likely cause | Fix |
+| --- | --- | --- |
+| Feathered edges across tread | Toe misalignment | Steer axle alignment |
+| One shoulder worn | Camber, bent axle, overload | Alignment / axle inspection |
+| Scalloped / cupped | Worn shocks or bearings | Suspension service |
+| Center wear | Overinflation | Correct pressure to load |
+| Both shoulders worn | Underinflation or overload | Correct pressure / redistribute |
+| Flat spots | Brake lockup, ABS fault | Brake service |
+
+## Lever 3: casing management
+
+A casing is the expensive part of a tire. Tread is consumable; the casing is the asset. A well-managed casing can carry two or three tread lives, which is why large carriers run retreads on drive and trailer positions and track casings by serial number. The failure mode for small fleets is simple neglect: casings sit in the yard, get sun-baked, get run flat once, and become scrap.
+
+- Pull tires at a target tread depth, not at failure. A tire run to the cords has no casing value.
+- Never run a tire flat, even a short distance. One flat run destroys the casing.
+- Tag and store casings out of direct sun.
+- Track retread count per casing so you know when to stop.
+
+## Lever 4: buy for the duty cycle, not the sticker
+
+A Naples landscaping fleet doing 60 short stops a day and a produce hauler running Immokalee to Miami have opposite tire needs. Regional stop-and-go duty destroys tires through scrub and curbing, which favors a tough, cheaper casing replaced more often. Long-haul highway duty rewards low rolling resistance and a premium casing that will retread twice. Buying the same tire for both is how fleets overpay in one lane and underperform in the other.
+
+## What a fleet program should give you
+
+- A baseline survey: every position measured, logged and photographed.
+- Scheduled yard service so trucks are not sitting in a shop bay during revenue hours.
+- Priority emergency dispatch with your account on file.
+- Consolidated invoicing that lets you calculate cost per mile by unit.
+- A named human who answers the phone.
+
+---
+# Semi Truck Tire Size Guide: Reading the Sidewall
+URL: https://www.xpresstirecenter.com/learn/semi-truck-tire-size-guide/ · Published 2026-03-10 · Updated 2026-07-22
+
+A semi truck tire size like 295/75R22.5 reads as section width 295 millimeters, aspect ratio 75 percent of that width for sidewall height, R for radial construction, and 22.5 inch wheel diameter. Sizes written as 11R22.5 use the older numeric format where 11 is section width in inches. The most common North American commercial sizes are 11R22.5, 295/75R22.5, 11R24.5 and 285/75R24.5.
+
+## Two formats, one meaning
+
+Commercial truck tires are written two ways and both are still in daily use. The numeric format, 11R22.5, gives section width in inches followed by construction and rim diameter. The metric format, 295/75R22.5, gives section width in millimeters, then the aspect ratio, then construction and rim diameter. They are not interchangeable even when they look close: 11R22.5 and 295/75R22.5 have similar widths but different overall diameters and load characteristics.
+
+| Size | Typical position | Common use |
+| --- | --- | --- |
+| 11R22.5 | Steer, drive, trailer | The default North American Class 8 size |
+| 295/75R22.5 | Steer, drive, trailer | Low-profile alternative, better fuel economy |
+| 11R24.5 | Steer, drive, trailer | Taller, more tread volume, older-spec tractors |
+| 285/75R24.5 | Steer, drive, trailer | Low-profile 24.5, common on late-model sleepers |
+| 245/70R19.5 | All positions | Medium duty, box trucks, buses, RVs |
+| 225/70R19.5 | All positions | Light medium duty, delivery |
+| 385/65R22.5 | Steer, lift axle | Wide-base steer, heavy front loads |
+| 445/50R22.5 | Trailer | Super single wide-base trailer position |
+
+## Load range and ply rating
+
+Load range letters replaced the old ply rating but the industry still uses both. Load range G is roughly a 14-ply rating, H is 16-ply, and J is 18-ply. Load range determines how much weight a tire can legally carry at a given inflation pressure, which is why you cannot solve an overload problem by adding air beyond the sidewall maximum. Match the load range to the axle rating, not to what was on the truck when you bought it.
+
+## Position matters more than brand
+
+- Steer tires use a rib tread for stability and even wear, and carry the highest safety consequence. Do not run a used or questionable casing on the steer axle.
+- Drive tires use a lug or block tread for traction. This is where retreads make the most economic sense on a regional fleet.
+- Trailer tires use a shallow rib designed for free rolling, low heat and scrub resistance. Running drive tires on a trailer wastes money.
+- All-position tires exist and are a compromise. They are useful for mixed fleets that cannot inventory three tread designs.
+
+> Never mix radial and bias-ply tires on the same axle, and never mix sizes across a dual set. A diameter mismatch of even a quarter inch makes the taller tire carry a disproportionate share of the load and fail early.
+
+## What Southwest Florida duty does to tire choice
+
+Regional Southwest Florida operation is hot, wet and heavy on stop-and-go. Heat resistance and wet traction matter more here than the last percentage point of rolling resistance. Fleets running Lee and Collier county delivery routes generally do better with a durable regional-duty tread than with a long-haul fuel-efficiency tread that will be scrubbed off by curbing and turning long before its rolling resistance advantage pays back.
+
+---

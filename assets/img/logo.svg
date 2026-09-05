@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" role="img" aria-label="Xpress Tire Center">
+  <defs>
+    <linearGradient id="xg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff8a00"/><stop offset="1" stop-color="#e02424"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <circle cx="40" cy="40" r="30" fill="#0b1220"/>
+    <circle cx="40" cy="40" r="30" fill="none" stroke="url(#xg)" stroke-width="4"/>
+    <circle cx="40" cy="40" r="13" fill="none" stroke="#5a6b87" stroke-width="3"/>
+    <g stroke="#ff8a00" stroke-width="3" stroke-linecap="round">
+      <path d="M40 14v6M40 60v6M14 40h6M60 40h6"/>
+      <path d="M22 22l4 4M58 58l-4-4M58 22l-4 4M22 58l4-4"/>
+    </g>
+    <path d="M31 31l18 18M49 31L31 49" stroke="#fff" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <text x="84" y="40" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif"
+        font-size="30" font-weight="800" fill="#0b1220" letter-spacing="-0.5">XPRESS</text>
+  <text x="84" y="63" font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif"
+        font-size="16" font-weight="700" fill="#e06f00" letter-spacing="3.4">TIRE CENTER</text>
+</svg>

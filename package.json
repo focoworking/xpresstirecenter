@@ -1,0 +1,14 @@
+{
+  "name": "xpresstirecenter",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Sitio de Xpress Tire Center — generador estático sin dependencias, optimizado para SEO/AEO/GEO/LLM.",
+  "scripts": {
+    "build": "node build.js",
+    "validate": "node build.js && node validate.js",
+    "serve": "node serve.js",
+    "dev": "node build.js && node serve.js"
+  },
+  "engines": { "node": ">=20" }
+}
