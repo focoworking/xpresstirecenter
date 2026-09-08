@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Propuesta TireNexus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* ============================================================
+   FOCOw — Propuesta para TireNexus
+   Lenguaje llano, beneficio primero. Imprime limpio a A4.
+   Tres estados de tema; todo color sale de tokens.
+   ============================================================ */
+:root{
+  --ink:#14110F;
+  --ink-2:#4A423D;
+  --ink-3:#7A716A;
+  --line:#E2DBD5;
+  --line-2:#EFEAE6;
+  --ground:#FBF9F7;
+  --card:#FFFFFF;
+  --signal:#C4541A;
+  --signal-soft:#FBEDE4;
+  --win:#1B7350;
+  --win-soft:#E9F3EE;
+  --foco:#F7F14F;
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#F4F1EE; --ink-2:#B8AFA8; --ink-3:#8A817A;
+    --line:#332D29; --line-2:#272220;
+    --ground:#16130F; --card:#1E1A17;
+    --signal:#F2803C; --signal-soft:#2A1C12;
+    --win:#4FB98A; --win-soft:#132720;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F4F1EE; --ink-2:#B8AFA8; --ink-3:#8A817A;
+  --line:#332D29; --line-2:#272220;
+  --ground:#16130F; --card:#1E1A17;
+  --signal:#F2803C; --signal-soft:#2A1C12;
+  --win:#4FB98A; --win-soft:#132720;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--ground);color:var(--ink);
+  font-family:var(--f-body);font-size:17px;line-height:1.68;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.page{width:min(100% - 2.5rem,860px);margin-inline:auto;padding:clamp(2rem,5vw,3.5rem) 0 4rem}
+.stack{display:flex;flex-direction:column;gap:clamp(2.5rem,5vw,3.75rem)}
+section{display:flex;flex-direction:column;gap:1.1rem}
+
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.022em;line-height:1.1}
+h1{font-size:clamp(2rem,5vw,3.05rem);font-weight:900;text-transform:uppercase;line-height:1}
+h2{font-size:clamp(1.35rem,2.7vw,1.9rem);font-weight:800}
+h3{font-size:clamp(1.1rem,2vw,1.35rem);font-weight:800;letter-spacing:-.012em}
+p{margin:0;max-width:64ch}
+.big{font-size:1.15rem;color:var(--ink-2)}
+.muted{color:var(--ink-3)}
+strong{font-weight:600}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+
+.eyebrow{
+  font-family:var(--f-mono);font-size:.7rem;font-weight:600;
+  letter-spacing:.17em;text-transform:uppercase;color:var(--signal);margin:0;
+}
+
+/* ---------- Logo FOCOw sobre fondo oscuro (el amarillo no lee en blanco) ---------- */
+.logo-chip{background:#14110F;padding:.85rem 1.1rem;display:inline-flex;align-self:flex-start;border-radius:2px}
+.logo{display:block;height:auto;width:clamp(150px,20vw,215px)}
+.logo{fill:var(--foco)}   /* fill se hereda hacia el shadow tree del <use> */
+.logo-chip.sm .logo{width:130px}
+
+/* ---------- Entregables contados ---------- */
+.deliv{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:0;border:1px solid var(--line)}
+.dv{padding:1rem 1.15rem;display:flex;flex-direction:column;gap:.45rem;background:var(--card);
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.dv .qty{font-family:var(--f-display);font-weight:900;font-size:2rem;line-height:1;
+  letter-spacing:-.04em;color:var(--signal);font-variant-numeric:tabular-nums}
+.dv .qty small{display:block;font-family:var(--f-mono);font-size:.62rem;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-3);margin-top:.4rem}
+.dv ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.2rem}
+.dv li{position:relative;padding-left:.8rem;font-size:.82rem;color:var(--ink-2);line-height:1.45}
+.dv li::before{content:"·";position:absolute;left:.05rem;color:var(--signal);font-weight:700}
+.dv li b{color:var(--ink);font-weight:600}
+
+/* ---------- Lo que gana (en positivo) ---------- */
+.gains{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.gain{padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.3rem;background:var(--win-soft);
+  border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.gain .k{font-family:var(--f-mono);font-size:.62rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--win)}
+.gain p{font-size:.93rem;color:var(--ink-2)}
+.gain b{color:var(--ink);font-weight:600}
+
+/* ---------- Opciones de pago ---------- */
+.pay{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:0;border:1px solid var(--line)}
+.opt{padding:1.2rem 1.35rem;display:flex;flex-direction:column;gap:.65rem;background:var(--card)}
+.opt + .opt{border-left:1px solid var(--line)}
+@media(max-width:640px){.opt + .opt{border-left:0;border-top:1px solid var(--line)}}
+.opt.best{background:var(--signal-soft);border-top:3px solid var(--signal);margin-top:-1px}
+.opt .badge{font-family:var(--f-mono);font-size:.61rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3)}
+.opt.best .badge{color:#fff;background:var(--signal);align-self:flex-start;padding:.22rem .55rem}
+.opt .price{font-family:var(--f-display);font-weight:900;font-size:2.3rem;letter-spacing:-.04em;
+  line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
+.opt.best .price{color:var(--signal)}
+.opt .was{font-family:var(--f-mono);font-size:.85rem;color:var(--ink-3);text-decoration:line-through}
+.opt .note{font-size:.9rem;color:var(--ink-2)}
+.opt .note b{color:var(--ink);font-weight:600}
+.sched{display:flex;flex-wrap:wrap;gap:.4rem}
+.sched span{font-family:var(--f-mono);font-size:.73rem;font-weight:600;padding:.32rem .55rem;
+  border:1px solid var(--signal);color:var(--signal);white-space:nowrap}
+
+/* ---------- Estándar de calidad ---------- */
+.stds{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem 2.2rem}
+.std{display:flex;flex-direction:column;gap:.35rem;border-left:2px solid var(--signal);padding-left:1rem}
+.std .k{font-family:var(--f-mono);font-size:.64rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--signal)}
+.std p{font-size:.93rem;color:var(--ink-2)}
+.std b{color:var(--ink);font-weight:600}
+
+/* ---------- Antes y después ---------- */
+.cons{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0;border:1px solid var(--line)}
+.cons>div{padding:1.1rem 1.3rem;display:flex;flex-direction:column;gap:.45rem}
+.cons>div+div{border-left:1px solid var(--line)}
+@media(max-width:640px){.cons>div+div{border-left:0;border-top:1px solid var(--line)}}
+.cons .lbl{font-family:var(--f-mono);font-size:.63rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.cons .bad .lbl{color:#B02318}
+.cons .good{background:var(--win-soft)}
+.cons .good .lbl{color:var(--win)}
+.cons p{font-size:.92rem;color:var(--ink-2)}
+.cons b{color:var(--ink);font-weight:600}
+td.hito{color:var(--signal);font-family:var(--f-mono);font-size:.82rem;white-space:nowrap;font-weight:600}
+
+/* ---------- Encabezado ---------- */
+header{display:flex;flex-direction:column;gap:1.1rem;padding-bottom:1.4rem;border-bottom:2px solid var(--ink)}
+.wordmark{font-family:var(--f-display);font-weight:900;font-size:1.35rem;letter-spacing:-.03em;color:var(--ink);line-height:1}
+.wordmark span{color:var(--signal)}
+.wordmark small{
+  display:block;font-family:var(--f-mono);font-size:.62rem;font-weight:500;
+  letter-spacing:.19em;color:var(--ink-3);margin-top:.35rem;text-transform:uppercase;
+}
+.meta{display:flex;flex-wrap:wrap;gap:.35rem 2.25rem;font-family:var(--f-mono);font-size:.77rem;color:var(--ink-3)}
+.meta b{color:var(--ink);font-weight:500}
+
+/* ---------- Metas ---------- */
+.goals{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem 2rem}
+.goal{display:flex;flex-direction:column;gap:.3rem;border-top:2px solid var(--signal);padding-top:.7rem}
+.goal h3{font-size:1.05rem;font-weight:700}
+.goal p{font-size:.94rem;color:var(--ink-2)}
+
+/* ---------- Bloques de servicio ---------- */
+.blocks{display:flex;flex-direction:column;gap:2.25rem}
+.blk{display:flex;flex-direction:column;gap:.85rem}
+.blk-head{display:flex;align-items:baseline;gap:.85rem}
+.blk-head .n{
+  font-family:var(--f-mono);font-size:.8rem;font-weight:600;color:var(--signal);
+  letter-spacing:.06em;flex:0 0 auto;
+}
+.blk .why{font-size:1.05rem;color:var(--ink-2);max-width:62ch}
+.blk .did{
+  font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin:0;
+}
+.win{
+  display:flex;gap:.75rem;align-items:flex-start;
+  background:var(--win-soft);border-left:3px solid var(--win);
+  padding:.85rem 1.1rem;
+}
+.win .tag{
+  font-family:var(--f-mono);font-size:.66rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--win);white-space:nowrap;padding-top:.22rem;
+}
+.win p{font-size:.98rem;color:var(--ink);font-weight:500;margin:0}
+.tech{font-family:var(--f-mono);font-size:.7rem;color:var(--ink-3);letter-spacing:.03em}
+
+/* ---------- Listas ---------- */
+ul.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+ul.ticks li{position:relative;padding-left:1.35rem;font-size:.97rem;color:var(--ink-2)}
+ul.ticks li::before{
+  content:"";position:absolute;left:0;top:.6rem;width:7px;height:7px;
+  background:var(--signal);clip-path:polygon(0 0,100% 50%,0 100%);
+}
+ul.ticks li b{color:var(--ink);font-weight:600}
+ul.ticks.cols2{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:.5rem 1.9rem}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(1.2rem,3vw,2.4rem)}
+
+/* ---------- Calendario ---------- */
+.tw{overflow-x:auto;border:1px solid var(--line);background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:540px;font-size:.95rem}
+th,td{padding:.8rem .95rem;text-align:left;border-bottom:1px solid var(--line-2);vertical-align:top}
+thead th{
+  font-family:var(--f-mono);font-size:.65rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);background:var(--ground);
+}
+tbody th{
+  font-family:var(--f-mono);font-size:.8rem;font-weight:600;color:var(--signal);
+  white-space:nowrap;letter-spacing:.05em;
+}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+td{color:var(--ink-2)}
+td b{color:var(--ink);font-weight:600}
+
+/* ---------- Precio ---------- */
+.invest{
+  border:1px solid var(--line);border-top:3px solid var(--signal);background:var(--card);
+  padding:clamp(1.15rem,3vw,1.8rem);display:flex;flex-direction:column;gap:1rem;
+}
+.rows{display:flex;flex-direction:column}
+.row{
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;
+  gap:.4rem 1.5rem;padding:.75rem 0;border-bottom:1px solid var(--line-2);
+}
+.row:last-child{border-bottom:0}
+.row.total{border-top:2px solid var(--ink);border-bottom:0;margin-top:.3rem;padding-top:.85rem}
+.row .mono{font-weight:600;color:var(--ink);white-space:nowrap;font-size:1.02rem}
+.amt-total{font-family:var(--f-display)!important;font-weight:900;font-size:1.5rem!important;letter-spacing:-.03em}
+.row .k{color:var(--ink-2);max-width:44ch;font-size:.96rem}
+.row .k b{display:block;color:var(--ink);font-weight:700;font-size:1.02rem}
+.fill{
+  display:inline-block;min-width:7rem;color:var(--signal);
+  border-bottom:1.5px dashed var(--signal);padding-bottom:1px;
+}
+
+/* ---------- Niveles de mensualidad ---------- */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:0;border:1px solid var(--line)}
+.tier{padding:1.2rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;background:var(--card)}
+.tier + .tier{border-left:1px solid var(--line)}
+@media(max-width:720px){.tier + .tier{border-left:0;border-top:1px solid var(--line)}}
+.tier.pick{background:var(--signal-soft);border-top:3px solid var(--signal);margin-top:-1px}
+.tier .lvl{font-family:var(--f-mono);font-size:.66rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3)}
+.tier.pick .lvl{color:var(--signal)}
+.tier .amt{font-family:var(--f-display);font-weight:900;font-size:1.85rem;letter-spacing:-.035em;
+  color:var(--ink);line-height:1;font-variant-numeric:tabular-nums}
+.tier .amt small{display:block;font-family:var(--f-body);font-size:.76rem;font-weight:500;
+  color:var(--ink-3);letter-spacing:0;margin-top:.3rem}
+.tier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.35rem;font-size:.88rem;color:var(--ink-2)}
+.tier ul li{position:relative;padding-left:.95rem}
+.tier ul li::before{content:"·";position:absolute;left:.15rem;color:var(--signal);font-weight:700}
+
+/* ---------- Sí y no ---------- */
+.scope{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0;border:1px solid var(--line)}
+.scope>div{padding:1.15rem 1.3rem;display:flex;flex-direction:column;gap:.7rem}
+.scope>div:first-child{background:var(--card)}
+.scope>div+div{border-left:1px solid var(--line)}
+@media(max-width:600px){.scope>div+div{border-left:0;border-top:1px solid var(--line)}}
+.scope h3{font-size:.98rem;font-weight:800}
+ul.plain{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem;font-size:.94rem;color:var(--ink-2)}
+ul.plain li{position:relative;padding-left:1.1rem}
+ul.plain li::before{content:"—";position:absolute;left:0;color:var(--ink-3)}
+
+.note{
+  border:1px dashed var(--line);padding:1rem 1.2rem;
+  font-size:.94rem;color:var(--ink-2);display:flex;flex-direction:column;gap:.5rem;
+}
+.note b{color:var(--ink);font-weight:600}
+
+footer{
+  border-top:1px solid var(--line);padding-top:1.2rem;
+  font-family:var(--f-mono);font-size:.73rem;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:.35rem 2rem;
+}
+:focus-visible{outline:2px solid var(--signal);outline-offset:2px}
+
+@media print{
+  @page{size:A4;margin:15mm}
+  body{background:#fff;color:#14110F;font-size:10.5pt}
+  .page{width:100%;padding:0}
+  .stack{gap:1.6rem}
+  section,.blk{break-inside:avoid}
+  .win{background:#EDF5F1;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .scope>div:first-child{background:#faf8f6;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .tw,.invest,table{background:#fff}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <!-- LOGO FOCOw redibujado. Para usar el oficial, sustituye este <symbol> por el SVG real. -->
+  <symbol id="focow" viewBox="0 0 1000 240">
+    <g>
+      <rect x="0" y="0" width="55" height="186"/>
+      <rect x="77" y="34" width="60" height="190"/>
+      <rect x="167" y="0" width="57" height="186"/>
+    </g>
+    <text x="316" y="152" font-family="Archivo, Helvetica Neue, Arial, sans-serif"
+          font-size="168" font-weight="900" letter-spacing="-3">FOCOW</text>
+    <text x="906" y="110" font-family="Archivo, Helvetica Neue, Arial, sans-serif"
+          font-size="34" font-weight="600">®</text>
+    <text x="318" y="206" font-family="Archivo, Helvetica Neue, Arial, sans-serif"
+          font-size="30" letter-spacing="9.5">
+      <tspan font-weight="800">HYBRID</tspan><tspan font-weight="500"> MARKETING </tspan><tspan font-weight="800">AGENCY</tspan>
+    </text>
+  </symbol>
+</svg>
+
+<div class="page">
+  <div class="stack">
+
+    <header>
+      <div class="logo-chip"><svg class="logo" viewBox="0 0 1000 240" role="img" aria-label="FOCOw · Hybrid Marketing Agency"><use href="#focow"/></svg></div>
+      <p class="eyebrow">Propuesta de marketing y publicidad</p>
+      <h1>30 días para poner<br>TireNexus en el mapa</h1>
+      <p class="big">Del 9 de septiembre al 20 de octubre de 2026. Alcance cerrado, entregables contados uno por uno y un estándar de calidad que se puede revisar pieza por pieza.</p>
+      <div class="meta">
+        <span>Para <b>TireNexus</b></span>
+        <span>De <b>FOCOw · Foco Working LLC</b></span>
+        <span>Fecha <b>8 sep 2026</b></span>
+        <span>Vigencia <b>30 días</b></span>
+      </div>
+    </header>
+
+    <section>
+      <p class="eyebrow">El punto de partida</p>
+      <h2>Nombre nuevo, cero conocidos</h2>
+      <p class="big">Cambiar de nombre es empezar de nuevo para el que no te conoce. La gente que ya te compra te va a seguir. El resto del mercado no sabe que existes.</p>
+      <p class="big">Nuestro trabajo es cerrar esa brecha rápido: que TireNexus aparezca en todos lados donde alguien busca llantas, que se vea seria, y que la gente sepa cómo contactarte.</p>
+      <div class="note">
+        <p><b>Y hay prisa, por una buena razón.</b> A esta zona llegan como cien personas nuevas cada día. Van a ampliar veintiún millas de la I-75. Más gente y más obra significan más camiones y más llantas. El que se posicione ahora agarra esa ola. El que espere va a pagar el doble en publicidad para alcanzar a los que llegaron primero.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Antes de esta propuesta</p>
+      <h2>Ya revisamos tu presencia digital</h2>
+      <p class="big">Hicimos una consulta técnica de los dominios de TireNexus. Buenas noticias, y una oportunidad fácil de tomar.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th scope="col">Dominio</th><th scope="col">Situación</th><th scope="col">Qué significa</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">tirenexus.com</th><td class="hito">YA ES TUYO</td>
+              <td>El principal está registrado. Es sobre este que construimos todo.</td></tr>
+            <tr><th scope="row">tirenexus.net</th><td class="hito">DISPONIBLE</td>
+              <td rowspan="3">Cuatro variantes libres. Asegurarlas cuesta centavos al año y las redirigimos al principal, para que ningún tercero use el nombre.</td></tr>
+            <tr><th scope="row">tirenexus.us</th><td class="hito">DISPONIBLE</td></tr>
+            <tr><th scope="row">thetirenexus.com</th><td class="hito">DISPONIBLE</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="big">Nos encargamos del registro y la configuración como parte del arranque. <strong>Quedan a nombre de TireNexus</strong>, no del nuestro.</p>
+      <p class="muted" style="font-size:.88rem">Consulta de registros de nombre de dominio del 7 de septiembre de 2026. La disponibilidad se confirma con el registrador al momento de comprar. El costo del registro se factura aparte, a precio de costo.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">A dónde vamos</p>
+      <h2>Cuatro cosas que queremos lograr</h2>
+      <div class="goals">
+        <div class="goal">
+          <h3>Que te conozcan</h3>
+          <p>Que cuando alguien oiga TireNexus sepa de inmediato quién eres y qué vendes.</p>
+        </div>
+        <div class="goal">
+          <h3>Que te llamen</h3>
+          <p>Clientes nuevos entrando todos los meses, sin que tengas que salir a buscarlos uno por uno.</p>
+        </div>
+        <div class="goal">
+          <h3>Que te encuentren</h3>
+          <p>Que aparezcas primero cuando alguien busca llantas en la zona, en Google y en el mapa.</p>
+        </div>
+        <div class="goal">
+          <h3>Que te entiendan</h3>
+          <p>Todo en inglés y en español, porque así se habla el negocio aquí.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">El trabajo</p>
+      <h2>Seis cosas que hacemos por ti</h2>
+
+      <div class="blocks">
+
+        <div class="blk">
+          <div class="blk-head"><span class="n">01</span><h3>Que todo se vea como una sola empresa</h3></div>
+          <p class="why">Hoy tu marca va a estar en el camión, en la factura, en el letrero y en el celular del cliente. Si en cada lado se ve distinta, se ve chica. Si se ve igual en todos, se ve grande.</p>
+          <p class="did">Qué hacemos</p>
+          <ul class="ticks cols2">
+            <li>Definimos cómo se usa tu logo, tus colores y tus letras</li>
+            <li>Te armamos las plantillas para redes y documentos</li>
+            <li>Diseñamos facturas, tarjetas y material de mostrador</li>
+            <li>Preparamos el diseño para rotular camiones y letreros</li>
+          </ul>
+          <div class="win"><span class="tag">Lo que ganas</span><p>Te ves como una empresa establecida desde el primer día, no como un negocio que apenas arranca.</p></div>
+        </div>
+
+        <div class="blk">
+          <div class="blk-head"><span class="n">02</span><h3>Un lugar a donde mandar a la gente</h3></div>
+          <p class="why">Cuando alguien ve tu camión o tu anuncio, lo primero que hace es buscarte en el celular. Si no encuentra nada serio, se va con otro. Tu página es el vendedor que trabaja las veinticuatro horas.</p>
+          <p class="did">Qué hacemos</p>
+          <ul class="ticks cols2">
+            <li>Te hacemos una página completa, en inglés y en español</li>
+            <li>Con una página por cada producto y por cada ciudad que atiendes</li>
+            <li>Rápida y fácil de usar en el celular, que es donde te buscan</li>
+            <li>Con botón de llamar y formulario para pedir información</li>
+            <li>Dejamos tu ficha de Google, Apple y Bing correcta y completa</li>
+            <li>Instalamos el conteo de llamadas y visitas desde el día uno</li>
+          </ul>
+          <div class="win"><span class="tag">Lo que ganas</span><p>El que te busca te encuentra, entiende qué vendes y sabe cómo llamarte. Sin perderse en el camino.</p></div>
+        </div>
+
+        <div class="blk">
+          <div class="blk-head"><span class="n">03</span><h3>Que aparezcas cuando te buscan</h3></div>
+          <p class="why">Hoy, si alguien busca llantas al mayoreo en Fort Myers, sale otro. Queremos que salgas tú. Y no sólo en Google: cada vez más gente le pregunta a ChatGPT y a las apps de inteligencia artificial, y también ahí hay que estar.</p>
+          <p class="did">Qué hacemos</p>
+          <ul class="ticks cols2">
+            <li>Acomodamos tu página para que Google la entienda y la muestre arriba</li>
+            <li>Te ponemos en el mapa, con datos correctos y reseñas al día</li>
+            <li>Escribimos contenido que responde lo que la gente pregunta</li>
+            <li>Preparamos tu sitio para que las apps de inteligencia artificial te recomienden</li>
+            <li>Cada mes revisamos si ya sales y dónde todavía no</li>
+          </ul>
+          <div class="win"><span class="tag">Lo que ganas</span><p>Llamadas que llegan solas, sin pagar por cada clic. Es lo que más tarda en dar fruto y lo que más dura.</p></div>
+          <p class="tech">En el oficio a esto le dicen SEO, AEO, GEO y LLM. Es lo mismo que acabas de leer.</p>
+        </div>
+
+        <div class="blk">
+          <div class="blk-head"><span class="n">04</span><h3>Fotos y videos que venden</h3></div>
+          <p class="why">En este negocio la foto bajada de internet se nota, y resta. La gente quiere ver tu bodega, tu producto y tu gente. Eso es lo que genera confianza para hacer el primer pedido.</p>
+          <p class="did">Qué hacemos</p>
+          <ul class="ticks cols2">
+            <li>Vamos a tu lugar y hacemos la sesión de fotos</li>
+            <li>Grabamos un video de la empresa y varios cortos para redes</li>
+            <li>Verticales para el celular, horizontales para la página</li>
+            <li>Publicamos y respondemos en tus redes cada semana</li>
+            <li>Todo en inglés y en español</li>
+            <li>Te dejamos el material listo para que tu gente lo mande por WhatsApp</li>
+          </ul>
+          <div class="win"><span class="tag">Lo que ganas</span><p>Material propio que puedes usar en todos lados. Y un cliente que ya vio tu bodega llega con más confianza a la primera llamada.</p></div>
+        </div>
+
+        <div class="blk">
+          <div class="blk-head"><span class="n">05</span><h3>Anuncios donde sí está el cliente</h3></div>
+          <p class="why">La publicidad bien puesta te trae clientes esta semana, no en seis meses. Mal puesta, sólo quema dinero. La diferencia está en ponerla donde la gente ya está buscando lo que vendes.</p>
+          <p class="did">Qué hacemos</p>
+          <ul class="ticks cols2">
+            <li>Anuncios en Google para el que ya está buscando llantas</li>
+            <li>Campañas aparte en español, que cuestan menos y rinden igual</li>
+            <li>Facebook, Instagram y LinkedIn para la gente del ramo</li>
+            <li>Los directorios que usan los del negocio</li>
+            <li>Volvemos a mostrarte a quien ya visitó tu página</li>
+            <li>Diseñamos todos los anuncios, eso va incluido</li>
+          </ul>
+          <div class="win"><span class="tag">Lo que ganas</span><p>Clientes desde la primera semana. Y sabes exactamente cuánto te costó cada uno.</p></div>
+        </div>
+
+        <div class="blk">
+          <div class="blk-head"><span class="n">06</span><h3>Saber qué funcionó y qué no</h3></div>
+          <p class="why">Nada de reportes con palabras raras. Cada mes te sentamos y te decimos cuánto entró, de dónde vino y cuánto costó. Si algo no está sirviendo, se cambia.</p>
+          <p class="did">Qué hacemos</p>
+          <ul class="ticks cols2">
+            <li>Contamos cuántos clientes nuevos llegaron y por dónde</li>
+            <li>Te decimos cuánto costó cada uno</li>
+            <li>Rastreamos las llamadas para saber cuál anuncio las trajo</li>
+            <li>Revisamos si ya sales primero en Google y en el mapa</li>
+            <li>Una reunión al mes, contigo, para decidir el siguiente paso</li>
+          </ul>
+          <div class="win"><span class="tag">Lo que ganas</span><p>Dejas de adivinar. Sabes en qué vale la pena poner más dinero y en qué no.</p></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Lo que vas a tener el 20 de octubre</p>
+      <h2>Entregables, contados uno por uno</h2>
+      <p class="big">Nada de "presencia digital" ni "activación de marca". Esto es lo que existe, en archivo, el día que cerramos. Todo a nombre de TireNexus.</p>
+      <div class="deliv">
+        <div class="dv"><span class="qty">1<small>Manual de marca</small></span>
+          <ul><li>Uso de logo, colores y tipografía</li><li>Medidas y áreas de respeto</li><li>Casos de uso reales</li><li>PDF y archivo editable</li></ul></div>
+        <div class="dv"><span class="qty">12<small>Plantillas maestras</small></span>
+          <ul><li>4 para redes sociales</li><li>Presentación y cotización</li><li>Factura y orden de compra</li><li>Material de mostrador</li></ul></div>
+        <div class="dv"><span class="qty">1<small>Arte de rotulación</small></span>
+          <ul><li>Camión y remolque a escala real</li><li>Fachada y señalización</li><li>Listo para el taller de vinil</li><li>Vectorial, sin pérdida</li></ul></div>
+        <div class="dv"><span class="qty">60<small>Fotos retocadas</small></span>
+          <ul><li>Instalaciones y bodega</li><li>Producto en almacén</li><li>Equipo de trabajo</li><li>Alta resolución y versión web</li></ul></div>
+        <div class="dv"><span class="qty">1<small>Video institucional</small></span>
+          <ul><li>90 segundos</li><li>Color y audio corregidos</li><li>Subtítulos en inglés y español</li><li>Versión larga y versión corta</li></ul></div>
+        <div class="dv"><span class="qty">8<small>Videos cortos</small></span>
+          <ul><li>Verticales para redes</li><li>Cada uno en dos idiomas</li><li>Subtítulos incrustados</li><li>Listos para publicar</li></ul></div>
+        <div class="dv"><span class="qty">1<small>Sitio web completo</small></span>
+          <ul><li><b>Un solo sitio, dos idiomas</b> (EN/ES)</li><li>Un dominio, no dos sitios</li><li>Catálogo, formularios y botón de llamar</li><li>Medición y conteo instalados</li></ul></div>
+        <div class="dv"><span class="qty">3<small>Fichas verificadas</small></span>
+          <ul><li>Google, Apple y Bing</li><li>Directorios del ramo</li><li>Datos idénticos en todas</li><li>Fotos y horarios cargados</li></ul></div>
+        <div class="dv"><span class="qty">4<small>Campañas al aire</small></span>
+          <ul><li>Google en inglés y español</li><li>Redes sociales segmentadas</li><li>Todas las piezas diseñadas</li><li>Tablero de reportes armado</li></ul></div>
+      </div>
+      <p class="big">Todo se entrega en archivo editable y en formato final. Sin excepciones y sin archivos rehenes.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Cómo cuidamos la calidad</p>
+      <h2>El estándar, por escrito</h2>
+      <p class="big">Casi ninguna agencia pone su estándar en papel, porque compromete. Aquí está el nuestro, y se puede revisar entregable por entregable.</p>
+      <div class="stds">
+        <div class="std">
+          <span class="k">Fotografía y video</span>
+          <p>Rodaje con iluminación propia, no con la luz que haya. Se conserva el original sin comprimir, se retoca pieza por pieza y se corrige color y audio. <b>Nada de banco de imágenes.</b></p>
+        </div>
+        <div class="std">
+          <span class="k">Textos</span>
+          <p>Escritos por una persona y revisados en los dos idiomas por alguien que los habla. <b>El español no es una traducción automática del inglés:</b> se escribe aparte.</p>
+        </div>
+        <div class="std">
+          <span class="k">Sitio web</span>
+          <p>Carga en menos de dos segundos, se prueba primero en celular y se revisa en los navegadores reales que usa tu cliente.</p>
+        </div>
+        <div class="std">
+          <span class="k">Campañas</span>
+          <p>Ninguna campaña se enciende hasta que la medición esté probada y funcionando. <b>Publicidad sin medición es dinero sin recibo.</b></p>
+        </div>
+        <div class="std">
+          <span class="k">Revisión</span>
+          <p>Cada entregable pasa por tres filtros: quien lo hace, quien lo revisa, y tú. <b>Nada se publica sin tu visto bueno.</b></p>
+        </div>
+        <div class="std">
+          <span class="k">Propiedad</span>
+          <p>Archivos originales, cuentas y accesos quedan a nombre de TireNexus desde el primer día. <b>Si algún día te vas, te llevas todo.</b></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Con qué se hace</p>
+      <h2>El equipo y las manos que hacen el trabajo</h2>
+      <p class="big">Todo lo de abajo lo hacemos nosotros, con equipo propio. No se subcontrata, no se renta aparte y no se te cobra como extra a mitad del proyecto.</p>
+      <div class="stds">
+        <div class="std">
+          <span class="k">Video</span>
+          <p>Grabación en <b>4K</b> con cámaras y ópticas profesionales. Estabilización, planos de apoyo y tomas de producto. Se entrega en 4K y en versiones ligeras para redes.</p>
+        </div>
+        <div class="std">
+          <span class="k">Iluminación y setup</span>
+          <p>Llevamos luces, difusores, banderas y fondos. <b>El setup completo va incluido</b> en el día de rodaje: no se cobra renta de equipo ni horas de montaje.</p>
+        </div>
+        <div class="std">
+          <span class="k">Audio</span>
+          <p>Micrófono de solapa y grabadora aparte, no el audio de la cámara. Limpieza de ruido, nivelación y musicalización con pistas licenciadas.</p>
+        </div>
+        <div class="std">
+          <span class="k">Teleprompter</span>
+          <p>Quien hable a cámara lee su guion. <b>Menos tomas, menos nervios y menos horas tuyas</b> frente al lente. El guion lo escribimos nosotros y lo apruebas antes.</p>
+        </div>
+        <div class="std">
+          <span class="k">Edición y postproducción</span>
+          <p>Montaje, corrección de color, rotulación, subtítulos quemados en inglés y español, y versiones en horizontal, vertical y cuadrado del mismo material.</p>
+        </div>
+        <div class="std">
+          <span class="k">Fotografía y retoque</span>
+          <p>Revelado del archivo original, limpieza de fondo, corrección de perspectiva y retoque pieza por pieza. Cada foto sale en versión web y en alta para impresión.</p>
+        </div>
+        <div class="std">
+          <span class="k">Diseño gráfico</span>
+          <p>Logo, sistema de marca, papelería, señalética, rotulación de camión, uniformes y piezas para redes. Se entregan los <b>archivos editables</b>, no sólo el PDF.</p>
+        </div>
+        <div class="std">
+          <span class="k">Programación web con AI</span>
+          <p>El sitio se programa a la medida, no se arma con plantilla. Usamos herramientas de AI para acelerar el desarrollo y para dejar el sitio <b>legible por ChatGPT, Gemini y las búsquedas con AI</b>, que es de donde va a llegar buena parte del tráfico nuevo.</p>
+        </div>
+        <div class="std">
+          <span class="k">Licencias</span>
+          <p>Tipografías, música, plugins y herramientas: <b>todo licenciado y todo incluido en el precio.</b> Las licencias quedan a nombre de TireNexus.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Lo que esto te consigue</p>
+      <h2>El cliente decide antes de llamarte</h2>
+      <p class="big">En este negocio nadie hace un pedido sin revisarte primero en el celular. Esa revisión dura menos de un minuto. Esto es lo que va a encontrar.</p>
+      <div class="gains">
+        <div class="gain"><span class="k">Tu bodega, bien fotografiada</span>
+          <p><b>Comunica respaldo y capacidad.</b> El comprador ve inventario real y asume que puedes surtirle.</p></div>
+        <div class="gain"><span class="k">Página rápida y en su idioma</span>
+          <p><b>Llega hasta el formulario.</b> Entiende qué vendes y encuentra cómo contactarte sin buscar.</p></div>
+        <div class="gain"><span class="k">Un solo dato en todos lados</span>
+          <p><b>Google te muestra primero.</b> Nombre, dirección y teléfono idénticos en cada ficha y directorio.</p></div>
+        <div class="gain"><span class="k">Cada dólar rastreado</span>
+          <p><b>Inviertes donde sí funciona.</b> Sabes qué anuncio trajo cada llamada y cuánto costó.</p></div>
+      </div>
+      <p class="big">Cuatro cosas simples, hechas bien, y el pedido llega a tu teléfono en vez del de al lado.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">El plan · 30 días hábiles</p>
+      <h2>Del 9 de septiembre al 20 de octubre</h2>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th scope="col">Días</th><th scope="col">Bloque</th><th scope="col">Qué se produce</th><th scope="col">Se entrega</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">1–5</th><td><b>Marca</b></td>
+              <td>Manual de aplicación, plantillas maestras, papelería y arte de rotulación de unidades.</td><td class="hito">15 sep</td></tr>
+            <tr><th scope="row">6–10</th><td><b>Producción</b></td>
+              <td>Rodaje en tu sitio, selección y retoque de fotos, edición del video institucional y los cortos.</td><td class="hito">22 sep</td></tr>
+            <tr><th scope="row">11–15</th><td><b>Contenido</b></td>
+              <td>Mapa del sitio, textos escritos en inglés y en español, diseño de las plantillas de página.</td><td class="hito">29 sep</td></tr>
+            <tr><th scope="row">16–20</th><td><b>Sitio</b></td>
+              <td>Construcción, pruebas de velocidad y de celular, medición instalada. <b>Publicación en línea.</b></td><td class="hito">6 oct</td></tr>
+            <tr><th scope="row">21–25</th><td><b>Presencia</b></td>
+              <td>Fichas de Google, Apple y Bing, directorios del ramo y páginas por ciudad.</td><td class="hito">13 oct</td></tr>
+            <tr><th scope="row">26–30</th><td><b>Campañas</b></td>
+              <td>Piezas publicitarias, campañas al aire, tablero de reportes, capacitación y entrega de accesos.</td><td class="hito">20 oct</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <p><b>Cada bloque cierra con una entrega y con tu aprobación.</b> Si un bloque no se aprueba, no arranca el siguiente. Así no se acumulan errores hasta el final y nunca esperas treinta días para ver algo.</p>
+        <p><b>Dos cosas dependen de ti para que el plazo se cumpla:</b> una fecha de rodaje dentro de los primeros diez días, y una persona que apruebe en menos de 48 horas. Si eso se atrasa, el calendario se recorre el mismo número de días.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Cuánto cuesta</p>
+      <h2>Los 30 días</h2>
+      <p class="big">Se paga una sola vez y cubre todo lo de la lista de entregables. Es lo que hay que construir antes de que la máquina empiece a jalar.</p>
+      <div class="invest">
+        <div class="rows">
+          <div class="row">
+            <span class="k"><b>Imagen de marca aplicada</b>Manual de uso, plantillas, papelería y diseño para rotular unidades.</span>
+            <span class="mono">$3,500</span>
+          </div>
+          <div class="row">
+            <span class="k"><b>Un solo sitio web, en inglés y español</b>Un dominio con las dos versiones. Hecho para celular, con catálogo, formularios y botón de llamar.</span>
+            <span class="mono">$8,500</span>
+          </div>
+          <div class="row">
+            <span class="k"><b>Fichas, directorios y medición</b>Google, Apple, Bing, directorios del ramo, y el conteo de llamadas y visitas.</span>
+            <span class="mono">$1,200</span>
+          </div>
+          <div class="row">
+            <span class="k"><b>Un día de fotos y video</b>Sesión en tu lugar: bodega, producto, equipo. Un video de empresa y seis cortos para redes.</span>
+            <span class="mono">$3,300</span>
+          </div>
+          <div class="row total">
+            <span class="k"><b>Total de los 30 días</b>Mitad al arrancar el 9 de septiembre, mitad contra entrega el 20 de octubre.</span>
+            <span class="mono amt-total">$16,500</span>
+          </div>
+        </div>
+      </div>
+      <p class="muted" style="font-size:.9rem">En el mercado de Estados Unidos, una página profesional para un negocio de este tamaño va de $4,000 a $15,000, y un día de foto y video en el sur de Florida va de $3,500 a $10,000. Este plan está armado en el punto medio, con todo incluido.</p>
+      <div class="note">
+        <p><b>Fotografía de producto para catálogo y tienda en línea — se cotiza aparte.</b> Fondo blanco, tres ángulos por referencia, recortadas y listas para subir a una tienda o a un catálogo digital. <b>Desde $2,400 por sesión de hasta 20 productos.</b> Va por separado porque el precio depende de cuántas referencias quieras mostrar, y porque no todo el mundo la necesita desde el primer día.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Cuánto cuesta</p>
+      <h2>La mensualidad, desde noviembre</h2>
+      <p class="big">Empieza cuando ya hay algo que mantener y hacer crecer. Tres formas de trabajar; la de en medio es la que recomendamos.</p>
+      <div class="tiers">
+        <div class="tier">
+          <span class="lvl">Básico</span>
+          <span class="amt">$2,500<small>al mes</small></span>
+          <ul>
+            <li>Que te encuentren en Google y en el mapa</li>
+            <li>8 publicaciones al mes en redes</li>
+            <li>Página al día</li>
+            <li>Reporte mensual</li>
+          </ul>
+        </div>
+        <div class="tier pick">
+          <span class="lvl">Recomendado</span>
+          <span class="amt">$4,500<small>al mes</small></span>
+          <ul>
+            <li>Todo lo del básico</li>
+            <li>Manejo diario de los anuncios</li>
+            <li>16 publicaciones al mes, en dos idiomas</li>
+            <li>2 páginas nuevas por ciudad cada mes</li>
+            <li>Rastreo de llamadas</li>
+            <li>Reunión mensual contigo</li>
+          </ul>
+        </div>
+        <div class="tier">
+          <span class="lvl">Acelerado</span>
+          <span class="amt">$7,000<small>al mes</small></span>
+          <ul>
+            <li>Todo lo del recomendado</li>
+            <li>Un día de grabación cada mes</li>
+            <li>4 páginas nuevas por ciudad</li>
+            <li>Campañas en LinkedIn y directorios</li>
+            <li>Reunión cada dos semanas</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="font-size:.9rem">Para referencia: una agencia en Estados Unidos cobra entre $1,000 y $5,000 al mes a un negocio local, y entre $3,000 y $6,000 cuando el trabajo cubre varios frentes a la vez.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Cuánto cuesta</p>
+      <h2>El dinero de los anuncios</h2>
+      <p class="big"><strong>Esto no nos lo pagas a nosotros.</strong> Va directo a Google y a Facebook, desde tu cuenta y a tu nombre. Aquí van tres ejemplos de lo que se suele invertir y lo que se puede esperar.</p>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Al mes</th>
+              <th scope="col">Visitas que trae</th>
+              <th scope="col">Contactos que deja</th>
+              <th scope="col">Para qué alcanza</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">$1,500</th>
+              <td>~500 clics</td>
+              <td>30 a 50</td>
+              <td>Cubrir Fort Myers y Lehigh Acres, sólo Google</td>
+            </tr>
+            <tr>
+              <th scope="row">$3,000</th>
+              <td>~1,000 clics</td>
+              <td>60 a 100</td>
+              <td>Toda la zona, Google en inglés y en español</td>
+            </tr>
+            <tr>
+              <th scope="row">$5,000</th>
+              <td>~1,650 clics</td>
+              <td>100 a 165</td>
+              <td>Toda la zona más Facebook, LinkedIn y directorios</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note">
+        <p><b>De dónde salen esos números.</b> En el rubro de llantas, cada clic cuesta alrededor de $2 a $4, bastante menos que el promedio de todas las industrias. De cada cien personas que entran, entre siete y dieciséis dejan sus datos. Eso pone cada contacto entre $30 y $50. Son datos públicos de la industria, no promesas nuestras.</p>
+        <p><b>Nuestra recomendación:</b> arrancar en <strong>$3,000 al mes</strong>. Con menos, los anuncios no juntan datos suficientes para saber qué funciona. Con más, se gasta antes de saber qué funciona.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">Forma de pago</p>
+      <h2>Dos maneras de pagarlo, mismo precio</h2>
+      <p class="big">Mismo precio en las dos. Los entregables, las fechas y la calidad son idénticos: lo único que cambia es el calendario de pagos. Elige la que le acomode a tu flujo.</p>
+      <div class="pay">
+        <div class="opt best">
+          <span class="badge">Recomendada · pagos por avance</span>
+          <span class="price">$16,500</span>
+          <div class="sched">
+            <span>MIÉ 9 SEP · $6,600</span><span>LUN 28 SEP · $4,950</span><span>LUN 13 OCT · $4,950</span>
+          </div>
+          <p class="note"><b>Pagas contra lo que ya viste.</b> El primer pago arranca el bloque de marca; el segundo cae con la marca y la producción entregadas; el tercero, con el sitio publicado. Nunca pagas por adelantado algo que no tienes en la mano.</p>
+        </div>
+        <div class="opt">
+          <span class="badge">Abono y semanas</span>
+          <span class="price">$16,500</span>
+          <div class="sched">
+            <span>MIÉ 9 SEP · $4,950</span><span>LUN 14 SEP · $2,310</span><span>LUN 21 SEP · $2,310</span>
+            <span>LUN 28 SEP · $2,310</span><span>LUN 5 OCT · $2,310</span><span>LUN 12 OCT · $2,310</span>
+          </div>
+          <p class="note"><b>Abono del 30% al firmar y cinco pagos semanales.</b> Mismo precio, sólo repartido en montos chicos mientras dura el proyecto. Queda liquidado el 12 de octubre.</p>
+        </div>
+      </div>
+      </div>
+      <div class="note">
+        <p><b>Después de los 30 días.</b> Desde noviembre entra la mensualidad que elijas, más el dinero de los anuncios. Con el nivel recomendado son <b>$7,500 al mes</b> en total. Tres meses de compromiso y de ahí mes a mes, sin amarres.</p>
+        <p><b>Todo queda a tu nombre.</b> Las cuentas de publicidad, la página, los dominios, los perfiles y los archivos originales son de TireNexus. Si algún día te vas, te llevas todo.</p>
+      </div>
+      <p class="muted" style="font-size:.88rem">Precios en dólares. Válidos 30 días. No incluyen impuestos, registro de dominios, hospedaje ni licencias de terceros.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">Para que quede claro</p>
+      <h2>Qué sí hacemos y qué no</h2>
+      <div class="scope">
+        <div>
+          <h3>Sí lo hacemos</h3>
+          <ul class="plain">
+            <li>Todo lo de las seis cosas de arriba</li>
+            <li>Diseñar, fotografiar y grabar</li>
+            <li>Escribir todos los textos, en inglés y en español</li>
+            <li>Manejar los anuncios y las redes todos los días</li>
+            <li>Reporte y reunión cada mes</li>
+            <li>Entregarte los archivos originales</li>
+          </ul>
+        </div>
+        <div>
+          <h3>No lo hacemos</h3>
+          <ul class="plain">
+            <li>Abogados, registro de marca y trámites</li>
+            <li>Poner precios ni definir condiciones de venta</li>
+            <li>Vender por ti, ni manejar cuentas o cobranza</li>
+            <li>Sistemas de inventario, pedidos o reparto</li>
+            <li>El dinero de los anuncios, que va directo a las plataformas</li>
+            <li>Dominios, hospedaje y licencias de otros</li>
+          </ul>
+        </div>
+      </div>
+      <p class="muted" style="font-size:.94rem">Tú decides cómo se maneja el negocio. Nosotros nos encargamos de que se sepa y de que llegue gente.</p>
+    </section>
+
+    <section>
+      <p class="eyebrow">De tu lado</p>
+      <h2>Qué necesitamos para empezar</h2>
+      <div class="two">
+        <ul class="ticks">
+          <li>Las claves de tu página y de tus redes actuales</li>
+          <li>El logo de TireNexus en archivo editable</li>
+          <li>La lista de marcas y productos que quieres promover</li>
+        </ul>
+        <ul class="ticks">
+          <li>Hasta dónde entregas y en cuánto tiempo</li>
+          <li>Una persona que nos apruebe las cosas</li>
+          <li>Un día para ir a hacer las fotos y el video</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <p class="eyebrow">El siguiente paso</p>
+      <h2>El reloj empieza el 9 de septiembre</h2>
+      <p class="big">Apruebas esta propuesta, nos sentamos una hora para acordar el calendario, y el bloque de marca arranca al día siguiente.</p>
+      <div class="invest">
+        <div class="rows">
+          <div class="row"><span class="k">Forma de pago elegida</span><span class="fill"></span></div>
+          <div class="row"><span class="k">Fecha en que apruebas</span><span class="fill"></span></div>
+          <div class="row"><span class="k">Reunión de arranque</span><span class="fill"></span></div>
+          <div class="row"><span class="k">Fecha del rodaje de foto y video</span><span class="fill"></span></div>
+          <div class="row"><span class="k">Persona que aprueba los entregables</span><span class="fill"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>FOCOw · Foco Working LLC</span>
+      <span>[teléfono]</span>
+      <span>[correo]</span>
+      <span>[sitio web]</span>
+      <span>Propuesta válida 30 días</span>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>

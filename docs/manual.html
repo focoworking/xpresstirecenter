@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Manual de Marca TireNexus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* ============================================================
+   TireNexus — mini manual de uso del logo · preparado por FOCOw
+   Documento de consulta. Imprime limpio a A4.
+   ============================================================ */
+:root{
+  --ink:#141416;
+  --ink-2:#3A3733;
+  --steel:#63605B;
+  --mist:#F6F4F2;
+  --line:#E5E1DC;
+  --paper:#FFFFFF;
+  --orange:#E8541F;
+  --night:#111113;
+  --fog:#A8A49E;
+  --ok:#2F8F5B;
+  --no:#C0392B;
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#F2F0EE; --ink-2:#C6C2BC; --steel:#948F89;
+    --line:#332F2B; --mist:#1C1A18; --paper:#131211; --night:#0C0C0D; --fog:#8A857F;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F2F0EE; --ink-2:#C6C2BC; --steel:#948F89;
+  --line:#332F2B; --mist:#1C1A18; --paper:#131211; --night:#0C0C0D; --fog:#8A857F;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+svg{display:block;height:auto}
+h1,h2,h3,h4{font-family:var(--f-display);margin:0;line-height:1.08;letter-spacing:-.024em;text-wrap:balance}
+h1{font-size:clamp(2rem,4.6vw,2.9rem);font-weight:900;text-transform:uppercase}
+h2{font-size:clamp(1.3rem,2.5vw,1.72rem);font-weight:800}
+h3{font-size:1.02rem;font-weight:800}
+h4{font-size:.85rem;font-weight:700}
+p{margin:0;max-width:66ch}
+.page{width:min(100% - 2.5rem,900px);margin-inline:auto;padding:clamp(2rem,5vw,3.5rem) 0 4rem}
+.stack{display:flex;flex-direction:column;gap:clamp(2.4rem,4.5vw,3.4rem)}
+section{display:flex;flex-direction:column;gap:1.05rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--orange);margin:0}
+.muted{color:var(--steel)}
+.small{font-size:.88rem}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2.5px solid var(--orange);outline-offset:2px}
+
+/* ---------- Logo ---------- */
+.logo{width:100%;max-width:420px}
+.logo{--tnx-ink:var(--ink);--tnx-acc:var(--orange)}
+.inv .logo{--tnx-ink:#fff}
+.mono1 .logo{--tnx-ink:#141416;--tnx-acc:#141416}
+.monow .logo{--tnx-ink:#fff;--tnx-acc:#fff}
+
+/* ---------- Encabezado ---------- */
+header{display:flex;flex-direction:column;gap:1.2rem;padding-bottom:1.5rem;border-bottom:3px solid var(--ink)}
+.meta{display:flex;flex-wrap:wrap;gap:.35rem 2.2rem;font-family:var(--f-mono);font-size:.76rem;color:var(--steel)}
+.meta b{color:var(--ink);font-weight:500}
+
+/* ---------- Muestras ---------- */
+.plate{border:1px solid var(--line);padding:clamp(1.4rem,3.5vw,2.6rem);display:flex;
+  align-items:center;justify-content:center;min-height:150px;background:var(--paper)}
+.plate.dark{background:var(--night);border-color:var(--night)}
+.plate.orange{background:var(--orange);border-color:var(--orange)}
+.plate.grey{background:var(--mist)}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:1.1rem}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.1rem}
+.cap{font-family:var(--f-mono);font-size:.66rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--steel);margin-top:.55rem}
+.item{display:flex;flex-direction:column}
+
+/* ---------- Área de respeto ---------- */
+.clear{position:relative;background:var(--mist);border:1px solid var(--line);padding:56px}
+.clear .box{position:relative;background:var(--paper);padding:26px;outline:1px dashed var(--orange)}
+.clear .mk{position:absolute;font-family:var(--f-mono);font-size:.66rem;font-weight:600;color:var(--orange)}
+.clear .mk.t{top:20px;left:50%;transform:translateX(-50%)}
+.clear .mk.l{left:16px;top:50%;transform:translateY(-50%)}
+
+/* ---------- Colores ---------- */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.sw{border:1px solid var(--line);display:flex;flex-direction:column}
+.sw .chip{height:96px}
+.sw .info{padding:.8rem .9rem;display:flex;flex-direction:column;gap:.15rem}
+.sw .name{font-family:var(--f-display);font-weight:800;font-size:.95rem}
+.sw .val{font-family:var(--f-mono);font-size:.74rem;color:var(--steel);line-height:1.55}
+
+/* ---------- Tipografía ---------- */
+.typespec{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.4rem}
+.tsp{border-left:3px solid var(--orange);padding-left:1rem;display:flex;flex-direction:column;gap:.3rem}
+.tsp .sample{font-size:2.1rem;line-height:1.1;color:var(--ink)}
+.tsp .lbl{font-family:var(--f-mono);font-size:.66rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--orange)}
+.tsp p{font-size:.88rem;color:var(--steel)}
+
+/* ---------- Sí / evitar ---------- */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.rule{padding:1.1rem 1.2rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  display:flex;flex-direction:column;gap:.4rem}
+.rule .tag{font-family:var(--f-mono);font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+.rule.yes{background:rgba(47,143,91,.06)}
+.rule.yes .tag{color:var(--ok)}
+.rule.no .tag{color:var(--no)}
+.rule p{font-size:.9rem;color:var(--ink-2)}
+.demo{height:56px;display:flex;align-items:center;justify-content:center;background:var(--mist);
+  border:1px solid var(--line);overflow:hidden}
+.demo .logo{max-width:170px}
+.demo.stretch .logo{transform:scaleY(1.7)}
+.demo.rot .logo{transform:rotate(-9deg)}
+.demo.badcolor .logo{--tnx-acc:#2E7BD6}
+.demo.badbg{background:#8A6E52}
+.demo.shadow .logo{filter:drop-shadow(4px 5px 2px rgba(0,0,0,.55))}
+
+/* ---------- Aplicaciones ---------- */
+.apps{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.1rem}
+.app{border:1px solid var(--line);overflow:hidden;display:flex;flex-direction:column}
+.app .scene{height:118px;display:flex;align-items:center;justify-content:center;padding:1rem}
+.app .scene .logo{max-width:150px}
+.app .lbl{padding:.65rem .85rem;font-family:var(--f-mono);font-size:.68rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--steel);border-top:1px solid var(--line)}
+.scene.truck{background:linear-gradient(180deg,#E9E7E4 0 62%,#D7D4D0 62% 100%)}
+.scene.shirt{background:var(--night)}
+.scene.doc{background:#fff;align-items:flex-start;justify-content:flex-start}
+.scene.doc .logo{max-width:118px}
+.scene.avatar{background:var(--night)}
+
+/* ---------- Isotipo ---------- */
+.iso{width:96px;height:96px;background:var(--night);display:flex;align-items:center;justify-content:center}
+.iso svg{width:56px;fill:var(--orange)}
+.iso.orange{background:var(--orange)}
+.iso.orange svg{fill:#fff}
+.iso.light{background:var(--mist);border:1px solid var(--line)}
+.iso.light svg{fill:var(--ink)}
+
+/* ---------- Nota ---------- */
+.note{border:1px dashed var(--line);padding:1rem 1.2rem;font-size:.92rem;color:var(--ink-2);
+  display:flex;flex-direction:column;gap:.5rem}
+.note b{color:var(--ink);font-weight:600}
+ul.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem}
+ul.ticks li{position:relative;padding-left:1.3rem;font-size:.95rem;color:var(--ink-2)}
+ul.ticks li::before{content:"";position:absolute;left:0;top:.58rem;width:7px;height:7px;
+  background:var(--orange);clip-path:polygon(0 0,100% 50%,0 100%)}
+ul.ticks li b{color:var(--ink);font-weight:600}
+
+footer{border-top:1px solid var(--line);padding-top:1.2rem;margin-top:.5rem;
+  font-family:var(--f-mono);font-size:.72rem;color:var(--steel);
+  display:flex;flex-wrap:wrap;gap:.35rem 2rem}
+
+@media print{
+  @page{size:A4;margin:15mm}
+  body{background:#fff;color:#141416;font-size:10.5pt}
+  .page{width:100%;padding:0}
+  .stack{gap:1.5rem}
+  section{break-inside:avoid}
+  .plate.dark,.scene.shirt,.scene.avatar,.iso{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .plate.orange,.sw .chip,.rule.yes{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     LOGO TIRENEXUS — redibujado en vectorial a partir del archivo
+     enviado. Para usar el oficial, reemplaza el contenido de
+     <symbol id="tnx"> por el SVG original del logo.
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="tnx" viewBox="0 0 1060 300">
+    <g transform="translate(0,192) skewX(-15)">
+      <text x="18" y="0" fill="var(--tnx-ink,#141416)" font-family="Archivo, Arial, sans-serif" font-size="185" font-weight="900" letter-spacing="-6">TIRE</text>
+      <text x="416" y="0" fill="var(--tnx-acc,#E8541F)" font-family="Archivo, Arial, sans-serif" font-size="185" font-weight="900" letter-spacing="-6">NEXUS</text>
+    </g>
+    <path fill="var(--tnx-acc,#E8541F)" d="M950 6 L884 122 L918 112 L622 244 L698 150 L666 160 Z"/>
+    <text x="152" y="272" fill="var(--tnx-ink,#141416)" font-family="Archivo, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="7.5">WHOLESALE TIRE DISTRIBUTOR</text>
+  </symbol>
+  <symbol id="flash" viewBox="0 0 400 300"><path d="M300 6 L214 132 L272 116 L52 254 L154 150 L92 166 Z"/></symbol>
+</svg>
+
+<div class="page">
+  <div class="stack">
+
+    <header>
+      <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="TireNexus · Wholesale Tire Distributor"><use href="#tnx"/></svg>
+      <div>
+        <p class="kicker">Mini manual de marca</p>
+        <h1>Cómo se usa el logo</h1>
+      </div>
+      <p class="muted">Guía corta y práctica para que TireNexus se vea igual en el camión, en la factura, en el letrero y en el celular. Si en cada lado se ve distinta, la marca se ve chica. Si se ve igual en todos, se ve grande.</p>
+      <div class="meta">
+        <span>Para <b>TireNexus</b></span>
+        <span>Preparado por <b>FOCOw</b></span>
+        <span>Versión <b>1.0 · 8 sep 2026</b></span>
+      </div>
+    </header>
+
+    <section>
+      <p class="kicker">01 · La versión principal</p>
+      <h2>El logo horizontal a color</h2>
+      <p class="muted">Es la versión por defecto. Se usa siempre que haya espacio y un fondo claro. El destello naranja forma parte del logo y nunca se quita.</p>
+      <div class="plate"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="TireNexus"><use href="#tnx"/></svg></div>
+      <p class="cap">Versión principal · sobre fondo blanco o claro</p>
+    </section>
+
+    <section>
+      <p class="kicker">02 · Las versiones</p>
+      <h2>Cuatro archivos, cuatro situaciones</h2>
+      <div class="grid2">
+        <div class="item">
+          <div class="plate"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="TireNexus a color"><use href="#tnx"/></svg></div>
+          <p class="cap">A color · uso general sobre claro</p>
+        </div>
+        <div class="item inv">
+          <div class="plate dark"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="TireNexus en negativo"><use href="#tnx"/></svg></div>
+          <p class="cap">Negativo · sobre negro o foto oscura</p>
+        </div>
+        <div class="item mono1">
+          <div class="plate grey"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="TireNexus monocromo negro"><use href="#tnx"/></svg></div>
+          <p class="cap">Un solo color negro · fax, sello, grabado</p>
+        </div>
+        <div class="item monow">
+          <div class="plate orange"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="TireNexus blanco sobre naranja"><use href="#tnx"/></svg></div>
+          <p class="cap">Blanco · sobre naranja de marca</p>
+        </div>
+      </div>
+      <div class="note">
+        <p><b>Regla simple:</b> si el fondo es claro, la versión a color. Si el fondo es oscuro o de color fuerte, la negativa o la blanca. Si sólo se puede imprimir a una tinta, la monocroma. Nunca se inventa una quinta versión.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">03 · Aire alrededor</p>
+      <h2>Área de respeto y tamaño mínimo</h2>
+      <p class="muted">Alrededor del logo tiene que quedar un espacio libre igual a la altura de la letra <strong>T</strong>. Nada entra ahí: ni texto, ni fotos, ni bordes, ni otro logo.</p>
+      <div class="clear">
+        <span class="mk t">= altura de la letra T</span>
+        <span class="mk l">=</span>
+        <div class="box"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Área de respeto del logo"><use href="#tnx"/></svg></div>
+      </div>
+      <div class="grid2" style="margin-top:.4rem">
+        <div class="note"><p><b>Tamaño mínimo en pantalla:</b> 150 píxeles de ancho. Abajo de eso el tagline deja de leerse.</p></div>
+        <div class="note"><p><b>Tamaño mínimo impreso:</b> 35 milímetros de ancho. Para algo más chico, se usa el isotipo.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">04 · Marca corta</p>
+      <h2>El isotipo, para espacios chicos</h2>
+      <p class="muted">Cuando el logo completo no cabe o no se lee —foto de perfil, favicon, bordado, sello— se usa el destello solo, dentro de un cuadro. Nunca se usa el destello suelto sobre una foto.</p>
+      <div class="grid3">
+        <div class="item"><div class="iso"><svg viewBox="0 0 400 300" role="img" aria-label="Isotipo naranja sobre negro"><use href="#flash"/></svg></div>
+          <p class="cap">Naranja sobre negro · principal</p></div>
+        <div class="item"><div class="iso orange"><svg viewBox="0 0 400 300" role="img" aria-label="Isotipo blanco sobre naranja"><use href="#flash"/></svg></div>
+          <p class="cap">Blanco sobre naranja</p></div>
+        <div class="item"><div class="iso light"><svg viewBox="0 0 400 300" role="img" aria-label="Isotipo negro sobre gris"><use href="#flash"/></svg></div>
+          <p class="cap">Negro sobre claro</p></div>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">05 · Colores</p>
+      <h2>La paleta de la marca</h2>
+      <div class="swatches">
+        <div class="sw"><div class="chip" style="background:#E8541F"></div>
+          <div class="info"><span class="name">Naranja TireNexus</span>
+            <span class="val">HEX #E8541F<br>RGB 232 · 84 · 31<br>CMYK 0 · 72 · 91 · 0<br>Pantone 166 C aprox.</span></div></div>
+        <div class="sw"><div class="chip" style="background:#141416"></div>
+          <div class="info"><span class="name">Negro TireNexus</span>
+            <span class="val">HEX #141416<br>RGB 20 · 20 · 22<br>CMYK 60 · 40 · 40 · 100<br>Negro enriquecido</span></div></div>
+        <div class="sw"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--line)"></div>
+          <div class="info"><span class="name">Blanco</span>
+            <span class="val">HEX #FFFFFF<br>RGB 255 · 255 · 255<br>CMYK 0 · 0 · 0 · 0<br>Fondo por defecto</span></div></div>
+        <div class="sw"><div class="chip" style="background:#F6F4F2"></div>
+          <div class="info"><span class="name">Gris claro</span>
+            <span class="val">HEX #F6F4F2<br>RGB 246 · 244 · 242<br>Apoyo · fondos de sección</span></div></div>
+        <div class="sw"><div class="chip" style="background:#63605B"></div>
+          <div class="info"><span class="name">Gris texto</span>
+            <span class="val">HEX #63605B<br>RGB 99 · 96 · 91<br>Apoyo · textos secundarios</span></div></div>
+      </div>
+      <div class="note">
+        <p><b>El naranja se gasta con avaricia.</b> Es acento, no fondo general: botones, títulos cortos, detalles. Cuando todo es naranja, nada resalta.</p>
+        <p><b>Los valores son aproximados</b> hasta contrastarlos con el archivo original del logo. En cuanto lo tengamos, se ajustan y esta hoja se actualiza.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">06 · Tipografía</p>
+      <h2>Las letras de la marca</h2>
+      <p class="muted">El nombre en el logo es una letra dibujada a mano. <strong>No se vuelve a escribir con el teclado:</strong> siempre se usa el archivo del logo. Estas dos tipografías son para todo lo demás.</p>
+      <div class="typespec">
+        <div class="tsp">
+          <span class="lbl">Títulos</span>
+          <span class="sample" style="font-family:var(--f-display);font-weight:900">Archivo Black</span>
+          <p>Para titulares, cifras y nombres de sección. Pesos 800 y 900, con el espaciado cerrado.</p>
+        </div>
+        <div class="tsp">
+          <span class="lbl">Texto</span>
+          <span class="sample" style="font-family:var(--f-body);font-weight:500">Barlow Medium</span>
+          <p>Para párrafos, botones y menús. Pesos 400, 500 y 600. Industrial y muy legible en pantalla chica.</p>
+        </div>
+        <div class="tsp">
+          <span class="lbl">Datos</span>
+          <span class="sample mono" style="font-size:1.6rem">11R22.5</span>
+          <p>IBM Plex Mono para medidas de llanta, códigos, precios y tablas. Los números alinean en columna.</p>
+        </div>
+      </div>
+      <p class="small muted">Las tres son gratuitas y están en Google Fonts, así que cualquier proveedor puede usarlas sin pagar licencia.</p>
+    </section>
+
+    <section>
+      <p class="kicker">07 · Buen uso</p>
+      <h2>Así sí, y así mejor no</h2>
+      <div class="rules">
+        <div class="rule yes">
+          <span class="tag">Así sí</span>
+          <div class="demo"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Uso correcto"><use href="#tnx"/></svg></div>
+          <p>Proporción original, colores de marca y suficiente aire alrededor.</p>
+        </div>
+        <div class="rule yes inv">
+          <span class="tag">Así sí</span>
+          <div class="demo" style="background:var(--night)"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Uso correcto en negativo"><use href="#tnx"/></svg></div>
+          <p>Sobre fondo oscuro, la versión negativa. El contraste hace el trabajo.</p>
+        </div>
+        <div class="rule no">
+          <span class="tag">Mejor no</span>
+          <div class="demo stretch"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Logo deformado"><use href="#tnx"/></svg></div>
+          <p>Estirar o achatar. Al escalar hay que mantener la proporción.</p>
+        </div>
+        <div class="rule no">
+          <span class="tag">Mejor no</span>
+          <div class="demo rot"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Logo rotado"><use href="#tnx"/></svg></div>
+          <p>Rotar o inclinar. El logo ya trae su propia inclinación.</p>
+        </div>
+        <div class="rule no">
+          <span class="tag">Mejor no</span>
+          <div class="demo badcolor"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Logo con colores cambiados"><use href="#tnx"/></svg></div>
+          <p>Cambiar los colores. El naranja es parte del nombre.</p>
+        </div>
+        <div class="rule no">
+          <span class="tag">Mejor no</span>
+          <div class="demo badbg"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Logo sobre fondo de bajo contraste"><use href="#tnx"/></svg></div>
+          <p>Fondos que compiten. Si no hay contraste, va la versión negativa.</p>
+        </div>
+        <div class="rule no">
+          <span class="tag">Mejor no</span>
+          <div class="demo shadow"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Logo con sombra"><use href="#tnx"/></svg></div>
+          <p>Sombras, brillos, contornos o degradados. El logo va plano.</p>
+        </div>
+        <div class="rule no">
+          <span class="tag">Mejor no</span>
+          <div class="demo" style="gap:.4rem;font-family:var(--f-display);font-weight:900;font-size:1.1rem;font-style:italic">TIRE<span style="color:var(--orange)">NEXUS</span></div>
+          <p>Volver a escribir el nombre con el teclado. Siempre se usa el archivo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">08 · Aplicaciones</p>
+      <h2>Dónde va y cómo se ve</h2>
+      <div class="apps">
+        <div class="app"><div class="scene truck"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Aplicación en unidad"><use href="#tnx"/></svg></div>
+          <span class="lbl">Camión y remolque</span></div>
+        <div class="app inv"><div class="scene shirt"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Aplicación en uniforme"><use href="#tnx"/></svg></div>
+          <span class="lbl">Uniforme y gorra</span></div>
+        <div class="app"><div class="scene doc"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Aplicación en factura"><use href="#tnx"/></svg></div>
+          <span class="lbl">Factura y cotización</span></div>
+        <div class="app"><div class="scene avatar"><div class="iso"><svg viewBox="0 0 400 300" role="img" aria-label="Aplicación en redes sociales"><use href="#flash"/></svg></div></div>
+          <span class="lbl">Redes y favicon</span></div>
+      </div>
+      <div class="note">
+        <p><b>En el camión, el logo manda.</b> Tan grande como permita el panel, con el teléfono debajo en la misma altura de letra que el tagline. Un camión rotulado es un anuncio parado frente a mil vehículos por hora.</p>
+      </div>
+    </section>
+
+    <section>
+      <p class="kicker">09 · Los archivos</p>
+      <h2>Qué se entrega y para qué sirve cada uno</h2>
+      <ul class="ticks">
+        <li><b>SVG</b> — para web y para cualquier tamaño sin perder nitidez. Es el archivo maestro.</li>
+        <li><b>AI o EPS</b> — para el taller de vinil, la imprenta y el bordador.</li>
+        <li><b>PNG con fondo transparente</b> — en tres tamaños, para documentos y presentaciones.</li>
+        <li><b>JPG sobre blanco</b> — para quien no acepta transparencia.</li>
+        <li><b>PDF vectorial</b> — para mandar a proveedores sin que puedan alterarlo.</li>
+        <li><b>Favicon e ícono de redes</b> — el isotipo cuadrado, listo para subir.</li>
+      </ul>
+      <div class="note">
+        <p><b>Cada versión va en su carpeta:</b> color, negativo, monocromo e isotipo. Cuando alguien te pida el logo, le mandas la carpeta completa y ya no hay dudas de cuál usar.</p>
+      </div>
+    </section>
+
+    <div class="note">
+      <p><b>Sobre este documento.</b> El logo que aparece aquí es una reconstrucción vectorial hecha a partir de la imagen que recibimos, para poder armar esta guía. Con el archivo original en mano se reemplaza, se confirman los valores exactos de color y esta hoja pasa a versión 1.1.</p>
+    </div>
+
+    <footer>
+      <span>TireNexus · Mini manual de marca v1.0</span>
+      <span>Preparado por FOCOw · Foco Working LLC</span>
+      <span>8 sep 2026</span>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>

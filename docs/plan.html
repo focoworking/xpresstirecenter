@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Plan 30 Días TireNexus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* ============================================================
+   FOCOw — Plan de 30 días para TireNexus · 9 diapositivas
+   Tono: siempre en positivo. Mundo visual: hule, acero y amarillo FOCOw.
+   Todo se pinta explícito; no hereda el fondo del visor.
+   ============================================================ */
+:root{
+  --carbon:#14110F;
+  --soot:#211D1A;
+  --iron:#2E2926;
+  --ash:#7A716A;
+  --smoke:#A8A09A;
+  --paper:#F7F4F1;
+  --foco:#F7F14F;          /* amarillo FOCOw — aproximado, ajustar al oficial */
+  --win:#4FB98A;
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --pad:clamp(1.5rem,4vw,4.6rem);
+  --rail:6px;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--carbon);color:var(--paper);
+  font-family:var(--f-body);font-size:clamp(14px,.98vw,17px);line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.tread{background-image:repeating-linear-gradient(115deg,
+  rgba(247,244,241,.05) 0 10px, transparent 10px 26px)}
+
+/* ---------- Diapositiva ---------- */
+.deck{position:relative}
+.slide{
+  display:none;min-height:100vh;min-height:100dvh;
+  padding:calc(var(--pad) * .8) var(--pad) calc(var(--pad) * 1.05);
+  position:relative;background:var(--carbon);
+  flex-direction:column;justify-content:center;gap:clamp(.9rem,1.7vw,1.6rem);
+}
+.slide.is-active{display:flex}
+.slide::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--rail);background:var(--iron)}
+.slide::after{content:"";position:absolute;left:0;top:0;width:var(--rail);height:var(--fill,0%);background:var(--foco)}
+.slide-inner{width:min(100%,1180px);margin-inline:auto;display:flex;flex-direction:column;gap:inherit}
+
+/* ---------- Marca FOCOw (SVG redibujado — sustituir por el oficial) ---------- */
+.logo{display:block;height:auto;fill:var(--foco)}   /* fill se hereda al shadow tree del <use> */
+.logo-sm{width:clamp(120px,12vw,168px)}
+.logo-lg{width:clamp(220px,25vw,360px)}
+
+/* ---------- Tipografía ---------- */
+.eyebrow{
+  font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--foco);margin:0;
+}
+h1,h2,h3{font-family:var(--f-display);margin:0;text-wrap:balance;letter-spacing:-.025em;line-height:1.03}
+h1{font-size:clamp(2.3rem,5.6vw,4.4rem);font-weight:900}
+h2{font-size:clamp(1.7rem,3.7vw,2.9rem);font-weight:800}
+h3{font-size:clamp(.95rem,1.4vw,1.16rem);font-weight:800;letter-spacing:-.012em;line-height:1.2}
+p{margin:0;max-width:62ch}
+.lede{font-size:clamp(1rem,1.4vw,1.26rem);color:var(--smoke);line-height:1.5}
+strong{font-weight:600;color:var(--paper)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.hi{color:var(--foco)}
+
+/* ---------- Portada ---------- */
+.cover{justify-content:space-between}
+.cover .slide-inner{gap:clamp(1.2rem,2.4vw,2rem);flex:1;justify-content:center}
+.cover h1{font-size:clamp(2.4rem,6.6vw,5.3rem);line-height:.96}
+.cover-top{width:min(100%,1180px);margin-inline:auto}
+.cover-foot{
+  display:flex;flex-wrap:wrap;gap:.7rem 2.4rem;align-items:baseline;
+  border-top:1px solid var(--iron);padding-top:1.1rem;
+  width:min(100%,1180px);margin-inline:auto;
+}
+.cover-foot span{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.06em;color:var(--ash)}
+.cover-foot span b{color:var(--paper);font-weight:500}
+
+/* ---------- Rejillas ---------- */
+.cols{display:grid;gap:clamp(.9rem,1.7vw,1.5rem)}
+.cols-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.cols-3{grid-template-columns:repeat(auto-fit,minmax(205px,1fr))}
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(1.3rem,3.2vw,3rem);align-items:start}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+
+/* ---------- Entregables detallados ---------- */
+.deliv{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:0;
+  border-top:1px solid var(--iron);border-left:1px solid var(--iron)}
+.dv{padding:.9rem 1.05rem;display:flex;flex-direction:column;gap:.4rem;
+  border-right:1px solid var(--iron);border-bottom:1px solid var(--iron)}
+.dv .qty{
+  font-family:var(--f-display);font-weight:900;font-size:1.75rem;line-height:1;
+  letter-spacing:-.04em;color:var(--foco);font-variant-numeric:tabular-nums;
+}
+.dv .qty small{display:block;font-family:var(--f-mono);font-size:.6rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ash);margin-top:.35rem}
+.dv ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.2rem}
+.dv li{position:relative;padding-left:.8rem;font-size:.8rem;color:var(--smoke);line-height:1.4}
+.dv li::before{content:"·";position:absolute;left:.05rem;color:var(--foco);font-weight:700}
+
+/* ---------- Estándar ---------- */
+.std{display:flex;flex-direction:column;gap:.35rem;border-left:2px solid var(--foco);padding-left:.95rem}
+.std .k{font-family:var(--f-mono);font-size:.62rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--foco)}
+.std p{font-size:.9rem;color:var(--smoke)}
+.std b{color:var(--paper);font-weight:600}
+
+/* ---------- Beneficio en positivo ---------- */
+.gains{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:0;
+  border-top:1px solid var(--iron);border-left:1px solid var(--iron)}
+.gain{padding:1rem 1.2rem;display:flex;flex-direction:column;gap:.3rem;
+  border-right:1px solid var(--iron);border-bottom:1px solid var(--iron);background:rgba(79,185,138,.05)}
+.gain .k{font-family:var(--f-mono);font-size:.62rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--win)}
+.gain p{font-size:.92rem;color:var(--smoke)}
+.gain b{color:var(--paper);font-weight:600}
+
+/* ---------- Listas ---------- */
+.caps{display:flex;flex-wrap:wrap;gap:.42rem}
+.caps span{font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.04em;
+  color:var(--paper);background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.14);
+  border-radius:99px;padding:.34rem .7rem}
+ul.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.55rem}
+ul.ticks li{position:relative;padding-left:1.45rem;font-size:.95rem;color:var(--smoke)}
+ul.ticks li::before{content:"";position:absolute;left:0;top:.5rem;width:8px;height:8px;
+  background:var(--foco);clip-path:polygon(0 0,100% 50%,0 100%)}
+ul.ticks li b{color:var(--paper);font-weight:600}
+
+/* ---------- Tablas ---------- */
+.tw{overflow-x:auto;border:1px solid var(--iron)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:.88rem}
+th,td{padding:.6rem .8rem;text-align:left;border-bottom:1px solid var(--iron);vertical-align:top}
+thead th{font-family:var(--f-mono);font-size:.6rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash);background:var(--soot)}
+tbody th{font-family:var(--f-mono);font-size:.73rem;font-weight:600;color:var(--foco);
+  white-space:nowrap;letter-spacing:.04em}
+tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+td{color:var(--smoke)}
+td b{color:var(--paper);font-weight:600}
+td.hito{color:var(--foco);font-family:var(--f-mono);font-size:.78rem;white-space:nowrap}
+td.ok{color:var(--win);font-family:var(--f-mono);font-size:.72rem;font-weight:600;
+  letter-spacing:.05em;white-space:nowrap}
+td.free{color:var(--foco);font-family:var(--f-mono);font-size:.72rem;font-weight:600;
+  letter-spacing:.05em;white-space:nowrap}
+
+/* ---------- Muestra / entregables (amarillo) ---------- */
+.proof{background:var(--foco);color:var(--carbon)}
+.proof::before{background:rgba(20,17,15,.22)}
+.proof::after{background:var(--carbon)}
+.proof h2{color:var(--carbon);font-weight:900}
+.proof .eyebrow{color:rgba(20,17,15,.6)}
+.proof .lede{color:rgba(20,17,15,.78)}
+.proof .logo{fill:var(--carbon)}
+.proof .deliv{border-color:rgba(20,17,15,.22)}
+.proof .dv{border-color:rgba(20,17,15,.22)}
+.proof .dv .qty{color:var(--carbon)}
+.proof .dv .qty small{color:rgba(20,17,15,.6)}
+.proof .dv li{color:rgba(20,17,15,.72)}
+.proof .dv li::before{color:rgba(20,17,15,.5)}
+.proof .cue{
+  font-family:var(--f-mono);font-size:.8rem;letter-spacing:.04em;line-height:1.65;
+  border:1.5px dashed rgba(20,17,15,.45);padding:.75rem 1rem;color:var(--carbon);max-width:66ch;
+}
+.proof .cue b{font-weight:600}
+
+/* ---------- Precio ---------- */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(198px,1fr));gap:0;border:1px solid var(--iron)}
+.tier{padding:.95rem 1.1rem;display:flex;flex-direction:column;gap:.5rem}
+.tier + .tier{border-left:1px solid var(--iron)}
+@media(max-width:720px){.tier + .tier{border-left:0;border-top:1px solid var(--iron)}}
+.tier.pick{background:rgba(247,241,79,.09);border-top:3px solid var(--foco);margin-top:-1px}
+.tier .lvl{font-family:var(--f-mono);font-size:.61rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash)}
+.tier.pick .lvl{color:var(--foco)}
+.tier .amt{font-family:var(--f-display);font-weight:900;font-size:1.7rem;letter-spacing:-.035em;
+  color:var(--paper);line-height:1;font-variant-numeric:tabular-nums}
+.tier .amt small{display:block;font-family:var(--f-body);font-size:.7rem;font-weight:500;
+  color:var(--ash);letter-spacing:0;margin-top:.25rem}
+.tier ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.25rem;font-size:.81rem;color:var(--smoke)}
+.tier ul li{position:relative;padding-left:.8rem}
+.tier ul li::before{content:"·";position:absolute;left:.1rem;color:var(--foco);font-weight:700}
+.amt-xl{font-family:var(--f-display);font-weight:900;font-size:clamp(2rem,4.2vw,3.2rem);
+  letter-spacing:-.04em;color:var(--foco);line-height:1;font-variant-numeric:tabular-nums;display:block}
+.amt-xl small{display:block;font-family:var(--f-body);font-size:.78rem;font-weight:500;
+  color:var(--ash);letter-spacing:0;margin-top:.4rem;max-width:44ch}
+
+/* ---------- Opciones de pago ---------- */
+.pay{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border:1px solid var(--iron)}
+.opt{padding:1.15rem 1.3rem;display:flex;flex-direction:column;gap:.7rem}
+.opt + .opt{border-left:1px solid var(--iron)}
+@media(max-width:760px){.opt + .opt{border-left:0;border-top:1px solid var(--iron)}}
+.opt.best{background:rgba(247,241,79,.10);border-top:3px solid var(--foco);margin-top:-1px}
+.opt .badge{font-family:var(--f-mono);font-size:.61rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash)}
+.opt.best .badge{color:var(--carbon);background:var(--foco);align-self:flex-start;padding:.2rem .5rem}
+.opt .price{font-family:var(--f-display);font-weight:900;font-size:clamp(1.9rem,3.6vw,2.7rem);
+  letter-spacing:-.04em;line-height:1;color:var(--paper);font-variant-numeric:tabular-nums}
+.opt.best .price{color:var(--foco)}
+.opt .was{font-family:var(--f-mono);font-size:.82rem;color:var(--ash);text-decoration:line-through}
+.opt .note{font-size:.86rem;color:var(--smoke)}
+.opt .note b{color:var(--paper);font-weight:600}
+.sched{display:flex;flex-wrap:wrap;gap:.4rem}
+.sched span{font-family:var(--f-mono);font-size:.72rem;font-weight:600;padding:.32rem .55rem;
+  border:1px solid rgba(247,241,79,.4);color:var(--foco);white-space:nowrap}
+
+/* ---------- Mockups de materiales ---------- */
+.mocks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.85rem}
+.mk{display:flex;flex-direction:column;gap:.35rem}
+.mk .frame{background:#E4E1DD;border:1px solid #C9C5C0;overflow:hidden;display:flex;
+  align-items:center;justify-content:center;aspect-ratio:16/10}
+.mk .frame.sq .sq-post{width:auto;height:100%;aspect-ratio:1}
+.mk .lb{font-family:var(--f-mono);font-size:.6rem;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ash)}
+.tnx{--tnx-ink:#141416;--tnx-acc:#E8541F;width:100%;display:block}
+.tnx.w{--tnx-ink:#fff}
+svg:not(svg *).tnx{height:auto}
+
+.sq-post{width:100%;aspect-ratio:1;background:#111113;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;padding:9%}
+.sq-post.or{background:#E8541F}
+.sq-post.or .tnx{--tnx-ink:#fff;--tnx-acc:#fff}
+.sq-post::before{content:"";position:absolute;inset:0;
+  background:repeating-linear-gradient(112deg,rgba(255,255,255,.05) 0 8px,transparent 8px 22px)}
+.sq-post > *{position:relative}
+.sq-post .tnx{max-width:62%}
+.sq-post b{font-family:var(--f-display);font-weight:900;font-size:.92rem;color:#fff;
+  line-height:1.05;text-transform:uppercase;letter-spacing:-.02em}
+.sq-post i{font-style:normal;font-family:var(--f-mono);font-size:.55rem;color:rgba(255,255,255,.7);letter-spacing:.08em}
+
+.biz{width:78%;aspect-ratio:1.75;background:#fff;padding:8%;display:flex;flex-direction:column;
+  justify-content:space-between;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.biz .tnx{max-width:66%}
+.biz .rl{height:3px;background:#E8541F;width:32%}
+.biz em{font-style:normal;font-family:var(--f-mono);font-size:.42rem;color:#63605B;line-height:1.7}
+
+.tee{width:100%;height:100%;background:#141416;display:flex;align-items:center;justify-content:center}
+
+/* anuncio display */
+.ad{width:86%;background:#fff;border:1px solid #C9C5C0;padding:6% 7%;display:flex;flex-direction:column;
+  gap:.4rem;box-shadow:0 6px 16px rgba(0,0,0,.22)}
+.ad .tnx{max-width:58%}
+.ad b{font-family:var(--f-display);font-weight:900;font-size:.82rem;color:#141416;line-height:1.1;text-transform:uppercase}
+.ad .btn-ad{background:#E8541F;color:#fff;font-family:var(--f-body);font-weight:700;font-size:.6rem;
+  padding:.3rem .55rem;align-self:flex-start}
+.ad em{font-style:normal;font-family:var(--f-mono);font-size:.5rem;color:#8C8880;letter-spacing:.08em}
+
+/* papelería agrupada */
+.paper{width:92%;height:82%;position:relative}
+.paper .sheet{position:absolute;background:#fff;box-shadow:0 6px 16px rgba(0,0,0,.24);
+  display:flex;flex-direction:column;padding:5%}
+.paper .s1{left:0;top:4%;width:52%;height:92%;gap:6%}
+.paper .s1 .tnx{max-width:70%}
+.paper .s1 i{display:block;height:3px;background:#EAE7E3}
+.paper .s1 .or{background:#E8541F;width:30%;height:2px}
+.paper .s2{right:0;top:22%;width:56%;height:44%;justify-content:space-between;transform:rotate(-3deg)}
+.paper .s2 .tnx{max-width:62%}
+.paper .s2 em{font-style:normal;font-family:var(--f-mono);font-size:.42rem;color:#63605B;line-height:1.6}
+
+/* story vertical */
+.story-m{height:100%;aspect-ratio:9/16;background:#111113;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;padding:9% 8%}
+.story-m::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 60% at 80% 0%,rgba(232,84,31,.4),transparent 60%),
+  repeating-linear-gradient(112deg,rgba(255,255,255,.05) 0 8px,transparent 8px 22px)}
+.story-m > *{position:relative}
+.story-m .tnx{max-width:72%;--tnx-ink:#fff}
+.story-m b{font-family:var(--f-display);font-weight:900;font-size:.78rem;color:#fff;line-height:1.06;text-transform:uppercase}
+.story-m .cta{background:#E8541F;color:#fff;font-family:var(--f-body);font-weight:700;font-size:.55rem;
+  padding:.32rem .5rem;text-align:center}
+
+/* sitio en laptop */
+.lap{width:94%}
+.tee .tnx{max-width:58%}
+
+/* ---------- Pagos ---------- */
+.payg{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:0;border:1px solid var(--iron)}
+.po{padding:1.05rem 1.2rem;display:flex;flex-direction:column;gap:.6rem}
+.po + .po{border-left:1px solid var(--iron)}
+@media(max-width:760px){.po + .po{border-left:0;border-top:1px solid var(--iron)}}
+.po.best{background:rgba(247,241,79,.10);border-top:3px solid var(--foco);margin-top:-1px}
+.po .bg{font-family:var(--f-mono);font-size:.6rem;font-weight:600;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ash);align-self:flex-start}
+.po.best .bg{background:var(--foco);color:var(--carbon);padding:.2rem .5rem}
+.po .pr{font-family:var(--f-display);font-weight:900;font-size:clamp(1.7rem,3.2vw,2.4rem);
+  letter-spacing:-.04em;line-height:1;color:var(--paper);font-variant-numeric:tabular-nums}
+.po.best .pr{color:var(--foco)}
+.po .was{font-family:var(--f-mono);font-size:.76rem;color:var(--ash);text-decoration:line-through}
+.po .nt{font-size:.83rem;color:var(--smoke)}
+.po .nt b{color:var(--paper);font-weight:600}
+.steps-pay{display:flex;flex-direction:column;gap:.3rem;margin-top:.1rem}
+.sp{display:grid;grid-template-columns:auto 1fr auto;gap:.6rem;align-items:baseline;
+  font-family:var(--f-mono);font-size:.72rem;padding:.3rem 0;border-bottom:1px solid var(--iron)}
+.sp:last-child{border-bottom:0}
+.sp .d{color:var(--foco);font-weight:600;white-space:nowrap}
+.sp .w{color:var(--smoke);font-family:var(--f-body);font-size:.78rem}
+.sp .m{color:var(--paper);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* ---------- Cierre ---------- */
+.close{background:var(--soot)}
+.fill{display:inline-block;min-width:7rem;color:var(--foco);
+  border-bottom:1.5px dashed var(--foco);padding-bottom:1px}
+
+/* ---------- Notas de orador ---------- */
+.notes{
+  display:none;border-top:1px solid var(--iron);padding-top:.8rem;margin-top:.25rem;
+  font-family:var(--f-mono);font-size:.76rem;line-height:1.62;color:var(--foco);max-width:84ch;
+}
+body.show-notes .notes{display:block}
+.notes b{color:var(--paper);font-weight:600}
+.proof .notes{color:rgba(20,17,15,.8);border-color:rgba(20,17,15,.25)}
+.proof .notes b{color:var(--carbon)}
+
+/* ---------- Controles ---------- */
+.hud{
+  position:fixed;right:clamp(.75rem,2vw,1.5rem);bottom:clamp(.75rem,2vw,1.5rem);
+  display:flex;align-items:center;gap:.4rem;z-index:40;
+  background:rgba(33,29,26,.92);border:1px solid var(--iron);border-radius:3px;
+  padding:.3rem;backdrop-filter:blur(6px);
+}
+.hud button{
+  font-family:var(--f-mono);font-size:.72rem;font-weight:600;letter-spacing:.06em;
+  background:transparent;border:0;color:var(--smoke);cursor:pointer;
+  padding:.42rem .6rem;border-radius:2px;line-height:1;
+}
+.hud button:hover{background:var(--iron);color:var(--paper)}
+.hud button[aria-pressed="true"]{background:var(--foco);color:var(--carbon)}
+.hud .count{font-family:var(--f-mono);font-size:.72rem;color:var(--ash);padding:0 .5rem;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+:focus-visible{outline:2px solid var(--foco);outline-offset:2px}
+
+/* ---------- Vista de todas ---------- */
+body.grid-view .deck{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:.9rem;padding:clamp(1rem,3vw,2.5rem);padding-bottom:5.5rem;
+}
+body.grid-view .slide{
+  display:flex!important;min-height:0;aspect-ratio:16/10;overflow:hidden;
+  padding:.9rem 1rem;border:1px solid var(--iron);cursor:pointer;gap:.4rem;justify-content:flex-start;
+}
+body.grid-view .slide::before,body.grid-view .slide::after{display:none}
+body.grid-view .slide *{pointer-events:none}
+body.grid-view .slide h1{font-size:1.02rem}
+body.grid-view .slide h2{font-size:.9rem}
+body.grid-view .slide h3{font-size:.66rem}
+body.grid-view .slide .lede,body.grid-view .slide p,body.grid-view .slide li,
+body.grid-view .slide td,body.grid-view .slide th{font-size:.54rem;line-height:1.3}
+body.grid-view .slide .eyebrow{font-size:.49rem}
+body.grid-view .dv .qty,body.grid-view .tier .amt,body.grid-view .amt-xl,
+body.grid-view .opt .price,body.grid-view .po .pr{font-size:1rem}
+body.grid-view .logo-lg{width:106px}
+body.grid-view .logo-sm{width:70px}
+body.grid-view .notes,body.grid-view .cover-foot{display:none}
+body.grid-view .slide.is-active{outline:2px solid var(--foco);outline-offset:-2px}
+
+/* ---------- Impresión ---------- */
+@media print{
+  @page{size:A4 landscape;margin:12mm}
+  body{background:#fff;color:#14110F}
+  .hud{display:none}
+  .slide{display:flex!important;min-height:0;page-break-after:always;padding:0 0 1.4rem;
+    background:#fff;color:#14110F;gap:.75rem}
+  .slide::before,.slide::after{display:none}
+  h1,h2,h3{color:#14110F}
+  .lede,p,td,li,.dv li,.std p,.gain p,.opt .note{color:#3a3330}
+  .logo{fill:#14110F}
+  .eyebrow,.dv .qty,.std .k,tbody th,td.hito,.amt-xl,.tier.pick .lvl,.opt.best .price{color:#8A7C00}
+  .notes{display:block;color:#6b5a00;border-color:#ccc}
+  .caps span{color:#14110F;background:#f5f2ef;border-color:#d8d2cc;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .proof{background:#fff}
+  .proof h2,.proof .lede,.proof .cue,.proof .dv .qty{color:#14110F}
+  thead th{background:#f0ece9;color:#3a3330}
+  .gain,.tier.pick,.opt.best{background:#FBFAEA;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .opt.best .badge{background:#F7F14F;color:#14110F;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .mocks{grid-template-columns:repeat(4,minmax(0,1fr));gap:.45rem}
+  .mk .lb{font-size:.5rem}
+  .deliv{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .notes{font-size:.62rem;line-height:1.45;padding-top:.5rem}
+  h1{font-size:2.4rem}h2{font-size:1.6rem}
+  .lede{font-size:.9rem}
+  .amt-xl{font-size:1.9rem}
+  .caps span{font-size:.58rem;padding:.22rem .5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     LOGO FOCOw — redibujado en vectorial a partir del archivo enviado.
+     PARA USAR EL OFICIAL: reemplaza el contenido de <symbol id="focow">
+     por el SVG original, o cambia los <use> por
+     <img src="ruta-del-logo.svg" class="logo logo-lg">.
+     El color sale de la variable --foco.
+     ============================================================ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="tnx" viewBox="0 0 1060 300">
+    <g transform="translate(0,192) skewX(-15)">
+      <text x="18" y="0" fill="var(--tnx-ink,#141416)" font-family="Archivo, Arial, sans-serif" font-size="168" font-weight="900" letter-spacing="-6">TIRE</text>
+      <text x="416" y="0" fill="var(--tnx-acc,#E8541F)" font-family="Archivo, Arial, sans-serif" font-size="168" font-weight="900" letter-spacing="-6">NEXUS</text>
+    </g>
+    <path fill="var(--tnx-acc,#E8541F)" d="M950 6 L884 122 L918 112 L622 244 L698 150 L666 160 Z"/>
+    <text x="152" y="272" fill="var(--tnx-ink,#141416)" font-family="Archivo, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="7.5">WHOLESALE TIRE DISTRIBUTOR</text>
+  </symbol>
+  <symbol id="tnxflash" viewBox="0 0 400 300"><path d="M300 6 L214 132 L272 116 L52 254 L154 150 L92 166 Z"/></symbol>
+  <symbol id="focow" viewBox="0 0 1000 240">
+    <g>
+      <rect x="0" y="0" width="55" height="186"/>
+      <rect x="77" y="34" width="60" height="190"/>
+      <rect x="167" y="0" width="57" height="186"/>
+    </g>
+    <text x="316" y="152" font-family="Archivo, Helvetica Neue, Arial, sans-serif"
+          font-size="168" font-weight="900" letter-spacing="-3">FOCOW</text>
+    <text x="906" y="110" font-family="Archivo, Helvetica Neue, Arial, sans-serif"
+          font-size="34" font-weight="600">®</text>
+    <text x="318" y="206" font-family="Archivo, Helvetica Neue, Arial, sans-serif"
+          font-size="30" letter-spacing="9.5">
+      <tspan font-weight="800">HYBRID</tspan><tspan font-weight="500"> MARKETING </tspan><tspan font-weight="800">AGENCY</tspan>
+    </text>
+  </symbol>
+</svg>
+
+<div class="deck" id="deck">
+
+  <!-- 1 ————————————————— PORTADA -->
+  <section class="slide cover tread" aria-label="Portada">
+    <div class="cover-top">
+      <svg class="logo logo-lg" viewBox="0 0 1000 240" role="img" aria-label="FOCOw · Hybrid Marketing Agency"><use href="#focow"/></svg>
+    </div>
+    <div class="slide-inner">
+      <p class="eyebrow">Plan de lanzamiento · TireNexus</p>
+      <h1>30 días<br>para poner<br><span class="hi">TireNexus en el mapa</span></h1>
+      <p class="lede">Del 9 de septiembre al 20 de octubre de 2026. Alcance cerrado, entregables contados uno por uno y un estándar de calidad que se puede revisar pieza por pieza.</p>
+    </div>
+    <div class="cover-foot">
+      <span>Para <b>TireNexus</b></span>
+      <span>Presenta <b>FOCOw · Foco Working LLC</b></span>
+      <span class="mono">8 SEP 2026</span>
+    </div>
+    <p class="notes"><b>Preséntate en treinta segundos y avanza.</b> Nueve diapositivas, doce minutos. Este deck vende tres cosas: que ya empezamos a trabajar, que hay un plan con fecha, y que la calidad está definida por escrito.</p>
+  </section>
+
+  <!-- 2 ————————————————— LA OPORTUNIDAD -->
+  <section class="slide" aria-label="La oportunidad">
+    <div class="slide-inner">
+      <p class="eyebrow">La oportunidad</p>
+      <h2>Una marca nueva se construye<br>una sola vez, y es ahora</h2>
+      <div class="split">
+        <div class="cols">
+          <p class="lede">El que ya te compra te va a seguir. El resto del mercado va a conocer TireNexus por lo que vea en los próximos meses: una foto, una página, un camión rotulado.</p>
+          <p class="lede">Ese momento se aprovecha una vez, y estamos justo en él. Es la oportunidad de que TireNexus entre al mercado pareciendo lo que va a ser en tres años.</p>
+        </div>
+        <div class="cols">
+          <div class="std">
+            <span class="k">El momento</span>
+            <p>A la zona llegan cerca de <b>cien personas nuevas al día</b> y viene la ampliación de la I-75. Más obra y más camiones en la carretera.</p>
+          </div>
+          <div class="std">
+            <span class="k">La ventaja</span>
+            <p>Entrar ahora cuesta menos y rinde más que entrar en un año, cuando la publicidad de la zona ya esté disputada.</p>
+          </div>
+          <div class="std">
+            <span class="k">La decisión</span>
+            <p>No es <b>si</b> hacerlo, sino <b>a qué nivel</b>. Este plan está armado para el nivel alto, en treinta días.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="notes"><b>Corto, es el contexto.</b> No opines sobre por qué cambió de marca. El punto único: la primera impresión se construye una sola vez y estamos justo a tiempo. De ahí sale la urgencia sana de los 30 días.</p>
+  </section>
+
+  <!-- 3 ————————————————— LO PRIMERO QUE HICIMOS -->
+  <section class="slide" aria-label="Revisión de dominios">
+    <div class="slide-inner">
+      <p class="eyebrow">Antes de esta junta</p>
+      <h2>Ya revisamos tu<br>presencia digital</h2>
+      <p class="lede">Hicimos una consulta técnica de los dominios de TireNexus. Buenas noticias, y una oportunidad fácil de tomar.</p>
+      <div class="tw">
+        <table>
+          <thead><tr><th scope="col">Dominio</th><th scope="col">Situación</th><th scope="col">Qué significa</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">tirenexus.com</th><td class="ok">YA ES TUYO</td><td>El principal está registrado. Es sobre este que construimos todo.</td></tr>
+            <tr><th scope="row">tirenexus.net</th><td class="free">DISPONIBLE</td><td rowspan="3">Cuatro variantes libres. Asegurarlas cuesta centavos al año y las redirigimos al principal, para que ningún tercero use el nombre.</td></tr>
+            <tr><th scope="row">tirenexus.us</th><td class="free">DISPONIBLE</td></tr>
+            <tr><th scope="row">thetirenexus.com</th><td class="free">DISPONIBLE</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lede">Nos encargamos del registro y la configuración como parte del arranque. <strong>Quedan a nombre de TireNexus</strong>, no del nuestro.</p>
+    </div>
+    <p class="notes"><b>Esta diapositiva vale por todo el portafolio.</b> Demuestra que trabajamos antes de cobrar. Dilo así: “Esto lo revisamos anoche, sin compromiso.” Advertencia: <b>confirma la disponibilidad con el registrador el mismo día de la junta</b> — la consulta fue por DNS el 7 de septiembre. Si él intenta comprarlos ahí mismo y uno está tomado, pierdes credibilidad en tu mejor momento.</p>
+  </section>
+
+  <!-- 4 ————————————————— LO QUE GANA -->
+  <section class="slide" aria-label="Lo que gana el cliente">
+    <div class="slide-inner">
+      <p class="eyebrow">Lo que esto te consigue</p>
+      <h2>El cliente decide<br>antes de llamarte</h2>
+      <p class="lede">En este negocio nadie hace un pedido sin revisarte primero en el celular. Esa revisión dura menos de un minuto. Esto es lo que va a encontrar.</p>
+      <div class="gains">
+        <div class="gain">
+          <span class="k">Tu bodega, bien fotografiada</span>
+          <p><b>Comunica respaldo y capacidad.</b> El comprador ve inventario real y asume que puedes surtirle.</p>
+        </div>
+        <div class="gain">
+          <span class="k">Página rápida y en su idioma</span>
+          <p><b>Llega hasta el formulario.</b> Entiende qué vendes y encuentra cómo contactarte sin buscar.</p>
+        </div>
+        <div class="gain">
+          <span class="k">Un solo dato en todos lados</span>
+          <p><b>Google te muestra primero.</b> Nombre, dirección y teléfono idénticos en cada ficha y directorio.</p>
+        </div>
+        <div class="gain">
+          <span class="k">Cada dólar rastreado</span>
+          <p><b>Inviertes donde sí funciona.</b> Sabes qué anuncio trajo cada llamada y cuánto costó.</p>
+        </div>
+      </div>
+      <p class="lede">Cuatro cosas simples, hechas bien, y el pedido llega a tu teléfono en vez del de al lado.</p>
+    </div>
+    <p class="notes"><b>Aquí haz la demostración.</b> Saca el celular, busca dos proveedores del ramo y enséñale el que tiene fotos propias contra el que no. Veinte segundos, y es más convincente que la diapositiva. Cierra con la última línea, literal.</p>
+  </section>
+
+  <!-- 5 ————————————————— EL ESTÁNDAR -->
+  <section class="slide" aria-label="Estándar de calidad">
+    <div class="slide-inner">
+      <p class="eyebrow">Cómo cuidamos la calidad</p>
+      <h2>El estándar, por escrito</h2>
+      <div class="split">
+        <div class="cols">
+          <div class="std">
+            <span class="k">Fotografía y video</span>
+            <p>Rodaje con iluminación propia. Se conserva el original sin comprimir, se retoca pieza por pieza y se corrige color y audio. <b>Material tuyo, no de banco de imágenes.</b></p>
+          </div>
+          <div class="std">
+            <span class="k">Textos</span>
+            <p>Escritos por una persona y revisados en los dos idiomas por alguien que los habla. <b>El español se escribe aparte,</b> no se traduce del inglés.</p>
+          </div>
+          <div class="std">
+            <span class="k">Sitio web</span>
+            <p>Carga en menos de dos segundos, se prueba primero en celular y se revisa en los navegadores reales que usa tu cliente.</p>
+          </div>
+        </div>
+        <div class="cols">
+          <div class="std">
+            <span class="k">Campañas</span>
+            <p>Cada campaña se enciende con la medición ya probada y funcionando. <b>Así cada dólar tiene su recibo.</b></p>
+          </div>
+          <div class="std">
+            <span class="k">Revisión</span>
+            <p>Cada entregable pasa por tres filtros: quien lo hace, quien lo revisa, y tú. <b>Se publica con tu visto bueno.</b></p>
+          </div>
+          <div class="std">
+            <span class="k">Propiedad</span>
+            <p>Archivos originales, cuentas y accesos a nombre de TireNexus desde el primer día. <b>Todo es tuyo, siempre.</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="notes"><b>Léela despacio: es la diapositiva que te diferencia.</b> Casi ninguna agencia pone su estándar por escrito porque compromete. Deténte en dos: “el español se escribe aparte” y “cada campaña se enciende con la medición probada”. Los dos son verificables.</p>
+  </section>
+
+  <!-- 6 ————————————————— TODOS LOS ENTREGABLES -->
+  <section class="slide proof" aria-label="Todo lo que entregamos">
+    <div class="slide-inner">
+      <svg class="logo logo-sm" viewBox="0 0 1000 240" role="img" aria-label="FOCOw"><use href="#focow"/></svg>
+      <p class="eyebrow">Todo lo que recibes el 20 de octubre</p>
+      <h2>Así se ve lo que entregamos</h2>
+      <div class="deliv">
+        <div class="dv">
+          <span class="qty">1<small>Manual de marca</small></span>
+          <ul><li>Uso de logo, colores y tipografía</li><li>Medidas y áreas de respeto</li><li>Casos de uso reales</li><li>PDF y archivo editable</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">12<small>Plantillas maestras</small></span>
+          <ul><li>4 para redes sociales</li><li>Presentación y cotización</li><li>Factura y orden de compra</li><li>Material de mostrador</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">1<small>Arte de rotulación</small></span>
+          <ul><li>Camión y remolque a escala</li><li>Fachada y señalización</li><li>Listo para el taller de vinil</li><li>Vectorial, sin pérdida</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">60<small>Fotos retocadas</small></span>
+          <ul><li>Instalaciones y bodega</li><li>Producto en almacén</li><li>Equipo de trabajo</li><li>Alta resolución y versión web</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">1<small>Video institucional</small></span>
+          <ul><li>90 segundos</li><li>Color y audio corregidos</li><li>Subtítulos en inglés y español</li><li>Versión larga y versión corta</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">8<small>Videos cortos</small></span>
+          <ul><li>Verticales para redes</li><li>Cada uno en dos idiomas</li><li>Con subtítulos incrustados</li><li>Listos para publicar</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">1<small>Sitio web completo</small></span>
+          <ul><li><b>Un solo sitio, dos idiomas</b> (EN/ES)</li><li>Un dominio, no dos sitios</li><li>Catálogo, formularios y botón de llamar</li><li>Medición y conteo instalados</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">3<small>Fichas verificadas</small></span>
+          <ul><li>Google, Apple y Bing</li><li>Directorios del ramo</li><li>Datos idénticos en todas</li><li>Fotos y horarios cargados</li></ul>
+        </div>
+        <div class="dv">
+          <span class="qty">4<small>Campañas al aire</small></span>
+          <ul><li>Google en inglés y español</li><li>Redes sociales segmentadas</li><li>Todas las piezas diseñadas</li><li>Tablero de reportes armado</li></ul>
+        </div>
+      </div>
+      <p class="cue"><b>Todo en archivo editable y en formato final, a nombre de TireNexus. · Abre la laptop:</b> muestra el sitio en inglés y español, y ábrelo en el celular.</p>
+    </div>
+    <p class="notes"><b>Esta diapositiva justifica el precio.</b> No la leas completa: señala tres números —60 fotos, 1 sitio, 4 campañas— y di “esto es lo que existe el 20 de octubre”. Recalca <b>“un solo sitio con las dos versiones, no dos sitios”</b>: es una duda que sale siempre. Luego abre la laptop, tres minutos máximo. Si pregunta por la muestra, dile la verdad: la armamos preparando esta propuesta.</p>
+  </section>
+
+  <!-- 7 ————————————————— EL CRONOGRAMA -->
+  <section class="slide" aria-label="Cronograma">
+    <div class="slide-inner">
+      <p class="eyebrow">El plan · 30 días hábiles · 9 sep — 20 oct 2026</p>
+      <h2>Seis bloques de cinco días</h2>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th scope="col">Días</th><th scope="col">Bloque</th><th scope="col">Qué se produce</th><th scope="col">Se entrega</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">1–5</th><td><b>Marca</b></td>
+              <td>Manual de aplicación, plantillas maestras, papelería y arte de rotulación. Registro de dominios.</td><td class="hito">15 sep</td></tr>
+            <tr><th scope="row">6–10</th><td><b>Producción</b></td>
+              <td>Rodaje en tu sitio, selección y retoque, edición del institucional y los cortos.</td><td class="hito">22 sep</td></tr>
+            <tr><th scope="row">11–15</th><td><b>Contenido</b></td>
+              <td>Mapa del sitio, textos escritos en inglés y en español, diseño de las plantillas de página.</td><td class="hito">29 sep</td></tr>
+            <tr><th scope="row">16–20</th><td><b>Sitio</b></td>
+              <td>Construcción, pruebas de velocidad y celular, medición instalada. <b>Publicación en línea.</b></td><td class="hito">6 oct</td></tr>
+            <tr><th scope="row">21–25</th><td><b>Presencia</b></td>
+              <td>Fichas de Google, Apple y Bing, directorios del ramo y páginas por ciudad.</td><td class="hito">13 oct</td></tr>
+            <tr><th scope="row">26–30</th><td><b>Campañas</b></td>
+              <td>Piezas publicitarias, campañas al aire, tablero de reportes y entrega de accesos.</td><td class="hito">20 oct</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="lede">Cada bloque cierra con una entrega y tu aprobación, así que <strong>ves resultados cada cinco días</strong>, no al final del mes.</p>
+    </div>
+    <p class="notes"><b>Vende la mecánica, no el calendario.</b> Lo valioso es que entrega cada cinco días. Necesitas dos cosas en firme: la fecha del rodaje dentro de los primeros diez días, y una persona que apruebe en 48 horas. Dilo aquí — si eso falla, el plan se recorre y conviene que quede dicho desde hoy.</p>
+  </section>
+
+  <!-- 8 ————————————————— MOCKUPS DE MATERIALES -->
+  <section class="slide" aria-label="Materiales en mockup">
+    <div class="slide-inner">
+      <p class="eyebrow">Ejemplos de material</p>
+      <h2>Así se va a ver<br>TireNexus en la calle</h2>
+      <div class="mocks">
+        <div class="mk">
+          <div class="frame">
+            <svg viewBox="0 0 500 200" role="img" aria-label="Camión de reparto rotulado">
+              <rect width="500" height="200" fill="#E4E1DD"/><rect y="158" width="500" height="42" fill="#CFCBC6"/>
+              <rect x="128" y="34" width="322" height="106" fill="#fff" stroke="#CFCBC6" stroke-width="1.5"/>
+              <rect x="128" y="34" width="322" height="5" fill="#E8541F"/>
+              <rect x="128" y="128" width="322" height="12" fill="#141416"/>
+              <svg x="146" y="52" width="196" height="56" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet"><use href="#tnx"/></svg>
+              <text x="398" y="84" text-anchor="middle" font-family="Archivo, Arial" font-size="17" font-weight="900" fill="#141416">(239)</text>
+              <text x="398" y="103" text-anchor="middle" font-family="Archivo, Arial" font-size="17" font-weight="900" fill="#E8541F">314-8100</text>
+              <path d="M50 76 L86 76 L112 56 L128 56 L128 140 L50 140 Z" fill="#1B1B1F"/>
+              <path d="M62 80 L88 80 L108 63 L122 63 L122 92 L62 92 Z" fill="#4A5766"/>
+              <circle cx="88" cy="146" r="24" fill="#141416"/><circle cx="88" cy="146" r="10" fill="#B9B5B0"/>
+              <circle cx="356" cy="146" r="24" fill="#141416"/><circle cx="356" cy="146" r="10" fill="#B9B5B0"/>
+              <circle cx="410" cy="146" r="24" fill="#141416"/><circle cx="410" cy="146" r="10" fill="#B9B5B0"/>
+            </svg>
+          </div>
+          <span class="lb">Camión de reparto</span>
+        </div>
+
+        <div class="mk">
+          <div class="frame">
+            <svg class="lap" viewBox="0 0 500 200" role="img" aria-label="El sitio web en computadora">
+              <rect width="500" height="200" fill="#E4E1DD"/>
+              <rect x="86" y="14" width="328" height="158" rx="6" fill="#141416"/>
+              <rect x="94" y="22" width="312" height="142" fill="#fff"/>
+              <rect x="94" y="22" width="312" height="17" fill="#111113"/>
+              <svg x="102" y="26" width="66" height="10" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet" style="--tnx-ink:#fff"><use href="#tnx"/></svg>
+              <rect x="94" y="39" width="312" height="66" fill="#17171A"/>
+              <text x="108" y="62" font-family="Archivo, Arial" font-size="12" font-weight="900" fill="#fff">LLANTAS DE AUTO</text>
+              <text x="108" y="76" font-family="Archivo, Arial" font-size="12" font-weight="900" fill="#E8541F">Y CAMIÓN AL MAYOREO</text>
+              <rect x="108" y="84" width="62" height="13" fill="#E8541F"/>
+              <text x="139" y="93" text-anchor="middle" font-family="Barlow, Arial" font-size="7" font-weight="700" fill="#fff">Abrir cuenta</text>
+              <rect x="300" y="48" width="92" height="48" fill="#fff"/>
+              <rect x="308" y="56" width="76" height="6" fill="#E7E4E0"/><rect x="308" y="66" width="76" height="6" fill="#E7E4E0"/>
+              <rect x="308" y="80" width="76" height="10" fill="#E8541F"/>
+              <g fill="#F1EFEC"><rect x="108" y="116" width="88" height="40"/><rect x="204" y="116" width="88" height="40"/><rect x="300" y="116" width="88" height="40"/></g>
+              <g fill="#E8541F" font-family="IBM Plex Mono, monospace" font-size="6"><text x="115" y="128">01</text><text x="211" y="128">02</text><text x="307" y="128">03</text></g>
+              <g fill="#141416" font-family="Archivo, Arial" font-size="7" font-weight="800"><text x="115" y="140">Camión</text><text x="211" y="140">Auto</text><text x="307" y="140">Agrícola</text></g>
+              <rect x="62" y="172" width="376" height="9" rx="3" fill="#C6C2BC"/>
+            </svg>
+          </div>
+          <span class="lb">Un solo sitio · inglés y español</span>
+        </div>
+
+        <div class="mk">
+          <div class="frame sq"><div class="sq-post">
+            <svg class="tnx w" viewBox="0 0 1060 300" role="img" aria-label="Post de redes"><use href="#tnx"/></svg>
+            <b>Llantas de auto<br>y camión al mayoreo</b>
+            <i>11R22.5 · 205/55R16 · 265/70R17</i>
+          </div></div>
+          <span class="lb">Redes · post 1080×1080</span>
+        </div>
+
+        <div class="mk">
+          <div class="frame"><div class="story-m">
+            <svg class="tnx" viewBox="0 0 1060 300" role="img" aria-label="Historia de redes"><use href="#tnx"/></svg>
+            <b>Auto,<br>camioneta<br>y camión</b>
+            <span class="cta">Abre tu cuenta →</span>
+          </div></div>
+          <span class="lb">Redes · historia y reel</span>
+        </div>
+
+        <div class="mk">
+          <div class="frame"><div class="ad">
+            <svg class="tnx" viewBox="0 0 1060 300" role="img" aria-label="Anuncio display"><use href="#tnx"/></svg>
+            <b>Precio de mayoreo<br>para tu taller</b>
+            <span class="btn-ad">Abrir cuenta</span>
+            <em>ANUNCIO · 300 × 250</em>
+          </div></div>
+          <span class="lb">Anuncios · Google y redes</span>
+        </div>
+
+        <div class="mk">
+          <div class="frame"><div class="paper">
+            <div class="sheet s1">
+              <svg class="tnx" viewBox="0 0 1060 300" role="img" aria-label="Hoja membretada"><use href="#tnx"/></svg>
+              <div><i style="margin-bottom:5px"></i><i style="margin-bottom:5px"></i><i style="margin-bottom:5px;width:70%"></i><i style="margin-bottom:5px"></i><i style="width:80%"></i></div>
+              <div class="or"></div>
+            </div>
+            <div class="sheet s2">
+              <svg class="tnx" viewBox="0 0 1060 300" role="img" aria-label="Tarjeta de presentación"><use href="#tnx"/></svg>
+              <em>(239) 314-8100<br>5530 4th St W · Lehigh Acres FL</em>
+            </div>
+          </div></div>
+          <span class="lb">Papelería · hoja y tarjeta</span>
+        </div>
+
+        <div class="mk">
+          <div class="frame"><div class="tee">
+            <svg class="tnx w" viewBox="0 0 1060 300" role="img" aria-label="Uniforme"><use href="#tnx"/></svg>
+          </div></div>
+          <span class="lb">Uniforme y gorra</span>
+        </div>
+
+        <div class="mk">
+          <div class="frame">
+            <svg viewBox="0 0 500 200" role="img" aria-label="Letrero de fachada">
+              <rect width="500" height="200" fill="#DAD7D2"/><rect y="36" width="500" height="130" fill="#EFEDE9"/>
+              <rect y="162" width="500" height="38" fill="#C6C2BC"/>
+              <rect x="28" y="52" width="444" height="52" fill="#141416"/>
+              <svg x="54" y="62" width="292" height="34" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet" style="--tnx-ink:#fff"><use href="#tnx"/></svg>
+              <rect x="380" y="62" width="66" height="34" fill="#E8541F"/>
+              <svg x="398" y="68" width="26" height="22" viewBox="0 0 400 300"><path d="M300 6 L214 132 L272 116 L52 254 L154 150 L92 166 Z" fill="#fff"/></svg>
+              <rect x="28" y="104" width="444" height="3" fill="#E8541F"/>
+              <rect x="52" y="122" width="150" height="40" fill="#B7C4CE" opacity=".7"/>
+              <rect x="222" y="122" width="216" height="40" fill="#2A2A2E"/>
+            </svg>
+          </div>
+          <span class="lb">Señalética de fachada</span>
+        </div>
+      </div>
+      </div>
+      <p class="lede">Etiquetas de producto, factura, tótem de carretera y el sitio completo van en el tablero de aplicaciones que acompaña la propuesta.</p>
+    </div>
+    <p class="notes"><b>Deja que la lámina hable y sólo señala dos piezas: el camión y el post de redes.</b> El camión porque es el anuncio que más rinde y no cuesta pauta; el post porque es lo que él ya pidió. Si pregunta si son fotos reales, di la verdad: están dibujadas para la propuesta, y las fotos salen del día de rodaje del bloque 2. Ten el tablero de aplicaciones abierto en otra pestaña por si quiere ver más.</p>
+  </section>
+
+  <!-- 9 ————————————————— INVERSIÓN Y FORMA DE PAGO -->
+  <section class="slide close" aria-label="Inversión y forma de pago">
+    <div class="slide-inner">
+      <p class="eyebrow">Inversión · arranque 9 de septiembre</p>
+      <h2>Los 30 días: <span class="hi">$16,500</span></h2>
+      <p class="lede">Todo lo de la lista de entregables. Sólo la página web va de $4,000 a $15,000 en el mercado, y un día de foto y video en el sur de Florida de $3,500 a $10,000.</p>
+
+      <div class="payg">
+        <div class="po best">
+          <span class="bg">Recomendada · pagos por avance</span>
+          <span class="pr">$16,500</span>
+          <div class="steps-pay">
+            <div class="sp"><span class="d">MIÉ 9 SEP</span><span class="w">Al firmar, arranca el bloque de marca</span><span class="m">$6,600</span></div>
+            <div class="sp"><span class="d">LUN 28 SEP</span><span class="w">Marca y producción entregadas</span><span class="m">$4,950</span></div>
+            <div class="sp"><span class="d">LUN 13 OCT</span><span class="w">Sitio publicado y en línea</span><span class="m">$4,950</span></div>
+          </div>
+          <p class="nt"><b>Pagas contra lo que ya viste.</b> Cada pago cae después de una entrega aprobada, así que nunca pagas por adelantado algo que no tienes en la mano.</p>
+        </div>
+        <div class="po">
+          <span class="bg">Abono y semanas</span>
+          <span class="pr">$16,500</span>
+          <div class="steps-pay">
+            <div class="sp"><span class="d">MIÉ 9 SEP</span><span class="w">Abono del 30% al firmar</span><span class="m">$4,950</span></div>
+            <div class="sp"><span class="d">LUN 14 · 21 · 28 SEP</span><span class="w">Abonos semanales</span><span class="m">$2,310 c/u</span></div>
+            <div class="sp"><span class="d">LUN 5 · 12 OCT</span><span class="w">Últimos dos abonos</span><span class="m">$2,310 c/u</span></div>
+          </div>
+          <p class="nt"><b>Cinco pagos chicos mientras dura el proyecto.</b> Mismo precio, sólo repartido. Queda liquidado el 12 de octubre, antes de la entrega final.</p>
+        </div>
+      </div>
+      </div>
+
+      <div class="split">
+        <div class="cols">
+          <div class="std">
+            <span class="k">Desde noviembre</span>
+            <p>La mensualidad que elijas, más el dinero de los anuncios. Con el nivel recomendado son <b>$4,500 + $3,000 = $7,500 al mes</b>. Tres meses de compromiso y luego mes a mes.</p>
+          </div>
+          <div class="std">
+            <span class="k">Fotografía de producto · aparte</span>
+            <p>Para catálogo o tienda en línea: fondo blanco, tres ángulos por referencia. <b>Desde $2,400 por sesión de hasta 20 productos.</b></p>
+          </div>
+        </div>
+        <div class="cols">
+          <h3>Todo esto va incluido</h3>
+          <div class="caps">
+            <span>Video 4K</span><span>Iluminación profesional</span><span>Teleprompter</span>
+            <span>Setup de rodaje</span><span>Audio de solapa</span><span>Edición y montaje</span>
+            <span>Color y retoque</span><span>Musicalización</span><span>Diseño gráfico</span>
+            <span>Programación web con AI</span><span>Equipo profesional</span><span>Licencias incluidas</span>
+          </div>
+          <p class="lede">Sin rentas extra, sin cargos por música, tipografías ni fotos de banco: <b>ya está todo dentro del precio.</b></p>
+        </div>
+      </div>
+    </div>
+    <p class="notes"><b>Mismo precio en las dos: lo único que cambia es el calendario.</b> Presenta primero la de avance —"pagas contra lo que ya viste" quita el miedo del que nunca ha contratado agencia— y luego la de abonos para el que prefiere pagos chicos. <b>No hay descuento sobre la mesa</b>, y no hace falta: le estás dando a elegir entre dos comodidades, no entre pagar más o menos. Si aun así pide rebaja: "puedo mover fechas de pago, el precio no". La de abonos ya es esa flexibilidad. <b>Antes de cerrar, pasa el dedo por la lista de la derecha:</b> 4K, iluminación, teleprompter, audio, retoque, programación con AI y licencias. Es equipo y trabajo propio, no subcontratado — por eso no hay cargos sorpresa a mitad del proyecto.</p>
+  </section>
+
+</div>
+
+<div class="hud" role="group" aria-label="Controles de la presentación">
+  <button type="button" id="prev" aria-label="Diapositiva anterior">◀</button>
+  <span class="count" id="count">1 / 9</span>
+  <button type="button" id="next" aria-label="Diapositiva siguiente">▶</button>
+  <button type="button" id="notesBtn" aria-pressed="false" title="Notas de orador (N)">NOTAS</button>
+  <button type="button" id="gridBtn" aria-pressed="false" title="Ver todas (G)">TODAS</button>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var total = slides.length;
+  var i = 0;
+  var countEl = document.getElementById('count');
+  var notesBtn = document.getElementById('notesBtn');
+  var gridBtn = document.getElementById('gridBtn');
+
+  function render() {
+    slides.forEach(function (s, n) {
+      s.classList.toggle('is-active', n === i);
+      s.style.setProperty('--fill', (((n + 1) / total) * 100) + '%');
+    });
+    countEl.textContent = (i + 1) + ' / ' + total;
+    if (!document.body.classList.contains('grid-view')) window.scrollTo(0, 0);
+  }
+  function go(n) { i = Math.max(0, Math.min(total - 1, n)); render(); }
+
+  document.getElementById('prev').addEventListener('click', function () { go(i - 1); });
+  document.getElementById('next').addEventListener('click', function () { go(i + 1); });
+
+  notesBtn.addEventListener('click', function () {
+    var on = document.body.classList.toggle('show-notes');
+    notesBtn.setAttribute('aria-pressed', String(on));
+  });
+
+  function toggleGrid(force) {
+    var on = document.body.classList.toggle('grid-view', force);
+    gridBtn.setAttribute('aria-pressed', String(on));
+    if (!on) render();
+  }
+  gridBtn.addEventListener('click', function () { toggleGrid(); });
+
+  document.getElementById('deck').addEventListener('click', function (e) {
+    if (!document.body.classList.contains('grid-view')) return;
+    var s = e.target.closest('.slide');
+    if (!s) return;
+    go(slides.indexOf(s));
+    toggleGrid(false);
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) return;
+    var k = e.key;
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ') { e.preventDefault(); go(i + 1); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); go(i - 1); }
+    else if (k === 'Home') { e.preventDefault(); go(0); }
+    else if (k === 'End') { e.preventDefault(); go(total - 1); }
+    else if (k === 'n' || k === 'N') { notesBtn.click(); }
+    else if (k === 'g' || k === 'G') { toggleGrid(); }
+    else if (k === 'Escape') { toggleGrid(false); }
+  });
+
+  // Enlace directo a una diapositiva (?s=6) o a la vista de todas (?view=grid).
+  var q = new URLSearchParams(location.search);
+  var start = parseInt(q.get('s'), 10);
+  if (start >= 1 && start <= total) i = start - 1;
+  render();
+  if (q.get('view') === 'grid') toggleGrid(true);
+})();
+</script>
+
+</body>
+</html>

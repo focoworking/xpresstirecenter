@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Aplicaciones TireNexus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800;900&family=Barlow:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* ============================================================
+   TireNexus — tablero de aplicaciones de marca · FOCOw
+   Todos los mockups son vectoriales: nada depende de fotos
+   externas y no hay licencias que pagar.
+   ============================================================ */
+:root{
+  --ink:#141416;
+  --ink-2:#3A3733;
+  --steel:#63605B;
+  --mist:#F1EFEC;
+  --board:#E4E1DD;
+  --line:#D8D4CF;
+  --paper:#FFFFFF;
+  --orange:#E8541F;
+  --orange-d:#C4400F;
+  --night:#111113;
+  --fog:#A8A49E;
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Barlow","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ink:#F2F0EE;--ink-2:#C6C2BC;--steel:#948F89;
+    --mist:#1B1A18;--board:#151413;--line:#332F2B;--paper:#131211;--night:#0B0B0C;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F2F0EE;--ink-2:#C6C2BC;--steel:#948F89;
+  --mist:#1B1A18;--board:#151413;--line:#332F2B;--paper:#131211;--night:#0B0B0C;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--f-body);
+  font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
+/* Sólo los SVG de primer nivel: dentro de un SVG, el CSS pisaría
+   los atributos width/height y las escenas se desbordarían. */
+svg:not(svg *){display:block;height:auto;max-width:100%}
+h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.07;letter-spacing:-.025em;text-wrap:balance}
+h1{font-size:clamp(2rem,4.6vw,2.95rem);font-weight:900;text-transform:uppercase}
+h2{font-size:clamp(1.3rem,2.6vw,1.78rem);font-weight:800}
+h3{font-size:1rem;font-weight:800}
+p{margin:0;max-width:66ch}
+.page{width:min(100% - 2.5rem,1080px);margin-inline:auto;padding:clamp(2rem,5vw,3.4rem) 0 4rem}
+.stack{display:flex;flex-direction:column;gap:clamp(2.4rem,4.5vw,3.4rem)}
+section{display:flex;flex-direction:column;gap:1.1rem}
+.kicker{font-family:var(--f-mono);font-size:.68rem;font-weight:600;letter-spacing:.19em;
+  text-transform:uppercase;color:var(--orange);margin:0}
+.muted{color:var(--steel)}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+:focus-visible{outline:2.5px solid var(--orange);outline-offset:2px}
+
+/* ---------- Logo ---------- */
+.logo{--tnx-ink:var(--ink);--tnx-acc:var(--orange);width:100%}
+.on-dark .logo,.dark-piece .logo{--tnx-ink:#fff}
+
+/* ---------- Encabezado ---------- */
+header{display:flex;flex-direction:column;gap:1.1rem;padding-bottom:1.4rem;border-bottom:3px solid var(--ink)}
+header .logo{max-width:330px}
+.meta{display:flex;flex-wrap:wrap;gap:.35rem 2.2rem;font-family:var(--f-mono);font-size:.75rem;color:var(--steel)}
+.meta b{color:var(--ink);font-weight:500}
+
+/* ---------- Mesa de trabajo ---------- */
+.board{background:var(--board);border:1px solid var(--line);padding:clamp(1.2rem,3vw,2.2rem);
+  display:flex;align-items:center;justify-content:center;overflow:hidden}
+.board.tight{padding:0}
+.cap{font-family:var(--f-mono);font-size:.66rem;font-weight:600;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--steel);margin-top:.55rem;display:flex;
+  justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.cap .sz{color:var(--orange)}
+.piece{display:flex;flex-direction:column}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.2rem}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.2rem}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem}
+
+/* ---------- Social ---------- */
+.post{aspect-ratio:1;background:var(--night);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;padding:8%}
+.post.orange{background:var(--orange)}
+.post.light{background:#fff}
+.post .tread{position:absolute;inset:0;
+  background:repeating-linear-gradient(112deg,rgba(255,255,255,.045) 0 10px,transparent 10px 26px)}
+.post.light .tread{background:repeating-linear-gradient(112deg,rgba(20,20,22,.05) 0 10px,transparent 10px 26px)}
+.post > *{position:relative}
+.post .logo{max-width:56%}
+.post h4{font-family:var(--f-display);font-weight:900;font-size:clamp(1rem,3.4vw,1.55rem);
+  line-height:1.04;letter-spacing:-.03em;color:#fff;margin:0;text-transform:uppercase}
+.post.light h4{color:var(--ink)}
+.post .sizes{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem}
+.post .sizes span{font-family:var(--f-mono);font-size:.62rem;color:#fff;
+  border:1px solid rgba(255,255,255,.4);padding:.16rem .35rem}
+.post.light .sizes span{color:var(--ink);border-color:rgba(20,20,22,.25)}
+.post .foot{font-family:var(--f-mono);font-size:.6rem;letter-spacing:.1em;color:rgba(255,255,255,.65)}
+.post.light .foot{color:var(--steel)}
+.post .badge{align-self:flex-start;background:var(--orange);color:#fff;font-family:var(--f-display);
+  font-weight:800;font-size:.7rem;letter-spacing:.06em;padding:.28rem .55rem;text-transform:uppercase}
+.post.orange .badge{background:#fff;color:var(--orange)}
+
+.story{aspect-ratio:9/16;background:var(--night);position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:space-between;padding:9% 8%}
+.story .tread{position:absolute;inset:0;
+  background:radial-gradient(120% 60% at 80% 0%,rgba(232,84,31,.35),transparent 60%),
+    repeating-linear-gradient(112deg,rgba(255,255,255,.04) 0 10px,transparent 10px 26px)}
+.story > *{position:relative}
+.story .logo{max-width:68%}
+.story h4{font-family:var(--f-display);font-weight:900;font-size:clamp(.95rem,3.1vw,1.35rem);
+  color:#fff;line-height:1.05;letter-spacing:-.03em;margin:0;text-transform:uppercase}
+.story .cta{background:var(--orange);color:#fff;font-family:var(--f-body);font-weight:700;
+  font-size:.72rem;padding:.5rem .8rem;text-align:center}
+
+.avatar{aspect-ratio:1;background:var(--night);display:flex;align-items:center;justify-content:center;
+  border-radius:50%;overflow:hidden}
+.avatar svg{width:52%;fill:var(--orange)}
+.cover{aspect-ratio:820/312;background:var(--night);position:relative;overflow:hidden;
+  display:flex;align-items:center;padding:0 7%}
+.cover .tread{position:absolute;inset:0;
+  background:radial-gradient(80% 140% at 88% 50%,rgba(232,84,31,.34),transparent 62%),
+    repeating-linear-gradient(112deg,rgba(255,255,255,.04) 0 10px,transparent 10px 26px)}
+.cover .logo{max-width:44%;position:relative}
+
+/* ---------- Papelería ---------- */
+.card{aspect-ratio:1.75;background:#fff;padding:9%;display:flex;flex-direction:column;
+  justify-content:space-between;box-shadow:0 10px 26px rgba(20,20,22,.16)}
+.card.back{background:var(--night);align-items:center;justify-content:center}
+.card.back .logo{max-width:74%}
+.card .logo{max-width:62%}
+.card .who{font-family:var(--f-display);font-weight:800;font-size:.78rem;color:var(--ink);line-height:1.2}
+.card .who span{display:block;font-family:var(--f-body);font-weight:500;font-size:.62rem;
+  color:var(--steel);letter-spacing:.06em;text-transform:uppercase;margin-top:.15rem}
+.card .det{font-family:var(--f-mono);font-size:.55rem;color:var(--steel);line-height:1.7}
+.card .rule{height:3px;background:var(--orange);width:34%}
+
+.letter{aspect-ratio:1/1.294;background:#fff;padding:8% 8% 6%;display:flex;flex-direction:column;
+  gap:5%;box-shadow:0 10px 26px rgba(20,20,22,.16)}
+.letter .logo{max-width:44%}
+.letter .lines{display:flex;flex-direction:column;gap:5px;flex:1}
+.letter .lines i{display:block;height:4px;background:#E7E4E0}
+.letter .lines i:nth-child(3n){width:72%}
+.letter .lines i.h{height:9px;background:var(--ink);width:46%;margin-bottom:5px}
+.letter .ft{border-top:2px solid var(--orange);padding-top:5px;font-family:var(--f-mono);
+  font-size:.5rem;color:var(--steel);letter-spacing:.04em}
+
+.invoice{aspect-ratio:1/1.294;background:#fff;padding:7%;display:flex;flex-direction:column;gap:4%;
+  box-shadow:0 10px 26px rgba(20,20,22,.16);font-size:.55rem}
+.invoice .top{display:flex;justify-content:space-between;align-items:flex-start;gap:6%}
+.invoice .logo{max-width:52%}
+.invoice .num{font-family:var(--f-mono);font-size:.5rem;color:var(--steel);text-align:right;line-height:1.7}
+.invoice .num b{display:block;font-family:var(--f-display);font-size:.72rem;color:var(--ink)}
+.invoice table{width:100%;border-collapse:collapse;font-family:var(--f-mono);font-size:.48rem}
+.invoice th{text-align:left;background:var(--ink);color:#fff;padding:.3rem .35rem;font-weight:600;
+  letter-spacing:.06em}
+.invoice td{padding:.28rem .35rem;border-bottom:1px solid #EDEAE6;color:var(--ink-2)}
+.invoice .tot{margin-top:auto;display:flex;justify-content:space-between;align-items:baseline;
+  border-top:2px solid var(--orange);padding-top:.4rem}
+.invoice .tot b{font-family:var(--f-display);font-size:.85rem;color:var(--orange)}
+
+/* ---------- Uniforme ---------- */
+.shirt{aspect-ratio:1;background:var(--night);display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden}
+.shirt.hi{background:var(--orange)}
+.shirt .logo{max-width:56%}
+.shirt.hi .logo{--tnx-ink:#fff;--tnx-acc:#fff}
+
+/* ---------- Etiquetas de producto ---------- */
+.label{background:#fff;border:1px solid var(--line);padding:.9rem;display:flex;flex-direction:column;gap:.5rem}
+.label .logo{max-width:110px}
+.label .size{font-family:var(--f-display);font-weight:900;font-size:1.5rem;letter-spacing:-.04em;color:var(--ink)}
+.label .meta2{font-family:var(--f-mono);font-size:.62rem;color:var(--steel);line-height:1.6}
+.label .bar{height:26px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,#fff 2px 4px,
+  var(--ink) 4px 5px,#fff 5px 8px,var(--ink) 8px 11px,#fff 11px 12px)}
+
+/* ---------- Nota ---------- */
+.note{border:1px dashed var(--line);padding:1rem 1.2rem;font-size:.93rem;color:var(--ink-2);
+  display:flex;flex-direction:column;gap:.5rem}
+.note b{color:var(--ink);font-weight:600}
+ul.ticks{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.45rem}
+ul.ticks li{position:relative;padding-left:1.3rem;font-size:.94rem;color:var(--ink-2)}
+ul.ticks li::before{content:"";position:absolute;left:0;top:.58rem;width:7px;height:7px;
+  background:var(--orange);clip-path:polygon(0 0,100% 50%,0 100%)}
+ul.ticks li b{color:var(--ink);font-weight:600}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:0;
+  border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.shots > div{padding:.9rem 1.1rem;border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+.shots h3{font-size:.9rem;margin-bottom:.25rem}
+.shots p{font-size:.84rem;color:var(--steel)}
+.shots .q{font-family:var(--f-mono);font-size:.72rem;color:var(--orange);display:block;margin-top:.35rem}
+
+footer{border-top:1px solid var(--line);padding-top:1.2rem;font-family:var(--f-mono);
+  font-size:.72rem;color:var(--steel);display:flex;flex-wrap:wrap;gap:.35rem 2rem}
+
+@media print{
+  @page{size:A4;margin:14mm}
+  body{background:#fff;color:#141416;font-size:10.5pt}
+  .page{width:100%;padding:0}
+  .stack{gap:1.5rem}
+  section{break-inside:avoid}
+  .board,.post,.story,.cover,.avatar,.shirt,.card.back{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<!-- Logo TireNexus redibujado. Sustituir <symbol id="tnx"> por el SVG oficial cuando esté. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="tnx" viewBox="0 0 1060 300">
+    <g transform="translate(0,192) skewX(-15)">
+      <text x="18" y="0" fill="var(--tnx-ink,#141416)" font-family="Archivo, Arial, sans-serif" font-size="168" font-weight="900" letter-spacing="-6">TIRE</text>
+      <text x="416" y="0" fill="var(--tnx-acc,#E8541F)" font-family="Archivo, Arial, sans-serif" font-size="168" font-weight="900" letter-spacing="-6">NEXUS</text>
+    </g>
+    <path fill="var(--tnx-acc,#E8541F)" d="M950 6 L884 122 L918 112 L622 244 L698 150 L666 160 Z"/>
+    <text x="152" y="272" fill="var(--tnx-ink,#141416)" font-family="Archivo, Arial, sans-serif" font-size="40" font-weight="700" letter-spacing="7.5">WHOLESALE TIRE DISTRIBUTOR</text>
+  </symbol>
+  <symbol id="flash" viewBox="0 0 400 300"><path d="M300 6 L214 132 L272 116 L52 254 L154 150 L92 166 Z"/></symbol>
+</svg>
+
+<div class="page">
+  <div class="stack">
+
+    <header>
+      <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="TireNexus"><use href="#tnx"/></svg>
+      <div><p class="kicker">Aplicaciones de marca</p><h1>Cómo se ve la marca<br>en la calle</h1></div>
+      <p class="muted">Muestras de aplicación en digital, redes, papelería, unidades de reparto, señalética, uniforme y producto. Todas las piezas están dibujadas en vectorial para esta presentación; en producción se reemplazan por las fotografías reales de las instalaciones y el equipo.</p>
+      <div class="meta">
+        <span>Para <b>TireNexus</b></span><span>Preparado por <b>FOCOw</b></span><span>8 sep 2026</span>
+      </div>
+    </header>
+
+    <!-- ============ VEHÍCULOS ============ -->
+    <section>
+      <p class="kicker">01 · Unidades de reparto</p>
+      <h2>El camión es el anuncio más barato que tienes</h2>
+      <p class="muted">Una unidad rotulada circulando por la I-75 pasa frente a miles de vehículos al día. El logo va tan grande como permita el panel, y el teléfono se lee a treinta metros.</p>
+
+      <div class="piece">
+        <div class="board tight">
+          <svg viewBox="0 0 1000 340" role="img" aria-label="Camión de reparto rotulado, vista lateral">
+            <defs>
+              <linearGradient id="boxg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#FFFFFF"/><stop offset=".72" stop-color="#F4F2EF"/><stop offset="1" stop-color="#E2DFDA"/>
+              </linearGradient>
+              <linearGradient id="cabg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2A2A2E"/><stop offset="1" stop-color="#141416"/>
+              </linearGradient>
+              <radialGradient id="tyre" cx="35%" cy="32%" r="72%">
+                <stop offset="0" stop-color="#3C3C40"/><stop offset="1" stop-color="#0E0E10"/>
+              </radialGradient>
+            </defs>
+            <rect x="0" y="0" width="1000" height="340" fill="#E4E1DD"/>
+            <rect x="0" y="272" width="1000" height="68" fill="#CFCBC6"/>
+            <rect x="0" y="272" width="1000" height="3" fill="#B9B4AE"/>
+
+            <!-- caja -->
+            <rect x="250" y="66" width="640" height="182" fill="url(#boxg)" stroke="#CFCBC6" stroke-width="2"/>
+            <rect x="250" y="228" width="640" height="20" fill="#141416"/>
+            <rect x="250" y="66" width="640" height="7" fill="#E8541F"/>
+            <!-- logo en la caja -->
+            <svg x="278" y="98" width="384" height="109" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet"><use href="#tnx"/></svg>
+            <!-- datos -->
+            <text x="782" y="142" text-anchor="middle" font-family="Archivo, Arial" font-size="31" font-weight="900" fill="#141416">(239)</text>
+            <text x="782" y="174" text-anchor="middle" font-family="Archivo, Arial" font-size="31" font-weight="900" fill="#E8541F">314-8100</text>
+            <text x="782" y="200" text-anchor="middle" font-family="Barlow, Arial" font-size="13" font-weight="600" letter-spacing="1.5" fill="#63605B">TIRENEXUS.COM</text>
+
+            <!-- cabina -->
+            <path d="M96 132 L166 132 L216 96 L250 96 L250 248 L96 248 Z" fill="url(#cabg)"/>
+            <path d="M118 138 L168 138 L208 108 L238 108 L238 160 L118 160 Z" fill="#4A5766" opacity=".85"/>
+            <rect x="96" y="228" width="154" height="20" fill="#0C0C0D"/>
+            <rect x="90" y="188" width="12" height="26" rx="3" fill="#E8541F"/>
+            <!-- llantas -->
+            <g>
+              <circle cx="172" cy="256" r="44" fill="url(#tyre)"/><circle cx="172" cy="256" r="19" fill="#B9B5B0"/>
+              <circle cx="172" cy="256" r="9" fill="#6E6B67"/>
+              <circle cx="700" cy="256" r="44" fill="url(#tyre)"/><circle cx="700" cy="256" r="19" fill="#B9B5B0"/>
+              <circle cx="700" cy="256" r="9" fill="#6E6B67"/>
+              <circle cx="800" cy="256" r="44" fill="url(#tyre)"/><circle cx="800" cy="256" r="19" fill="#B9B5B0"/>
+              <circle cx="800" cy="256" r="9" fill="#6E6B67"/>
+            </g>
+            <ellipse cx="470" cy="303" rx="400" ry="11" fill="#000" opacity=".13"/>
+          </svg>
+        </div>
+        <p class="cap"><span>Camión de reparto · panel lateral</span><span class="sz">Vinil de corte · logo al 60% del alto del panel</span></p>
+      </div>
+
+      <div class="g2">
+        <div class="piece">
+          <div class="board tight">
+            <svg viewBox="0 0 520 300" role="img" aria-label="Camioneta de reparto rotulada">
+              <rect width="520" height="300" fill="#E4E1DD"/>
+              <rect x="0" y="238" width="520" height="62" fill="#CFCBC6"/>
+              <path d="M60 108 L108 108 L150 74 L392 74 L392 226 L60 226 Z" fill="#FFFFFF" stroke="#CFCBC6" stroke-width="2"/>
+              <path d="M76 112 L112 112 L146 86 L186 86 L186 132 L76 132 Z" fill="#4A5766" opacity=".8"/>
+              <rect x="150" y="74" width="242" height="6" fill="#E8541F"/>
+              <svg x="196" y="104" width="180" height="52" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet"><use href="#tnx"/></svg>
+              <text x="286" y="184" text-anchor="middle" font-family="Archivo, Arial" font-size="20" font-weight="900" fill="#E8541F">(239) 314-8100</text>
+              <circle cx="132" cy="230" r="30" fill="#151517"/><circle cx="132" cy="230" r="13" fill="#B9B5B0"/>
+              <circle cx="336" cy="230" r="30" fill="#151517"/><circle cx="336" cy="230" r="13" fill="#B9B5B0"/>
+              <ellipse cx="230" cy="266" rx="190" ry="8" fill="#000" opacity=".12"/>
+            </svg>
+          </div>
+          <p class="cap"><span>Van de reparto rápido</span><span class="sz">Panel lateral</span></p>
+        </div>
+        <div class="piece">
+          <div class="board tight">
+            <svg viewBox="0 0 520 300" role="img" aria-label="Puerta de camioneta con logo">
+              <rect width="520" height="300" fill="#E4E1DD"/>
+              <rect x="120" y="40" width="280" height="220" rx="6" fill="#141416"/>
+              <rect x="132" y="52" width="256" height="86" rx="4" fill="#2B3440"/>
+              <svg x="150" y="158" width="220" height="64" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet" class="dark-piece"><use href="#tnx"/></svg>
+              <rect x="150" y="234" width="70" height="4" fill="#E8541F"/>
+              <circle cx="368" cy="176" r="7" fill="#8C8880"/>
+            </svg>
+          </div>
+          <p class="cap"><span>Puerta de cabina · versión negativa</span><span class="sz">Sobre pintura oscura</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SEÑALÉTICA ============ -->
+    <section>
+      <p class="kicker">02 · Señalética</p>
+      <h2>Fachada, tótem y bodega</h2>
+      <div class="g2">
+        <div class="piece">
+          <div class="board tight">
+            <svg viewBox="0 0 560 320" role="img" aria-label="Fachada de bodega con letrero iluminado">
+              <rect width="560" height="320" fill="#DAD7D2"/>
+              <rect x="0" y="60" width="560" height="200" fill="#EFEDE9"/>
+              <rect x="0" y="256" width="560" height="64" fill="#C6C2BC"/>
+              <rect x="30" y="86" width="500" height="66" fill="#141416"/>
+              <svg x="66" y="98" width="330" height="44" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet" class="dark-piece"><use href="#tnx"/></svg>
+              <rect x="428" y="98" width="72" height="44" fill="#E8541F"/>
+              <svg x="450" y="106" width="28" height="28" viewBox="0 0 400 300"><path d="M300 6 L214 132 L272 116 L52 254 L154 150 L92 166 Z" fill="#fff"/></svg>
+              <rect x="60" y="176" width="180" height="80" fill="#B7C4CE" opacity=".7"/>
+              <rect x="260" y="176" width="240" height="80" fill="#2A2A2E"/>
+              <rect x="270" y="186" width="220" height="60" fill="#3A3A40"/>
+              <text x="380" y="222" text-anchor="middle" font-family="Barlow, Arial" font-size="13" font-weight="700" letter-spacing="3" fill="#8C8880">RECIBO / SHIPPING</text>
+              <rect x="30" y="152" width="500" height="4" fill="#E8541F"/>
+            </svg>
+          </div>
+          <p class="cap"><span>Letrero de fachada</span><span class="sz">Caja iluminada · 5 m</span></p>
+        </div>
+        <div class="piece">
+          <div class="board">
+            <svg viewBox="0 0 300 320" role="img" aria-label="Tótem de carretera">
+              <rect x="132" y="150" width="36" height="150" fill="#8C8880"/>
+              <rect x="34" y="20" width="232" height="140" rx="4" fill="#141416"/>
+              <rect x="34" y="20" width="232" height="9" fill="#E8541F"/>
+              <svg x="58" y="48" width="184" height="52" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet" class="dark-piece"><use href="#tnx"/></svg>
+              <text x="150" y="128" text-anchor="middle" font-family="Archivo, Arial" font-size="20" font-weight="900" fill="#E8541F">(239) 314-8100</text>
+              <rect x="100" y="300" width="100" height="14" rx="2" fill="#6E6B67"/>
+            </svg>
+          </div>
+          <p class="cap"><span>Tótem de carretera</span><span class="sz">Doble vista · 3 m</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ REDES ============ -->
+    <section>
+      <p class="kicker">03 · Redes sociales</p>
+      <h2>Plantillas listas para publicar</h2>
+      <p class="muted">Tres formatos que cubren todo: cuadrado para feed, vertical para historias y reels, y el juego de perfil. Cada plantilla lleva su versión en inglés y en español.</p>
+
+      <div class="g3">
+        <div class="piece">
+          <div class="post on-dark"><div class="tread"></div>
+            <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Post de camión"><use href="#tnx"/></svg>
+            <div>
+              <h4>Llantas de camión<br>en piso</h4>
+              <div class="sizes"><span>11R22.5</span><span>295/75R22.5</span><span>11R24.5</span></div>
+            </div>
+            <span class="foot">ENTREGA 24 H · LEE &amp; COLLIER</span>
+          </div>
+          <p class="cap"><span>Feed · camión</span><span class="sz">1080 × 1080</span></p>
+        </div>
+
+        <div class="piece">
+          <div class="post light">
+            <div class="tread"></div>
+            <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Post de auto"><use href="#tnx"/></svg>
+            <div>
+              <span class="badge">Auto y camioneta</span>
+              <h4 style="margin-top:.5rem">Todas las<br>medidas de auto</h4>
+              <div class="sizes"><span>205/55R16</span><span>265/70R17</span><span>275/55R20</span></div>
+            </div>
+            <span class="foot">PRECIO DE MAYOREO PARA TU TALLER</span>
+          </div>
+          <p class="cap"><span>Feed · auto</span><span class="sz">1080 × 1080</span></p>
+        </div>
+
+        <div class="piece">
+          <div class="post orange on-dark"><div class="tread"></div>
+            <span class="badge">Abre tu cuenta</span>
+            <div>
+              <h4>Sin mínimo<br>de compra</h4>
+              <div class="sizes"><span>PIDES HOY</span><span>LLEGA MAÑANA</span></div>
+            </div>
+            <svg class="logo" style="max-width:64%" viewBox="0 0 1060 300" role="img" aria-label="Post de oferta"><use href="#tnx"/></svg>
+          </div>
+          <p class="cap"><span>Feed · alta de cuenta</span><span class="sz">1080 × 1080</span></p>
+        </div>
+      </div>
+
+      <div class="g4" style="margin-top:.4rem">
+        <div class="piece">
+          <div class="story on-dark"><div class="tread"></div>
+            <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Historia"><use href="#tnx"/></svg>
+            <h4>Auto,<br>camioneta<br>y camión</h4>
+            <div class="cta">Abre tu cuenta →</div>
+          </div>
+          <p class="cap"><span>Historia / Reel</span><span class="sz">1080 × 1920</span></p>
+        </div>
+        <div class="piece">
+          <div class="avatar"><svg viewBox="0 0 400 300" role="img" aria-label="Avatar de redes"><use href="#flash"/></svg></div>
+          <p class="cap"><span>Foto de perfil</span><span class="sz">400 × 400</span></p>
+        </div>
+        <div class="piece" style="grid-column:span 2">
+          <div class="cover on-dark"><div class="tread"></div>
+            <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Portada de Facebook"><use href="#tnx"/></svg>
+          </div>
+          <p class="cap"><span>Portada de Facebook y LinkedIn</span><span class="sz">820 × 312</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PAPELERÍA ============ -->
+    <section>
+      <p class="kicker">04 · Papelería</p>
+      <h2>Lo que el cliente se lleva en la mano</h2>
+      <div class="g3">
+        <div class="piece">
+          <div class="board"><div class="card">
+            <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Tarjeta frente"><use href="#tnx"/></svg>
+            <div class="rule"></div>
+            <div class="who">Nombre Apellido<span>Ejecutivo de cuenta</span></div>
+            <div class="det">(239) 314-8100<br>nombre@tirenexus.com<br>5530 4th St W, Lehigh Acres FL</div>
+          </div></div>
+          <p class="cap"><span>Tarjeta · frente</span><span class="sz">3.5 × 2 in</span></p>
+        </div>
+        <div class="piece">
+          <div class="board"><div class="card back dark-piece">
+            <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Tarjeta reverso"><use href="#tnx"/></svg>
+          </div></div>
+          <p class="cap"><span>Tarjeta · reverso</span><span class="sz">3.5 × 2 in</span></p>
+        </div>
+        <div class="piece">
+          <div class="board"><div class="letter">
+            <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Hoja membretada"><use href="#tnx"/></svg>
+            <div class="lines"><i class="h"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="ft">5530 4TH ST W · LEHIGH ACRES FL 33971 · (239) 314-8100 · TIRENEXUS.COM</div>
+          </div></div>
+          <p class="cap"><span>Hoja membretada</span><span class="sz">Carta</span></p>
+        </div>
+      </div>
+
+      <div class="g2" style="margin-top:.4rem">
+        <div class="piece">
+          <div class="board"><div class="invoice">
+            <div class="top">
+              <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Factura"><use href="#tnx"/></svg>
+              <div class="num"><b>FACTURA</b>No. 10482<br>8 sep 2026<br>Términos: NET 30</div>
+            </div>
+            <table>
+              <thead><tr><th>MEDIDA</th><th>DESCRIPCIÓN</th><th>CANT</th><th>IMPORTE</th></tr></thead>
+              <tbody>
+                <tr><td>11R22.5</td><td>Tracción · marca premium</td><td>8</td><td>$3,120.00</td></tr>
+                <tr><td>295/75R22.5</td><td>Dirección · marca valor</td><td>4</td><td>$1,180.00</td></tr>
+                <tr><td>265/70R17</td><td>Camioneta · todo terreno</td><td>12</td><td>$2,460.00</td></tr>
+                <tr><td>205/55R16</td><td>Auto · todo el año</td><td>16</td><td>$1,344.00</td></tr>
+              </tbody>
+            </table>
+            <div class="tot"><span class="mono" style="font-size:.55rem;color:var(--steel)">TOTAL</span><b>$8,104.00</b></div>
+          </div></div>
+          <p class="cap"><span>Factura de mayoreo</span><span class="sz">Carta · auto y camión en la misma</span></p>
+        </div>
+        <div class="piece">
+          <div class="g2" style="grid-template-columns:1fr 1fr;gap:1rem">
+            <div class="label">
+              <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Etiqueta de llanta"><use href="#tnx"/></svg>
+              <span class="size">11R22.5</span>
+              <div class="meta2">TRACCIÓN · 16 CAPAS<br>DOT 3418 · NUEVA</div>
+              <div class="bar"></div>
+            </div>
+            <div class="label">
+              <svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Etiqueta de llanta de auto"><use href="#tnx"/></svg>
+              <span class="size">205/55R16</span>
+              <div class="meta2">AUTO · TODO EL AÑO<br>DOT 2726 · NUEVA</div>
+              <div class="bar"></div>
+            </div>
+          </div>
+          <p class="cap"><span>Etiqueta de producto · camión y auto</span><span class="sz">4 × 6 in · térmica</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ UNIFORME ============ -->
+    <section>
+      <p class="kicker">05 · Uniforme y equipo</p>
+      <h2>El personal también es la marca</h2>
+      <div class="g4">
+        <div class="piece">
+          <div class="shirt on-dark"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Playera negra"><use href="#tnx"/></svg></div>
+          <p class="cap"><span>Playera</span><span class="sz">Frente</span></p>
+        </div>
+        <div class="piece">
+          <div class="shirt hi"><svg class="logo" viewBox="0 0 1060 300" role="img" aria-label="Chaleco reflectante"><use href="#tnx"/></svg></div>
+          <p class="cap"><span>Chaleco alta visibilidad</span><span class="sz">Espalda</span></p>
+        </div>
+        <div class="piece">
+          <div class="board" style="aspect-ratio:1;padding:12%">
+            <svg viewBox="0 0 200 200" role="img" aria-label="Gorra bordada">
+              <path d="M22 128 Q22 58 100 58 Q178 58 178 128 Z" fill="#141416"/>
+              <path d="M18 128 Q100 150 182 128 L188 146 Q100 172 12 146 Z" fill="#0C0C0D"/>
+              <svg x="52" y="86" width="96" height="30" viewBox="0 0 1060 300" preserveAspectRatio="xMidYMid meet" class="dark-piece"><use href="#tnx"/></svg>
+            </svg>
+          </div>
+          <p class="cap"><span>Gorra bordada</span><span class="sz">Frente</span></p>
+        </div>
+        <div class="piece">
+          <div class="board" style="aspect-ratio:1;padding:14%">
+            <svg viewBox="0 0 200 200" role="img" aria-label="Gafete de identificación">
+              <rect x="46" y="18" width="108" height="20" rx="4" fill="#8C8880"/>
+              <rect x="34" y="38" width="132" height="146" rx="6" fill="#fff" stroke="#D8D4CF"/>
+              <rect x="34" y="38" width="132" height="8" fill="#E8541F"/>
+              <svg x="50" y="58" width="100" height="30" viewBox="0 0 1060 300" preserveAspectRatio="xMidYMid meet"><use href="#tnx"/></svg>
+              <circle cx="100" cy="118" r="20" fill="#E4E1DD"/>
+              <text x="100" y="158" text-anchor="middle" font-family="Archivo, Arial" font-size="11" font-weight="800" fill="#141416">NOMBRE</text>
+              <text x="100" y="172" text-anchor="middle" font-family="Barlow, Arial" font-size="8" letter-spacing="1" fill="#63605B">REPARTO</text>
+            </svg>
+          </div>
+          <p class="cap"><span>Gafete</span><span class="sz">Personal en ruta</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DIGITAL ============ -->
+    <section>
+      <p class="kicker">06 · Digital</p>
+      <h2>El sitio, en pantalla grande y en el celular</h2>
+      <div class="g2">
+        <div class="piece">
+          <div class="board tight">
+            <svg viewBox="0 0 620 380" role="img" aria-label="Sitio web en computadora portátil">
+              <rect width="620" height="380" fill="#E4E1DD"/>
+              <rect x="70" y="42" width="480" height="286" rx="8" fill="#141416"/>
+              <rect x="82" y="54" width="456" height="256" fill="#fff"/>
+              <rect x="82" y="54" width="456" height="26" fill="#111113"/>
+              <svg x="94" y="60" width="96" height="16" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet" class="dark-piece"><use href="#tnx"/></svg>
+              <rect x="82" y="80" width="456" height="120" fill="#17171A"/>
+              <text x="104" y="118" font-family="Archivo, Arial" font-size="19" font-weight="900" fill="#fff">LLANTAS AL MAYOREO,</text>
+              <text x="104" y="142" font-family="Archivo, Arial" font-size="19" font-weight="900" fill="#E8541F">AUTO Y CAMIÓN</text>
+              <rect x="104" y="156" width="92" height="22" fill="#E8541F"/>
+              <text x="150" y="171" text-anchor="middle" font-family="Barlow, Arial" font-size="10" font-weight="700" fill="#fff">Abrir cuenta</text>
+              <rect x="410" y="96" width="112" height="92" fill="#fff"/>
+              <rect x="420" y="106" width="92" height="9" fill="#E7E4E0"/><rect x="420" y="122" width="92" height="9" fill="#E7E4E0"/>
+              <rect x="420" y="138" width="92" height="9" fill="#E7E4E0"/><rect x="420" y="158" width="92" height="18" fill="#E8541F"/>
+              <g fill="#F1EFEC">
+                <rect x="104" y="216" width="128" height="72"/><rect x="246" y="216" width="128" height="72"/><rect x="388" y="216" width="128" height="72"/>
+              </g>
+              <g fill="#E8541F" font-family="IBM Plex Mono, monospace" font-size="8">
+                <text x="114" y="234">01</text><text x="256" y="234">02</text><text x="398" y="234">03</text>
+              </g>
+              <g fill="#141416" font-family="Archivo, Arial" font-size="10" font-weight="800">
+                <text x="114" y="252">Camión</text><text x="256" y="252">Auto</text><text x="398" y="252">Agrícola</text>
+              </g>
+              <rect x="40" y="328" width="540" height="12" rx="4" fill="#C6C2BC"/>
+              <rect x="268" y="330" width="84" height="4" rx="2" fill="#A8A49E"/>
+            </svg>
+          </div>
+          <p class="cap"><span>Sitio en escritorio</span><span class="sz">Un solo sitio · ES/EN</span></p>
+        </div>
+        <div class="piece">
+          <div class="board">
+            <svg viewBox="0 0 240 380" role="img" aria-label="Sitio web en teléfono">
+              <rect x="40" y="10" width="160" height="360" rx="22" fill="#141416"/>
+              <rect x="48" y="30" width="144" height="322" rx="4" fill="#fff"/>
+              <rect x="98" y="16" width="44" height="7" rx="3.5" fill="#2C2C30"/>
+              <rect x="48" y="30" width="144" height="22" fill="#111113"/>
+              <svg x="56" y="35" width="70" height="12" viewBox="0 0 1060 300" preserveAspectRatio="xMinYMid meet" class="dark-piece"><use href="#tnx"/></svg>
+              <rect x="48" y="52" width="144" height="104" fill="#17171A"/>
+              <text x="58" y="80" font-family="Archivo, Arial" font-size="12" font-weight="900" fill="#fff">LLANTAS AL</text>
+              <text x="58" y="94" font-family="Archivo, Arial" font-size="12" font-weight="900" fill="#fff">MAYOREO,</text>
+              <text x="58" y="108" font-family="Archivo, Arial" font-size="12" font-weight="900" fill="#E8541F">AUTO Y CAMIÓN</text>
+              <rect x="58" y="118" width="80" height="20" fill="#E8541F"/>
+              <text x="98" y="132" text-anchor="middle" font-family="Barlow, Arial" font-size="9" font-weight="700" fill="#fff">Abrir cuenta</text>
+              <g fill="#F1EFEC"><rect x="58" y="170" width="124" height="42"/><rect x="58" y="220" width="124" height="42"/><rect x="58" y="270" width="124" height="42"/></g>
+              <g fill="#141416" font-family="Archivo, Arial" font-size="9" font-weight="800">
+                <text x="68" y="196">Camión comercial</text><text x="68" y="246">Auto y camioneta</text><text x="68" y="296">Agrícola</text>
+              </g>
+              <g fill="#E8541F" font-family="IBM Plex Mono, monospace" font-size="6.5">
+                <text x="68" y="184">01</text><text x="68" y="234">02</text><text x="68" y="284">03</text>
+              </g>
+              <rect x="48" y="330" width="144" height="22" fill="#E8541F"/>
+              <text x="120" y="345" text-anchor="middle" font-family="Barlow, Arial" font-size="9" font-weight="700" fill="#fff">(239) 314-8100</text>
+            </svg>
+          </div>
+          <p class="cap"><span>Sitio en celular</span><span class="sz">Donde ocurre el tráfico</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FOTOGRAFÍA ============ -->
+    <section>
+      <p class="kicker">07 · Fotografía</p>
+      <h2>Lo que se fotografía en el día de rodaje</h2>
+      <p class="muted">Estos mockups están dibujados en vectorial. En producción cada uno se reemplaza por fotografía real, tomada en las instalaciones de TireNexus. Esta es la lista de tomas del día de rodaje.</p>
+      <div class="shots">
+        <div><h3>Bodega general</h3><p>Pasillo con racks llenos, en gran angular. La toma que comunica capacidad.</p>
+          <span class="q">Uso: portada del sitio y del deck de ventas</span></div>
+        <div><h3>Llantas de camión apiladas</h3><p>Detalle cerrado del dibujo y del costado, con la medida legible.</p>
+          <span class="q">Uso: categoría camión, posts de feed</span></div>
+        <div><h3>Llantas de auto en rack</h3><p>Fila ordenada por medida, con etiquetas visibles.</p>
+          <span class="q">Uso: categoría auto y camioneta</span></div>
+        <div><h3>Camión cargando</h3><p>Unidad rotulada en el andén, con montacargas o personal cargando.</p>
+          <span class="q">Uso: sección de entregas y rutas</span></div>
+        <div><h3>Camión en carretera</h3><p>Unidad en movimiento sobre la I-75, lateral, con el logo legible.</p>
+          <span class="q">Uso: video institucional y anuncios</span></div>
+        <div><h3>Entrega en el taller</h3><p>Personal descargando en un taller cliente. Es la foto que vende la ruta.</p>
+          <span class="q">Uso: página de entregas y LinkedIn</span></div>
+        <div><h3>Mostrador y atención</h3><p>Persona real atendiendo por teléfono. Pone cara humana al negocio.</p>
+          <span class="q">Uso: página de contacto y nosotros</span></div>
+        <div><h3>Equipo completo</h3><p>Grupo frente a la unidad rotulada, con uniforme.</p>
+          <span class="q">Uso: nosotros, redes y reclutamiento</span></div>
+        <div><h3>Detalle de manos</h3><p>Manos midiendo dibujo o revisando un costado. Comunica oficio.</p>
+          <span class="q">Uso: textura de fondo y separadores</span></div>
+      </div>
+      <div class="note">
+        <p><b>Si hace falta material antes del rodaje,</b> se puede empezar con fotografía de banco licenciada. Búsquedas que dan buen resultado en Pexels y Unsplash, ambas de uso comercial gratuito: <span class="mono">tire warehouse</span>, <span class="mono">tire stack</span>, <span class="mono">truck tire close up</span>, <span class="mono">delivery box truck</span>, <span class="mono">auto shop tires</span>, <span class="mono">forklift warehouse</span>. Es un puente, no un sustituto: en este sector la foto de banco se reconoce y resta.</p>
+      </div>
+    </section>
+
+    <div class="note">
+      <p><b>Sobre este tablero.</b> El logo de TireNexus está reconstruido en vectorial a partir de la imagen recibida, y todas las escenas están dibujadas para esta presentación. Con el archivo original del logo se sustituye en las siete secciones, y con las fotos del rodaje se reemplazan las escenas por imágenes reales.</p>
+    </div>
+
+    <footer>
+      <span>TireNexus · Aplicaciones de marca v1.0</span>
+      <span>Preparado por FOCOw · Foco Working LLC</span>
+      <span>8 sep 2026</span>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>
