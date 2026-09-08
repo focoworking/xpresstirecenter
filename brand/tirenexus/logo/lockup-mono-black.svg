@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1174 284" role="img" aria-label="TireNexus monocromo negro">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@1,900&amp;family=IBM+Plex+Sans:wght@600&amp;display=swap');
+      .wm{font-family:'Saira','Archivo',Impact,Arial,sans-serif;font-weight:900;font-style:italic;font-size:150px;letter-spacing:-4px;fill:#0A0A0A}
+      .desc{font-family:'IBM Plex Sans',Arial,sans-serif;font-weight:600;font-size:41px;letter-spacing:11px;fill:#0A0A0A}
+    </style>
+  </defs>
+  <text class="wm" x="24" y="150">TIRENEXUS</text>
+  <path fill="#0A0A0A" d="M980 22 Q900 74 866 22 Q906 86 806 176 Q900 118 934 172 Q898 108 980 22 Z"/>
+  <text class="desc" x="30" y="242">WHOLESALE TIRE DISTRIBUTOR</text>
+</svg>

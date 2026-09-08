@@ -1,0 +1,35 @@
+/* TireNexus — design tokens v1.0.0
+   Fuente unica de verdad para web, portal de dealers y correo. */
+:root{
+  /* Core */
+  --tn-orange:#E8431A;
+  --tn-carbon:#0A0A0A;
+  --tn-white:#FFFFFF;
+
+  /* Extendida */
+  --tn-orange-700:#B8320F;
+  --tn-orange-300:#F79470;
+  --tn-orange-050:#FDEDE7;
+  --tn-asphalt-900:#141311;
+  --tn-asphalt-800:#221F1C;
+  --tn-steel-600:#57534E;
+  --tn-steel-400:#8A857E;
+  --tn-steel-200:#D7D3CD;
+  --tn-paper:#F1EEEA;
+
+  /* Semantica de inventario */
+  --tn-in-stock:#1F7A45;
+  --tn-low-stock:#B7791F;
+  --tn-backorder:#C0341B;
+  --tn-info:#245C9E;
+
+  /* Tipografia */
+  --tn-display:"Saira","Archivo",Impact,"Helvetica Neue",Arial,sans-serif;
+  --tn-body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --tn-data:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+
+  /* Forma */
+  --tn-radius-sm:4px; --tn-radius-md:8px; --tn-radius-lg:14px; --tn-radius-pill:999px;
+  --tn-shadow-sm:0 1px 2px rgba(10,10,10,.10),0 2px 8px rgba(10,10,10,.06);
+  --tn-shadow-md:0 6px 16px rgba(10,10,10,.12),0 18px 40px rgba(10,10,10,.10);
+}

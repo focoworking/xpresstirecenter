@@ -1,0 +1,1072 @@
+<title>TireNexus Brand Book</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,600;0,800;1,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --orange:#E8431A; --orange-700:#B8320F; --orange-300:#F79470; --orange-050:#FDEDE7;
+  --carbon:#0A0A0A; --asphalt-900:#141311; --asphalt-800:#221F1C;
+  --steel-600:#57534E; --steel-400:#8A857E; --steel-200:#D7D3CD;
+  --paper:#F1EEEA; --white:#FFFFFF;
+  --in-stock:#1F7A45; --low-stock:#B7791F; --backorder:#C0341B; --info:#245C9E;
+
+  --bg:#F1EEEA; --bg-2:#FFFFFF; --bg-3:#E7E3DD;
+  --ink:#141311; --ink-2:#57534E; --ink-3:#8A857E;
+  --line:#D7D3CD; --line-strong:#0A0A0A;
+  --accent:var(--orange); --accent-ink:#B8320F;
+  --chip:#FFFFFF; --shadow:0 6px 16px rgba(10,10,10,.10),0 20px 44px rgba(10,10,10,.08);
+
+  --display:"Saira","Archivo",Impact,"Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --wrap:1220px; --shear:-11deg;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0E0D0C; --bg-2:#181614; --bg-3:#221F1C;
+    --ink:#F3F0EC; --ink-2:#B8B2AA; --ink-3:#8A857E;
+    --line:#332F2B; --line-strong:#F3F0EC;
+    --accent:#FF5C2E; --accent-ink:#FF7A50;
+    --chip:#181614; --shadow:0 6px 16px rgba(0,0,0,.5),0 20px 44px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0E0D0C; --bg-2:#181614; --bg-3:#221F1C;
+  --ink:#F3F0EC; --ink-2:#B8B2AA; --ink-3:#8A857E;
+  --line:#332F2B; --line-strong:#F3F0EC;
+  --accent:#FF5C2E; --accent-ink:#FF7A50;
+  --chip:#181614; --shadow:0 6px 16px rgba(0,0,0,.5),0 20px 44px rgba(0,0,0,.4);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:var(--accent-ink)}
+h1,h2,h3,h4{margin:0;text-wrap:balance}
+p{margin:0}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+.wm{font-family:var(--display);font-weight:900;font-style:italic;letter-spacing:-.03em}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:var(--mono)}
+.tab{font-variant-numeric:tabular-nums}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:230px minmax(0,1fr);gap:0;max-width:1500px;margin-inline:auto}
+.rail{position:sticky;top:0;align-self:start;height:100vh;overflow-y:auto;padding:26px 18px 40px;border-right:1px solid var(--line);background:var(--bg)}
+.rail .rl{display:block;text-decoration:none;color:var(--ink-2);font-size:.83rem;padding:5px 0 5px 30px;position:relative;border-radius:3px}
+.rail .rl:hover{color:var(--accent-ink)}
+.rail .rl span{position:absolute;left:0;font-family:var(--mono);font-size:.7rem;color:var(--ink-3)}
+.rail .rl-h{margin-top:16px;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);padding-left:0}
+main{padding:0 0 100px;min-width:0}
+.sec{padding:64px clamp(20px,4vw,60px) 8px;max-width:1120px}
+.sec-head{display:flex;gap:16px;align-items:baseline;border-top:3px solid var(--line-strong);padding-top:14px;margin-bottom:26px}
+.sec-num{font-family:var(--mono);font-size:.8rem;color:var(--accent-ink);padding-top:.35em}
+.sec h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,3.4vw,2.5rem);letter-spacing:-.02em;line-height:1.05}
+.lede{color:var(--ink-2);max-width:66ch;margin-top:8px}
+.prose{max-width:70ch;color:var(--ink-2)}
+.prose p+p{margin-top:.9em}
+.prose strong{color:var(--ink)}
+h3.sub{font-family:var(--display);font-weight:800;font-size:1.15rem;letter-spacing:0;margin:34px 0 12px;text-transform:uppercase}
+h4.sub4{font-size:.95rem;font-weight:700;margin:22px 0 8px}
+
+/* ---------- hero ---------- */
+.hero{background:var(--carbon);color:#fff;padding:clamp(34px,6vw,74px) clamp(20px,4vw,60px) 0;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -10% -1px -10%;height:64px;background:var(--bg);transform:skewY(2deg);transform-origin:left}
+.hero-in{position:relative;z-index:2;max-width:1000px}
+.hero-logo{width:min(100%,720px)}
+.hero-tag{margin-top:26px;font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(1.5rem,4vw,2.6rem);line-height:1.02;letter-spacing:-.03em;max-width:16ch}
+.hero-tag em{color:var(--orange);font-style:italic}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 26px;margin:26px 0 70px;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:#B8B2AA}
+.hero-meta b{color:#fff;font-weight:600}
+
+/* ---------- generic bits ---------- */
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(215px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+.panel{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:20px}
+.plate{background:var(--bg-2);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.plate-cap{padding:10px 14px;border-top:1px solid var(--line);font-size:.78rem;color:var(--ink-2);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.plate-cap b{font-weight:600;color:var(--ink)}
+.stage{background:repeating-linear-gradient(45deg,var(--bg-3) 0 10px,transparent 10px 20px);display:grid;place-items:center;padding:28px;min-height:150px}
+.stage.dark{background:var(--carbon)}
+.stage.flat{background:var(--bg-3)}
+table{width:100%;border-collapse:collapse;font-size:.86rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.scroll{overflow-x:auto}
+.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:3px 10px;font-size:.72rem;font-weight:600;font-family:var(--mono);letter-spacing:.04em}
+.yes{background:rgba(31,122,69,.14);color:var(--in-stock)}
+.no{background:rgba(192,52,27,.14);color:var(--backorder)}
+.rule-list{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.rule-list li{padding-left:22px;position:relative;color:var(--ink-2);font-size:.92rem}
+.rule-list li::before{content:"";position:absolute;left:0;top:.55em;width:10px;height:2px;background:var(--accent)}
+
+/* ---------- logo lockups (rendered live) ---------- */
+.lock{display:inline-block;line-height:1}
+.lock .word{font-family:var(--display);font-weight:900;font-style:italic;letter-spacing:-.035em;white-space:nowrap}
+.lock .t{color:var(--carbon)}
+.lock .n{color:var(--orange)}
+.lock.rev .t{color:#fff}
+.lock .desc{font-family:var(--body);font-weight:600;text-transform:uppercase;color:var(--carbon);display:block;white-space:nowrap}
+.lock.rev .desc{color:#fff}
+.lock.mono .t,.lock.mono .n{color:var(--carbon)}
+.lock.mono.rev .t,.lock.mono.rev .n{color:#fff}
+.lock .spark{display:inline-block;vertical-align:.18em;margin-left:-.18em}
+
+.clearspace{position:relative;padding:0}
+.cs-box{position:relative;display:inline-block;padding:var(--x);outline:1px dashed var(--accent);outline-offset:0}
+.cs-tag{position:absolute;font-family:var(--mono);font-size:.62rem;color:var(--accent-ink)}
+
+.misuse{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.mis{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg-2)}
+.mis .box{height:78px;display:grid;place-items:center;background:var(--bg-3);overflow:hidden}
+.mis p{font-size:.75rem;padding:8px 10px;color:var(--ink-2);border-top:1px solid var(--line)}
+.mis .x{color:var(--backorder);font-weight:700}
+
+/* ---------- color ---------- */
+.sw{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg-2)}
+.sw .chipc{height:92px}
+.sw .meta{padding:10px 12px;font-size:.76rem;line-height:1.45}
+.sw .meta b{display:block;font-size:.85rem;color:var(--ink)}
+.sw .meta code{font-family:var(--mono);color:var(--ink-2)}
+.ratiobar{display:flex;height:44px;border-radius:8px;overflow:hidden;border:1px solid var(--line);font-family:var(--mono);font-size:.7rem}
+.ratiobar div{display:grid;place-items:center;color:#fff}
+
+/* ---------- type ---------- */
+.spec{border-bottom:1px solid var(--line);padding:14px 0;display:grid;grid-template-columns:118px 1fr;gap:16px;align-items:baseline}
+.spec .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+
+/* ---------- applications ---------- */
+.card-front,.card-back{width:100%;aspect-ratio:1.75/1;border-radius:8px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:var(--shadow)}
+.card-front{background:var(--carbon);color:#fff;position:relative;overflow:hidden}
+.card-front .slash{position:absolute;right:-40px;top:-30px;width:120px;height:220px;background:var(--orange);transform:rotate(var(--shear))}
+.card-back{background:#fff;color:var(--carbon);border:1px solid var(--line)}
+.card-back .row{font-size:.62rem;line-height:1.7;font-family:var(--mono);color:#333}
+
+.sheet{background:#fff;color:var(--carbon);aspect-ratio:8.5/11;border:1px solid var(--line);box-shadow:var(--shadow);padding:5%;display:flex;flex-direction:column;font-size:.55rem;line-height:1.5;overflow:hidden}
+.sheet .hd{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid var(--carbon);padding-bottom:8px}
+.sheet .ft{margin-top:auto;border-top:1px solid #ddd;padding-top:6px;color:#666;font-family:var(--mono);font-size:.48rem;display:flex;justify-content:space-between;gap:8px}
+.sheet table{font-size:.5rem}
+.sheet th,.sheet td{padding:4px 5px;border-bottom:1px solid #e6e6e6}
+.sheet th{color:#666;font-size:.45rem}
+
+/* truck */
+.truck{background:linear-gradient(#dfe4ea,#eef1f4);border-radius:10px;padding:18px 14px 0}
+:root[data-theme="dark"] .truck,:root:not([data-theme="light"]) .truck{background:linear-gradient(#2a2a2e,#1b1b1e)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .truck{background:linear-gradient(#dfe4ea,#eef1f4)}}
+
+/* portal UI */
+.ui{background:#fff;color:var(--carbon);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:.78rem;box-shadow:var(--shadow)}
+.ui-top{background:var(--carbon);color:#fff;display:flex;align-items:center;gap:14px;padding:9px 14px}
+.ui-top .nav{display:flex;gap:14px;font-size:.72rem;color:#B8B2AA;flex-wrap:wrap}
+.ui-top .nav .on{color:#fff;border-bottom:2px solid var(--orange);padding-bottom:2px}
+.ui-body{padding:14px;display:grid;gap:12px}
+.ui-search{display:flex;gap:8px;flex-wrap:wrap}
+.ui-search input,.ui-search select{font:inherit;font-family:var(--mono);font-size:.72rem;padding:8px 10px;border:1px solid #d5d1cb;border-radius:6px;background:#fff;color:#111}
+.btn{background:var(--orange);color:#fff;border:0;border-radius:6px;padding:9px 16px;font-weight:700;font-size:.76rem;cursor:pointer;font-family:var(--body)}
+.btn.ghost{background:transparent;color:var(--carbon);border:1.5px solid var(--carbon)}
+.ui table{font-size:.72rem}
+.ui th,.ui td{border-bottom:1px solid #eceae7;padding:7px 9px;color:#111}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.stat div{border:1px solid #e6e3df;border-radius:8px;padding:9px 11px}
+.stat b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:1.5rem;letter-spacing:-.02em}
+.stat span{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#666}
+
+/* social + misc */
+.ig{aspect-ratio:1/1;background:var(--carbon);color:#fff;border-radius:8px;padding:18px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.li-banner{aspect-ratio:4/1;background:var(--carbon);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;overflow:hidden;position:relative}
+.tag-hang{background:#fff;color:var(--carbon);border:1px solid var(--line);border-radius:6px;padding:12px;font-size:.62rem;line-height:1.5}
+.polo{aspect-ratio:1/1;border-radius:10px;display:grid;place-items:center}
+.sign{background:var(--carbon);color:#fff;border-radius:6px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.rack{background:#fff;color:#111;border:1px solid var(--line);border-radius:4px;padding:8px 10px;font-family:var(--mono);font-size:.66rem;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.email{background:#fff;color:#111;border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:.72rem}
+.email .band{background:var(--carbon);padding:12px 16px}
+.email .body{padding:14px 16px;display:grid;gap:10px}
+.email .sigline{border-top:2px solid var(--orange);padding-top:8px;font-family:var(--mono);font-size:.62rem;line-height:1.6;color:#333}
+.slide{aspect-ratio:16/9;background:var(--carbon);color:#fff;border-radius:8px;padding:22px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+.kpi .k{border-left:3px solid var(--accent);padding:6px 0 6px 12px}
+.kpi .k b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:1.6rem;letter-spacing:-.02em;line-height:1.1}
+.kpi .k span{font-size:.78rem;color:var(--ink-2)}
+
+.footer{padding:40px clamp(20px,4vw,60px);border-top:3px solid var(--line-strong);margin-top:40px;color:var(--ink-2);font-size:.84rem;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:4px 14px}
+  .rail .rl{padding-left:22px}
+  .rail .rl-h{width:100%;margin-top:8px}
+}
+</style>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="lock rev hero-logo" style="--s:clamp(38px,8.6vw,104px)">
+      <span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span>
+      <span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055);margin-top:calc(var(--s)*.12)">Wholesale Tire Distributor</span>
+    </div>
+    <p class="hero-tag">El eslabón que <em>nunca</em> deja parada la flota.</p>
+    <div class="hero-meta">
+      <span>Manual de marca <b>v1.0</b></span>
+      <span>Emitido <b>Sep 2026</b></span>
+      <span>Vigencia <b>12 meses</b></span>
+      <span>Custodio <b>Dirección de marca</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+<nav class="rail" aria-label="Índice del manual">
+  <div class="rl-h">Fundamento</div>
+  <a class="rl" href="#s01"><span>01</span>Plataforma de marca</a>
+  <a class="rl" href="#s02"><span>02</span>Arquitectura</a>
+  <div class="rl-h">Sistema visual</div>
+  <a class="rl" href="#s03"><span>03</span>Logotipo</a>
+  <a class="rl" href="#s04"><span>04</span>Color</a>
+  <a class="rl" href="#s05"><span>05</span>Tipografía</a>
+  <a class="rl" href="#s06"><span>06</span>Recursos gráficos</a>
+  <a class="rl" href="#s07"><span>07</span>Fotografía</a>
+  <div class="rl-h">Verbal</div>
+  <a class="rl" href="#s08"><span>08</span>Voz y tono</a>
+  <a class="rl" href="#s09"><span>09</span>Mensajes</a>
+  <div class="rl-h">Aplicaciones</div>
+  <a class="rl" href="#s10"><span>10</span>Papelería</a>
+  <a class="rl" href="#s11"><span>11</span>Documentos comerciales</a>
+  <a class="rl" href="#s12"><span>12</span>Flota y uniformes</a>
+  <a class="rl" href="#s13"><span>13</span>Almacén y señalética</a>
+  <a class="rl" href="#s14"><span>14</span>Producto y empaque</a>
+  <a class="rl" href="#s15"><span>15</span>Digital y portal</a>
+  <a class="rl" href="#s16"><span>16</span>Correo y social</a>
+  <a class="rl" href="#s17"><span>17</span>Feria y presentación</a>
+  <div class="rl-h">Operación</div>
+  <a class="rl" href="#s18"><span>18</span>Estrategia 360</a>
+  <a class="rl" href="#s19"><span>19</span>Gobernanza</a>
+  <a class="rl" href="#s20"><span>20</span>Lanzamiento</a>
+</nav>
+
+<main>
+
+<section class="sec" id="s01">
+  <div class="sec-head"><div class="sec-num">01</div><div><h2>Plataforma de marca</h2><p class="lede">Antes del logotipo: qué vende TireNexus, a quién, y por qué le creen.</p></div></div>
+  <div class="prose">
+    <p><strong>Categoría:</strong> distribución mayorista de llantas — comercial (semi truck, remolque, agrícola, OTR ligero) y pasajero/LT para dealers, talleres, flotas y llanteras independientes.</p>
+    <p><strong>Cliente:</strong> no es el conductor. Es el comprador B2B: dueño de llantera, gerente de refacciones de flota, comprador de taller. Compra por disponibilidad, precio neto, crédito y velocidad de entrega — en ese orden. Cambia de proveedor cuando lo dejan colgado dos veces seguidas.</p>
+    <p><strong>Enemigo:</strong> el camión parado. Cada hora de <span class="mono">downtime</span> le cuesta a una flota entre <span class="mono tab">US$ 448 y 760</span> por unidad. El mayorista que llega en horas y no en días no vende llantas: vende horas de operación.</p>
+  </div>
+
+  <h3 class="sub">Los cinco pilares</h3>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="panel"><div class="eyebrow">Pilar 01</div><h4 class="sub4">Disponibilidad probada</h4><p style="font-size:.88rem;color:var(--ink-2)">Fill rate publicado, no prometido. El inventario en vivo es el argumento de venta.</p></div>
+    <div class="panel"><div class="eyebrow">Pilar 02</div><h4 class="sub4">Entrega con reloj</h4><p style="font-size:.88rem;color:var(--ink-2)">Ventana de entrega comprometida por ruta y por código postal. Si se rompe, se avisa antes.</p></div>
+    <div class="panel"><div class="eyebrow">Pilar 03</div><h4 class="sub4">Precio neto sin teatro</h4><p style="font-size:.88rem;color:var(--ink-2)">Un solo precio por nivel de dealer. Sin negociación por llamada ni descuentos escondidos.</p></div>
+    <div class="panel"><div class="eyebrow">Pilar 04</div><h4 class="sub4">Bilingüe de verdad</h4><p style="font-size:.88rem;color:var(--ink-2)">Inglés y español en mostrador, factura, portal y soporte. No traducido: hablado.</p></div>
+    <div class="panel"><div class="eyebrow">Pilar 05</div><h4 class="sub4">Una persona contesta</h4><p style="font-size:.88rem;color:var(--ink-2)">Ejecutivo asignado con nombre y celular. Sin árbol telefónico para una emergencia.</p></div>
+  </div>
+
+  <h3 class="sub">Declaraciones fijas</h3>
+  <div class="scroll"><table>
+    <tr><th style="width:150px">Elemento</th><th>Texto oficial (no editar sin aprobación)</th></tr>
+    <tr><td><b>Propósito</b></td><td>Que ninguna llanta faltante detenga a un negocio que depende de ruedas.</td></tr>
+    <tr><td><b>Posicionamiento</b></td><td>El distribuidor mayorista de llantas del corredor I‑75: inventario comercial profundo, entrega el mismo día en el suroeste de Florida y un portal donde el dealer ve stock y precio neto sin llamar.</td></tr>
+    <tr><td><b>Tagline (EN)</b></td><td class="mono">Keep the fleet rolling.</td></tr>
+    <tr><td><b>Tagline (ES)</b></td><td class="mono">Que la flota nunca pare.</td></tr>
+    <tr><td><b>Descriptor</b></td><td class="mono">Wholesale Tire Distributor</td></tr>
+    <tr><td><b>Boilerplate EN</b></td><td>TireNexus is a wholesale tire distributor serving dealers, fleets and independent shops across Southwest Florida and the I‑75 corridor. Commercial, agricultural and passenger inventory, next‑day and same‑day delivery, dealer pricing online, bilingual support.</td></tr>
+    <tr><td><b>Boilerplate ES</b></td><td>TireNexus es distribuidor mayorista de llantas para dealers, flotas y talleres independientes en el suroeste de Florida y el corredor I‑75. Inventario comercial, agrícola y de pasajero, entrega el mismo día o al día siguiente, precio de dealer en línea y soporte bilingüe.</td></tr>
+  </table></div>
+  <p class="eyebrow" style="margin-top:12px">VERIFY — razón social, dirección de bodega, teléfono mayorista, año de fundación y catálogo real de marcas antes de imprimir.</p>
+</section>
+
+<section class="sec" id="s02">
+  <div class="sec-head"><div class="sec-num">02</div><div><h2>Arquitectura de marca</h2><p class="lede">Cómo convive TireNexus con la operación de servicio y qué nombre va en cada puerta.</p></div></div>
+  <div class="prose"><p>Modelo: <strong>casa con marcas respaldadas</strong>. TireNexus es la cara mayorista (B2B, venta de producto). La operación de servicio en carretera y taller conserva su propia marca de cara al operador final. Un cliente no debe confundir dónde compra caja y dónde compra montaje.</p></div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="panel"><div class="eyebrow">Nivel 1 · Marca madre</div><h4 class="sub4">TireNexus</h4><p style="font-size:.88rem;color:var(--ink-2)">Distribución mayorista. Dueña del portal, el catálogo, el crédito y la logística. Toda comunicación B2B sale de aquí.</p></div>
+    <div class="panel"><div class="eyebrow">Nivel 2 · Marca de servicio</div><h4 class="sub4">Xpress Tire Center <span class="mono" style="font-size:.7rem;color:var(--ink-3)">— endosada</span></h4><p style="font-size:.88rem;color:var(--ink-2)">Taller y servicio 24/7 al usuario final. Firma en pie de página: <span class="mono">A TireNexus company</span>.</p></div>
+    <div class="panel"><div class="eyebrow">Nivel 3 · Programas</div><h4 class="sub4">Nexus Fleet · Nexus Dealer · Nexus Ready</h4><p style="font-size:.88rem;color:var(--ink-2)">Sub‑programas nombrados, nunca logotipados aparte: se escriben en tipografía de marca, sin marca propia.</p></div>
+  </div>
+  <h3 class="sub">Reglas de nomenclatura</h3>
+  <ul class="rule-list">
+    <li>Una sola grafía: <span class="mono">TireNexus</span>. Nunca <span class="mono">Tire Nexus</span>, <span class="mono">TIRENEXUS</span> en texto corrido, ni <span class="mono">Tirenexus</span>.</li>
+    <li>Los programas se nombran <span class="mono">Nexus + sustantivo</span>. Máximo dos palabras. No se les diseña logotipo.</li>
+    <li>Las líneas de producto llevan el nombre del fabricante, nunca uno inventado por TireNexus: el dealer compra Michelin, no “Nexus Premium”.</li>
+    <li>Dominio primario <span class="mono">tirenexus.com</span>; el portal vive en <span class="mono">portal.tirenexus.com</span>, no en un subdirectorio de terceros. <span class="eyebrow">VERIFY disponibilidad</span></li>
+  </ul>
+</section>
+
+<section class="sec" id="s03">
+  <div class="sec-head"><div class="sec-num">03</div><div><h2>Sistema de logotipo</h2><p class="lede">Un logotipo de una sola pieza, tres versiones de encaje y dos reducciones. Nada más.</p></div></div>
+
+  <div class="grid g2" style="margin-top:6px">
+    <div class="plate">
+      <div class="stage flat" style="padding:38px">
+        <div class="lock" style="--s:clamp(30px,5vw,58px)">
+          <span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span>
+          <span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055);margin-top:calc(var(--s)*.1)">Wholesale Tire Distributor</span>
+        </div>
+      </div>
+      <div class="plate-cap"><b>Lockup principal</b><span class="mono">tirenexus-lockup-horizontal.svg</span></div>
+    </div>
+    <div class="plate">
+      <div class="stage dark" style="padding:38px">
+        <div class="lock rev" style="--s:clamp(30px,5vw,58px)">
+          <span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span>
+          <span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055);margin-top:calc(var(--s)*.1)">Wholesale Tire Distributor</span>
+        </div>
+      </div>
+      <div class="plate-cap"><b>Reverso sobre carbón</b><span class="mono">…-reverse.svg</span></div>
+    </div>
+  </div>
+
+  <div class="grid g4" style="margin-top:16px">
+    <div class="plate">
+      <div class="stage flat" style="min-height:130px">
+        <div class="lock" style="--s:26px;text-align:center">
+          <span class="word" style="font-size:var(--s);display:block"><span class="t">TIRE</span></span>
+          <span class="word" style="font-size:var(--s);display:block"><span class="n">NEXUS</span></span>
+        </div>
+      </div>
+      <div class="plate-cap"><b>Apilado</b><span class="mono">stacked</span></div>
+    </div>
+    <div class="plate">
+      <div class="stage flat" style="min-height:130px">
+        <svg viewBox="0 0 200 200" width="74" height="74" role="img" aria-label="Marca Nexus Spark"><path fill="#E8431A" d="M198 84 Q120 90 112 6 Q100 90 2 116 Q88 110 88 194 Q100 110 198 84 Z"/></svg>
+      </div>
+      <div class="plate-cap"><b>Nexus Spark</b><span class="mono">símbolo</span></div>
+    </div>
+    <div class="plate">
+      <div class="stage flat" style="min-height:130px">
+        <div style="width:76px;height:76px;border-radius:18px;background:#0A0A0A;display:grid;place-items:center">
+          <span class="wm" style="font-size:34px"><span style="color:#fff">T</span><span style="color:#E8431A">N</span></span>
+        </div>
+      </div>
+      <div class="plate-cap"><b>Monograma</b><span class="mono">app / favicon</span></div>
+    </div>
+    <div class="plate">
+      <div class="stage flat" style="min-height:130px">
+        <div class="lock mono" style="--s:22px">
+          <span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="t">NEXUS</span></span>
+          <span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span>
+        </div>
+      </div>
+      <div class="plate-cap"><b>Monocromo</b><span class="mono">grabado / bordado 1 hilo</span></div>
+    </div>
+  </div>
+
+  <h3 class="sub">Área de protección y tamaño mínimo</h3>
+  <div class="grid g2">
+    <div class="plate">
+      <div class="stage flat" style="padding:34px">
+        <div class="cs-box" style="--x:34px">
+          <div class="lock" style="--s:34px">
+            <span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span>
+            <span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span>
+          </div>
+          <span class="cs-tag" style="top:8px;left:10px">X</span>
+        </div>
+      </div>
+      <div class="plate-cap"><b>X = altura de la N de NEXUS</b><span class="mono">4 lados</span></div>
+    </div>
+    <div class="panel">
+      <h4 class="sub4" style="margin-top:0">Mínimos</h4>
+      <div class="scroll"><table>
+        <tr><th>Uso</th><th>Versión</th><th>Mínimo</th></tr>
+        <tr><td>Web / UI</td><td>Lockup horizontal</td><td class="num">120 px de ancho</td></tr>
+        <tr><td>Impreso</td><td>Lockup horizontal</td><td class="num">32 mm de ancho</td></tr>
+        <tr><td>Sin descriptor</td><td>Solo wordmark</td><td class="num">72 px / 20 mm</td></tr>
+        <tr><td>Avatar / favicon</td><td>Monograma TN</td><td class="num">24 px</td></tr>
+        <tr><td>Bordado</td><td>Monocromo o 2 hilos</td><td class="num">45 mm de ancho</td></tr>
+      </table></div>
+      <p style="font-size:.85rem;color:var(--ink-2);margin-top:12px">Por debajo de 72 px se elimina el descriptor: se vuelve ilegible y ensucia el bloque. Nunca se re‑dibuja: se sustituye el archivo.</p>
+    </div>
+  </div>
+
+  <h3 class="sub">Usos prohibidos</h3>
+  <div class="misuse">
+    <div class="mis"><div class="box"><span class="wm" style="font-size:20px;color:#E8431A;transform:rotate(-14deg);display:inline-block">TIRENEXUS</span></div><p><span class="x">No</span> rotar ni inclinar más allá de la itálica original.</p></div>
+    <div class="mis"><div class="box"><span class="wm" style="font-size:20px;transform:scaleX(.6);display:inline-block"><span style="color:#0A0A0A">TIRE</span><span style="color:#E8431A">NEXUS</span></span></div><p><span class="x">No</span> condensar, estirar ni deformar.</p></div>
+    <div class="mis"><div class="box" style="background:#2E7D32"><span class="wm" style="font-size:20px"><span style="color:#fff">TIRE</span><span style="color:#8BC34A">NEXUS</span></span></div><p><span class="x">No</span> recolorear fuera de la paleta.</p></div>
+    <div class="mis"><div class="box" style="background:url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%2210%22><rect width=%2210%22 height=%2210%22 fill=%22%23888%22/><circle cx=%225%22 cy=%225%22 r=%223%22 fill=%22%23bbb%22/></svg>')"><span class="wm" style="font-size:20px"><span style="color:#0A0A0A">TIRE</span><span style="color:#E8431A">NEXUS</span></span></div><p><span class="x">No</span> colocar sobre fondos con textura o fotos ruidosas.</p></div>
+    <div class="mis"><div class="box"><span class="wm" style="font-size:20px;text-shadow:2px 3px 0 #999"><span style="color:#0A0A0A">TIRE</span><span style="color:#E8431A">NEXUS</span></span></div><p><span class="x">No</span> aplicar sombra, bisel, contorno ni degradado.</p></div>
+    <div class="mis"><div class="box"><span style="font-family:Georgia,serif;font-size:19px;font-weight:700"><span style="color:#0A0A0A">Tire</span><span style="color:#E8431A">Nexus</span></span></div><p><span class="x">No</span> re‑componer con otra tipografía.</p></div>
+    <div class="mis"><div class="box" style="background:#E8431A"><span class="wm" style="font-size:20px"><span style="color:#0A0A0A">TIRE</span><span style="color:#B8320F">NEXUS</span></span></div><p><span class="x">No</span> usar naranja sobre naranja. Sobre color se usa la versión blanca.</p></div>
+    <div class="mis"><div class="box"><span class="wm" style="font-size:20px"><span style="color:#0A0A0A">TIRE</span><span style="color:#E8431A">NEXUS</span></span><span style="font-size:9px;margin-left:4px;border:1px solid #999;padding:2px">SW FL</span></div><p><span class="x">No</span> agregar palabras, sellos ni banderines al bloque.</p></div>
+  </div>
+
+  <h3 class="sub">Co‑branding</h3>
+  <div class="prose"><p>Con marcas de fabricante (Michelin, BFGoodrich, Continental, Hankook, Sailun) el logotipo TireNexus va <strong>a la izquierda</strong>, separado por una regla vertical de 1 px a <span class="mono">1×</span> de área de protección, ambos ópticamente a la misma altura de x. TireNexus nunca aparece dentro de un lockup del fabricante ni sobre su color corporativo.</p></div>
+</section>
+
+<section class="sec" id="s04">
+  <div class="sec-head"><div class="sec-num">04</div><div><h2>Color</h2><p class="lede">Naranja muestreado del logotipo maestro. Todo lo demás se construyó alrededor para que ese naranja siga siendo el único grito de la página.</p></div></div>
+
+  <h3 class="sub">Núcleo</h3>
+  <div class="grid g3">
+    <div class="sw"><div class="chipc" style="background:#E8431A"></div><div class="meta"><b>Nexus Orange</b><code>#E8431A · RGB 232 67 26 · CMYK 0 82 92 0</code><br><code>PANTONE 1665 C · RAL 2002 · 3M 3630‑74</code></div></div>
+    <div class="sw"><div class="chipc" style="background:#0A0A0A"></div><div class="meta"><b>Carbon</b><code>#0A0A0A · RGB 10 10 10 · CMYK 0 0 0 100</code><br><code>PANTONE Black 6 C · RAL 9005 · 3M 3630‑22</code></div></div>
+    <div class="sw"><div class="chipc" style="background:#FFFFFF;border-bottom:1px solid var(--line)"></div><div class="meta"><b>White</b><code>#FFFFFF · sin tinta</code><br><code>Vinilo 3M 3630‑20 translúcido</code></div></div>
+  </div>
+  <p class="eyebrow" style="margin-top:10px">Pantone, RAL y códigos de vinilo son equivalencias propuestas — VERIFY con prueba impresa y muestra de vinilo antes de rotular flota.</p>
+
+  <h3 class="sub">Extendida y funcional</h3>
+  <div class="grid g4">
+    <div class="sw"><div class="chipc" style="background:#B8320F;height:66px"></div><div class="meta"><b>Orange 700</b><code>#B8320F</code><br>Texto naranja sobre blanco, hover.</div></div>
+    <div class="sw"><div class="chipc" style="background:#F79470;height:66px"></div><div class="meta"><b>Orange 300</b><code>#F79470</code><br>Solo gráfica de datos.</div></div>
+    <div class="sw"><div class="chipc" style="background:#FDEDE7;height:66px;border-bottom:1px solid var(--line)"></div><div class="meta"><b>Orange 050</b><code>#FDEDE7</code><br>Fondo de aviso, fila activa.</div></div>
+    <div class="sw"><div class="chipc" style="background:#221F1C;height:66px"></div><div class="meta"><b>Asphalt 800</b><code>#221F1C</code><br>Superficie oscura secundaria.</div></div>
+    <div class="sw"><div class="chipc" style="background:#57534E;height:66px"></div><div class="meta"><b>Steel 600</b><code>#57534E</code><br>Texto secundario.</div></div>
+    <div class="sw"><div class="chipc" style="background:#D7D3CD;height:66px"></div><div class="meta"><b>Steel 200</b><code>#D7D3CD</code><br>Reglas, bordes.</div></div>
+    <div class="sw"><div class="chipc" style="background:#F1EEEA;height:66px;border-bottom:1px solid var(--line)"></div><div class="meta"><b>Paper</b><code>#F1EEEA</code><br>Fondo neutro, sesgo cálido.</div></div>
+    <div class="sw"><div class="chipc" style="background:#245C9E;height:66px"></div><div class="meta"><b>Info</b><code>#245C9E</code><br>Avisos neutros del sistema.</div></div>
+  </div>
+
+  <h4 class="sub4">Semántica de inventario — no decorativa</h4>
+  <div class="grid g3">
+    <div class="panel" style="border-left:4px solid #1F7A45"><b class="mono" style="font-size:.8rem">#1F7A45</b><br><span style="font-size:.88rem;color:var(--ink-2)">En stock · disponible hoy en el DC del dealer</span></div>
+    <div class="panel" style="border-left:4px solid #B7791F"><b class="mono" style="font-size:.8rem">#B7791F</b><br><span style="font-size:.88rem;color:var(--ink-2)">Bajo · menos de una entrega de cobertura</span></div>
+    <div class="panel" style="border-left:4px solid #C0341B"><b class="mono" style="font-size:.8rem">#C0341B</b><br><span style="font-size:.88rem;color:var(--ink-2)">Backorder · con fecha comprometida obligatoria</span></div>
+  </div>
+  <p style="font-size:.88rem;color:var(--ink-2);margin-top:10px;max-width:70ch">Estos tres colores nunca se usan como decoración. Si aparece verde en una pieza, significa disponible. Es la única forma de que el dealer aprenda a leer el portal en dos segundos.</p>
+
+  <h3 class="sub">Proporción de uso</h3>
+  <div class="ratiobar">
+    <div style="flex:60;background:#0A0A0A">60 · Carbón + Paper</div>
+    <div style="flex:30;background:#57534E">30 · Neutros</div>
+    <div style="flex:10;background:#E8431A">10 · Naranja</div>
+  </div>
+  <p style="font-size:.88rem;color:var(--ink-2);margin-top:10px;max-width:70ch">El naranja no es fondo. Es el CTA, el dato crítico, la barra de acento y la mitad del logotipo. Una pieza con más de un 15% de naranja pierde el punto focal y deja de parecer una empresa de infraestructura.</p>
+
+  <h3 class="sub">Contraste — WCAG 2.2 AA</h3>
+  <div class="scroll"><table>
+    <tr><th>Combinación</th><th>Ratio</th><th>Texto normal</th><th>Texto grande / UI</th></tr>
+    <tr><td>Carbón sobre Paper</td><td class="num">17.6:1</td><td><span class="pill yes">Pasa</span></td><td><span class="pill yes">Pasa</span></td></tr>
+    <tr><td>Blanco sobre Nexus Orange</td><td class="num">3.6:1</td><td><span class="pill no">No usar</span></td><td><span class="pill yes">Pasa</span></td></tr>
+    <tr><td>Nexus Orange sobre blanco</td><td class="num">3.6:1</td><td><span class="pill no">No usar</span></td><td><span class="pill yes">Pasa</span></td></tr>
+    <tr><td>Orange 700 sobre blanco</td><td class="num">5.6:1</td><td><span class="pill yes">Pasa</span></td><td><span class="pill yes">Pasa</span></td></tr>
+    <tr><td>Nexus Orange sobre Carbón</td><td class="num">5.2:1</td><td><span class="pill yes">Pasa</span></td><td><span class="pill yes">Pasa</span></td></tr>
+    <tr><td>Steel 600 sobre Paper</td><td class="num">6.0:1</td><td><span class="pill yes">Pasa</span></td><td><span class="pill yes">Pasa</span></td></tr>
+  </table></div>
+  <p style="font-size:.88rem;color:var(--ink-2);margin-top:10px;max-width:70ch">Regla operativa: <strong>texto corrido en naranja solo en Orange 700</strong>. El naranja de marca se reserva para tipografía de 24 px o más, botones e iconos. Este manual asume lectura en muelle de carga, con guantes y sol encima de la pantalla.</p>
+</section>
+
+<section class="sec" id="s05">
+  <div class="sec-head"><div class="sec-num">05</div><div><h2>Tipografía</h2><p class="lede">La itálica pesada es del logotipo, no del documento. La credibilidad B2B la carga la vertical.</p></div></div>
+  <div class="prose"><p><strong>Tensión resuelta a propósito:</strong> en esta categoría la itálica señala producto de consumo y performance; los mayoristas serios comunican en grotescas rectas. TireNexus se queda con la itálica <em>solo en el logotipo y en titulares</em>, y baja a vertical en todo lo que se firma, se cobra o se opera. Es lo que separa a un distribuidor de una marca de rines.</p></div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="panel"><div class="eyebrow">Display</div><p class="wm" style="font-size:2.2rem;margin:.2em 0;color:var(--ink)">Saira 900</p><p style="font-size:.86rem;color:var(--ink-2)">Itálica, tracking −0.03em. Titulares, cifras heroicas, rotulación de flota. Nunca por debajo de 20 px ni en párrafos.</p></div>
+    <div class="panel"><div class="eyebrow">Texto</div><p style="font-size:1.7rem;font-weight:600;margin:.2em 0">IBM Plex Sans</p><p style="font-size:.86rem;color:var(--ink-2)">400/500/600/700. Todo el texto corrido, la interfaz, la facturación y el correo. Alta legibilidad a cuerpo pequeño.</p></div>
+    <div class="panel"><div class="eyebrow">Dato</div><p class="mono" style="font-size:1.5rem;margin:.2em 0">295/75R22.5</p><p style="font-size:.86rem;color:var(--ink-2)">IBM Plex Mono. SKU, medidas, índice de carga, PO, tracking. Siempre con <span class="mono">tabular-nums</span> en tablas de precio.</p></div>
+  </div>
+
+  <h3 class="sub">Escala (razón 1.25, base 17 px)</h3>
+  <div class="spec"><div class="k">Display XL</div><div><span class="wm" style="font-size:clamp(2rem,5vw,3.2rem)">48/1.02</span></div></div>
+  <div class="spec"><div class="k">H1</div><div><span class="wm" style="font-size:2rem">Titular de sección 34/1.06</span></div></div>
+  <div class="spec"><div class="k">H2</div><div><span style="font-family:var(--display);font-weight:800;font-size:1.55rem;text-transform:uppercase">Subtítulo 26/1.15</span></div></div>
+  <div class="spec"><div class="k">Body</div><div><span style="font-size:1.0625rem">Texto corrido a 17/1.6, medida máxima de 70 caracteres. La lectura de un dealer es escaneo, no lectura profunda.</span></div></div>
+  <div class="spec"><div class="k">Small</div><div><span style="font-size:.86rem;color:var(--ink-2)">Notas legales, pie de factura, condiciones de crédito. 14/1.5.</span></div></div>
+  <div class="spec"><div class="k">Label</div><div><span class="eyebrow">ETIQUETA · MONO 11 · TRACKING .18EM</span></div></div>
+
+  <h3 class="sub">Reglas</h3>
+  <ul class="rule-list">
+    <li>Nunca dos itálicas seguidas en la misma jerarquía: si el titular es Saira itálica, la bajada es Plex Sans recta.</li>
+    <li>Mayúsculas solo en etiquetas, botones y descriptores. Un párrafo en mayúsculas es un error de marca.</li>
+    <li>Sustituto de sistema para Office, Google Docs y correo: <span class="mono">Arial / Helvetica</span> para texto y <span class="mono">Arial Black itálica</span> para titulares. Nunca se sustituye por Impact en documentos.</li>
+    <li>Licencias: Saira e IBM Plex son SIL Open Font License 1.1 — uso web, escritorio, app y bordado sin costo. El custodio de marca guarda copia de la licencia en el DAM.</li>
+    <li>Números de precio y medida siempre en cifras tabulares. Una columna de precios desalineada le cuesta credibilidad a un mayorista.</li>
+  </ul>
+</section>
+
+<section class="sec" id="s06">
+  <div class="sec-head"><div class="sec-num">06</div><div><h2>Recursos gráficos</h2><p class="lede">Tres elementos. Ni uno más, para que el sistema se reconozca sin logotipo.</p></div></div>
+  <div class="grid g3">
+    <div class="plate"><div class="stage flat" style="min-height:150px"><svg viewBox="0 0 200 200" width="86" height="86" role="img" aria-label="Nexus Spark"><path fill="#E8431A" d="M198 84 Q120 90 112 6 Q100 90 2 116 Q88 110 88 194 Q100 110 198 84 Z"/></svg></div><div class="plate-cap"><b>Nexus Spark</b><span class="mono">acento</span></div></div>
+    <div class="plate"><div class="stage flat" style="min-height:150px;padding:0"><div style="width:100%;height:150px;background:repeating-linear-gradient(101deg,#0A0A0A 0 14px,#221F1C 14px 20px,#0A0A0A 20px 26px,transparent 26px 44px)"></div></div><div class="plate-cap"><b>Tread Rail</b><span class="mono">banda de rodadura, 11°</span></div></div>
+    <div class="plate"><div class="stage flat" style="min-height:150px;padding:0;overflow:hidden"><div style="width:100%;height:150px;background:#0A0A0A;position:relative"><div style="position:absolute;inset:-20% -30% -20% 55%;background:#E8431A;transform:skewX(-11deg)"></div></div></div><div class="plate-cap"><b>Shear Cut</b><span class="mono">corte diagonal −11°</span></div></div>
+  </div>
+  <div class="prose" style="margin-top:16px">
+    <p><strong>El ángulo es la firma.</strong> Toda diagonal del sistema —cortes de fondo, barras de acento, patrón de rodadura, animación de entrada— usa <span class="mono">−11°</span>, el mismo ángulo de la itálica del logotipo. Un ángulo distinto en una pieza rompe el sistema aunque el logotipo esté bien puesto.</p>
+    <p><strong>Iconografía:</strong> retícula de 24 px, trazo de 2 px, puntas rectas, radio 2 px, sin relleno. Set mínimo obligatorio: medida, índice de carga, índice de velocidad, aplicación (dirección / tracción / arrastre), ply rating, disponibilidad, ruta de entrega, cuenta de crédito, retorno/garantía, recauchutado.</p>
+    <p><strong>Movimiento:</strong> entradas de 240 ms con <span class="mono">cubic-bezier(.2,.7,.2,1)</span>, salidas de 160 ms. El único gesto de marca es el <em>shear wipe</em>: una máscara diagonal a −11° que barre de izquierda a derecha. Bumper de logotipo: 1.2 s. Todo respeta <span class="mono">prefers-reduced-motion</span> — sin excepción, incluido el video de feria.</p>
+  </div>
+</section>
+
+<section class="sec" id="s07">
+  <div class="sec-head"><div class="sec-num">07</div><div><h2>Fotografía</h2><p class="lede">Documental de operación. Ni una foto de banco de imágenes: este cliente las detecta al instante.</p></div></div>
+  <div class="grid g2">
+    <div class="panel">
+      <h4 class="sub4" style="margin-top:0">Lista de tomas obligatoria</h4>
+      <ul class="rule-list">
+        <li>Muelle de carga a primera hora, con el camión cargando y racks visibles al fondo.</li>
+        <li>Pasillo de inventario en perspectiva: profundidad de stock como argumento visual.</li>
+        <li>Van de reparto rotulada, en ruta real, con placa de calle reconocible del suroeste de Florida.</li>
+        <li>Manos con guante montando o escaneando: sin rostro, foco en el oficio.</li>
+        <li>Retrato del ejecutivo de cuenta en el mostrador — nombre y cara, no modelo.</li>
+        <li>Taller del dealer recibiendo el pedido: el cliente es el protagonista, no el proveedor.</li>
+      </ul>
+    </div>
+    <div class="panel">
+      <h4 class="sub4" style="margin-top:0">Tratamiento</h4>
+      <ul class="rule-list">
+        <li>Luz real, sin flash duro. Amanecer y última hora: la sombra larga da el volumen del almacén.</li>
+        <li>Gradación neutra a levemente cálida. Contraste medio‑alto, negros abiertos: la llanta debe leerse como caucho, no como silueta.</li>
+        <li>Nada de HDR, viñeta pesada ni cielos falsos.</li>
+        <li>El naranja entra por objeto real —chaleco, cinta de palet, rotulación— no por filtro.</li>
+        <li>No fotografiar: pilas de llantas desordenadas, piso sucio, unidades sin rotular, personal sin EPP.</li>
+        <li>Derechos: cesión firmada de cada persona identificable; archivo en el DAM junto al RAW y con fecha de caducidad de uso.</li>
+      </ul>
+    </div>
+  </div>
+  <h4 class="sub4">Imagen generada con IA</h4>
+  <p style="font-size:.9rem;color:var(--ink-2);max-width:70ch">Permitida solo para: fondos abstractos, patrones, diagramas y bocetos internos. <strong>Prohibida</strong> para cualquier cosa que un cliente pueda leer como un hecho: instalaciones, personal, flota, producto real o cifras. Toda pieza generada lleva metadato <span class="mono">ai-generated: true</span> en el DAM y revisión humana antes de publicar.</p>
+</section>
+
+<section class="sec" id="s08">
+  <div class="sec-head"><div class="sec-num">08</div><div><h2>Voz y tono</h2><p class="lede">Habla como el mejor vendedor de mostrador que ha tenido el dealer: directo, con el dato a la mano, sin vender humo.</p></div></div>
+  <div class="grid g4">
+    <div class="panel"><div class="eyebrow">Atributo 01</div><b>Concreto</b><p style="font-size:.86rem;color:var(--ink-2)">Cifras, fechas y cantidades. “Martes 10 a. m.”, no “a la brevedad”.</p></div>
+    <div class="panel"><div class="eyebrow">Atributo 02</div><b>Corto</b><p style="font-size:.86rem;color:var(--ink-2)">El comprador lee entre llamadas. Una idea por párrafo.</p></div>
+    <div class="panel"><div class="eyebrow">Atributo 03</div><b>Responsable</b><p style="font-size:.86rem;color:var(--ink-2)">Cuando algo falla, se dice antes y con nombre propio.</p></div>
+    <div class="panel"><div class="eyebrow">Atributo 04</div><b>De oficio</b><p style="font-size:.86rem;color:var(--ink-2)">Vocabulario técnico correcto sin explicaciones condescendientes.</p></div>
+  </div>
+  <div class="scroll" style="margin-top:20px"><table>
+    <tr><th style="width:33%">Contexto</th><th style="width:33%">Así sí</th><th>Así no</th></tr>
+    <tr><td>Confirmación de pedido</td><td>8 llantas 295/75R22.5 en ruta. Entrega martes antes de las 10 a. m. PO 41‑2287.</td><td>¡Gracias por tu compra! Tu pedido está siendo procesado con mucho cuidado.</td></tr>
+    <tr><td>Faltante</td><td>Nos faltan 2 de las 8. Salen el jueves en la ruta de Naples. Si las necesitas mañana, tengo Sailun equivalente hoy.</td><td>Debido a circunstancias fuera de nuestro control, su pedido podría sufrir retrasos.</td></tr>
+    <tr><td>Prospección</td><td>Entregamos dos veces al día en Lee y Collier. Te abro cuenta con tu licencia y resale certificate en 24 horas.</td><td>Somos líderes en soluciones integrales de movilidad para el sector.</td></tr>
+    <tr><td>Cobranza</td><td>Factura 8842 vence el viernes. Si necesitas otra semana, dime hoy y lo ajustamos.</td><td>Le recordamos que su adeudo se encuentra vencido conforme a los términos pactados.</td></tr>
+    <tr><td>Reclamo de garantía</td><td>Recibimos la llanta. Resolución del fabricante en 10 días hábiles; te doy el crédito provisional hoy.</td><td>Su caso ha sido escalado al área correspondiente.</td></tr>
+  </table></div>
+  <h3 class="sub">Glosario y no‑lista</h3>
+  <div class="grid g2">
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Se dice</h4><p class="mono" style="font-size:.82rem;line-height:2;color:var(--ink-2)">dealer · cuenta · precio neto · fill rate · ventana de entrega · ruta · backorder · casco · recauchutado · índice de carga · PO</p></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">No se dice</h4><p class="mono" style="font-size:.82rem;line-height:2;color:var(--ink-2)">solución integral · sinergia · líderes del mercado · calidad premium · a la brevedad · sujeto a disponibilidad (sin fecha) · el mejor precio del mercado</p></div>
+  </div>
+  <p style="font-size:.9rem;color:var(--ink-2);margin-top:14px;max-width:70ch"><strong>Español:</strong> se escribe en español de Florida, no traducido de manual. Se acepta el vocabulario del taller (<span class="mono">llanta</span>, no <span class="mono">neumático</span>; <span class="mono">rin</span>, no <span class="mono">llanta metálica</span>). Cada pieza sale en los dos idiomas al mismo tiempo o no sale.</p>
+</section>
+
+<section class="sec" id="s09">
+  <div class="sec-head"><div class="sec-num">09</div><div><h2>Matriz de mensajes</h2><p class="lede">Un mensaje por audiencia, con la prueba que lo sostiene. Sin prueba, el mensaje no se publica.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th>Audiencia</th><th>Lo que teme</th><th>Mensaje</th><th>Prueba obligatoria</th></tr>
+    <tr><td><b>Dueño de llantera</b></td><td>Perder la venta por no tener la medida</td><td>Ves el stock real antes de prometerle nada a tu cliente.</td><td>Portal con inventario en vivo por DC</td></tr>
+    <tr><td><b>Gerente de flota</b></td><td>Unidad parada</td><td>Reposición el mismo día en el corredor I‑75.</td><td>Ventana de entrega por código postal</td></tr>
+    <tr><td><b>Comprador de taller</b></td><td>Que el precio cambie por llamada</td><td>Un precio neto por nivel, publicado, sin negociar.</td><td>Tabla de niveles de dealer</td></tr>
+    <tr><td><b>Owner‑operator</b></td><td>Que no lo atiendan en español</td><td>Se contesta en español, de la cotización a la garantía.</td><td>Portal, factura y soporte bilingües</td></tr>
+    <tr><td><b>Dealer nuevo</b></td><td>Trámite eterno de cuenta</td><td>Cuenta abierta en 24 horas con licencia y resale certificate.</td><td>SLA de alta publicado</td></tr>
+  </table></div>
+  <h4 class="sub4">Jerarquía de titulares</h4>
+  <p style="font-size:.9rem;color:var(--ink-2);max-width:70ch">Orden fijo en toda pieza de venta: <span class="mono">1) disponibilidad → 2) tiempo de entrega → 3) precio/términos → 4) marca del fabricante</span>. Nunca abrir con el logotipo de un fabricante: la marca que se vende aquí es la del canal.</p>
+</section>
+
+<section class="sec" id="s10">
+  <div class="sec-head"><div class="sec-num">10</div><div><h2>Papelería</h2><p class="lede">Tarjeta, hoja membretada y firma. Lo que se toca en una visita de ruta.</p></div></div>
+  <div class="grid g2">
+    <div class="plate"><div class="stage" style="padding:26px">
+      <div class="card-front">
+        <div class="slash" aria-hidden="true"></div>
+        <div class="lock rev" style="--s:22px;position:relative;z-index:2">
+          <span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span>
+          <span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span>
+        </div>
+        <div style="position:relative;z-index:2;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;color:#B8B2AA;text-transform:uppercase">Keep the fleet rolling</div>
+      </div>
+    </div><div class="plate-cap"><b>Tarjeta — frente</b><span class="mono">3.5 × 2 in · 16 pt · negro mate + naranja spot UV</span></div></div>
+
+    <div class="plate"><div class="stage" style="padding:26px">
+      <div class="card-back">
+        <div>
+          <div style="font-family:var(--display);font-style:italic;font-weight:900;font-size:1rem">Marisol Herrera</div>
+          <div style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:#666;font-family:var(--mono)">Ejecutiva de cuenta · Lee &amp; Collier</div>
+        </div>
+        <div class="row">
+          (239) 000‑0000 · directo<br>
+          marisol@tirenexus.com<br>
+          tirenexus.com · portal.tirenexus.com<br>
+          <span style="color:#B8320F">Bodega · Lehigh Acres, FL</span>
+        </div>
+      </div>
+    </div><div class="plate-cap"><b>Tarjeta — reverso</b><span class="mono">celular directo obligatorio</span></div></div>
+  </div>
+  <p class="eyebrow" style="margin-top:10px">VERIFY — teléfono mayorista, dirección de bodega y dominio antes de imprimir. Datos de ejemplo.</p>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="plate"><div class="stage" style="padding:26px">
+      <div class="sheet">
+        <div class="hd">
+          <div class="lock" style="--s:16px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span><span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span></div>
+          <div style="text-align:right;font-family:var(--mono);font-size:.45rem;color:#666;line-height:1.6">5530 4th St W · Lehigh Acres, FL 33971<br>(239) 000‑0000 · tirenexus.com</div>
+        </div>
+        <div style="margin-top:14px">
+          <p style="margin:0 0 6px"><b>4 de septiembre de 2026</b></p>
+          <p style="margin:0 0 6px">Sr. Luis Ortega<br>Ortega Truck Tire &amp; Service · Immokalee, FL</p>
+          <p style="margin:0 0 6px">Estimado Luis:</p>
+          <p style="margin:0 0 6px">Confirmo su alta como dealer nivel 2 a partir del 8 de septiembre. Su ruta es Immokalee‑SR29, con dos entregas diarias: corte 7 a. m. y corte 1 p. m.</p>
+          <p style="margin:0 0 6px">Adjunto la line card vigente y los términos net 30 aprobados por US$ 15,000 de línea.</p>
+          <p style="margin:0">Marisol Herrera · Ejecutiva de cuenta</p>
+        </div>
+        <div class="ft"><span>TireNexus LLC</span><span>Página 1 de 1</span></div>
+      </div>
+    </div><div class="plate-cap"><b>Hoja membretada</b><span class="mono">carta · márgenes 12 mm</span></div></div>
+
+    <div class="panel">
+      <h4 class="sub4" style="margin-top:0">Especificación de impresión</h4>
+      <div class="scroll"><table>
+        <tr><th>Pieza</th><th>Sustrato</th><th>Tinta / acabado</th></tr>
+        <tr><td>Tarjeta</td><td>16 pt cartulina</td><td>Negro mate integral + naranja spot UV</td></tr>
+        <tr><td>Membrete</td><td>Bond 90 g reciclado</td><td>2 tintas: Black 6 C + 1665 C</td></tr>
+        <tr><td>Sobre #10</td><td>Bond 90 g</td><td>1 tinta negra + spark naranja en solapa</td></tr>
+        <tr><td>Folder de venta</td><td>Cartulina 12 pt mate</td><td>Full black + shear cut naranja al frente</td></tr>
+      </table></div>
+      <h4 class="sub4">Firma de correo — texto plano</h4>
+      <div class="email" style="margin-top:8px"><div class="body"><div class="sigline">
+        <b>Marisol Herrera</b> · Ejecutiva de cuenta<br>
+        TireNexus · Wholesale Tire Distributor<br>
+        (239) 000‑0000 · marisol@tirenexus.com<br>
+        Pedidos 24/7 · portal.tirenexus.com
+      </div></div></div>
+      <p style="font-size:.82rem;color:var(--ink-2);margin-top:10px">Sin imágenes, sin frases motivacionales, sin aviso legal de tres párrafos. Regla dura de una sola barra naranja de 2 px.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s11">
+  <div class="sec-head"><div class="sec-num">11</div><div><h2>Documentos comerciales</h2><p class="lede">La factura es la pieza de marca que más veces ve un dealer al año. Se diseña como tal.</p></div></div>
+  <div class="grid g2">
+    <div class="plate"><div class="stage" style="padding:26px">
+      <div class="sheet">
+        <div class="hd">
+          <div class="lock" style="--s:15px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div>
+          <div style="text-align:right"><div style="font-family:var(--display);font-style:italic;font-weight:900;font-size:.9rem">FACTURA</div><div class="mono" style="font-size:.45rem;color:#666">No. 8842 · 04 SEP 2026</div></div>
+        </div>
+        <div style="display:flex;gap:12px;margin-top:10px;font-size:.48rem">
+          <div style="flex:1"><b style="font-family:var(--mono);font-size:.42rem;color:#666">FACTURAR A</b><br>Ortega Truck Tire &amp; Service<br>Immokalee, FL 34142<br>Cuenta ORT‑2041 · Nivel 2</div>
+          <div style="flex:1"><b style="font-family:var(--mono);font-size:.42rem;color:#666">ENTREGAR EN</b><br>Ruta IMM‑SR29 · Corte 7:00 a. m.<br>Ventana: 08 SEP, 8–10 a. m.<br>PO del cliente: 41‑2287</div>
+        </div>
+        <table style="margin-top:10px">
+          <tr><th>SKU</th><th>Descripción</th><th>Cant</th><th style="text-align:right">Neto</th><th style="text-align:right">Total</th></tr>
+          <tr><td class="mono">SAI‑29575‑S637</td><td>295/75R22.5 Sailun S637 · arrastre · 16PR</td><td class="mono">8</td><td class="mono" style="text-align:right">248.00</td><td class="mono" style="text-align:right">1,984.00</td></tr>
+          <tr><td class="mono">HAN‑11R245‑AH37</td><td>11R24.5 Hankook AH37 · dirección</td><td class="mono">4</td><td class="mono" style="text-align:right">386.00</td><td class="mono" style="text-align:right">1,544.00</td></tr>
+          <tr><td class="mono">FET‑COMM</td><td>Federal Excise Tax</td><td class="mono">12</td><td class="mono" style="text-align:right">—</td><td class="mono" style="text-align:right">62.40</td></tr>
+        </table>
+        <div style="display:flex;justify-content:flex-end;margin-top:8px">
+          <table style="width:52%">
+            <tr><td>Subtotal</td><td class="mono" style="text-align:right">3,528.00</td></tr>
+            <tr><td>FET</td><td class="mono" style="text-align:right">62.40</td></tr>
+            <tr><td style="border:0;padding-top:6px"><b>Total</b></td><td class="mono" style="text-align:right;border:0;padding-top:6px;color:#B8320F"><b>3,590.40</b></td></tr>
+          </table>
+        </div>
+        <div style="margin-top:8px;background:#FDEDE7;border-left:2px solid #E8431A;padding:5px 7px;font-size:.46rem">Net 30 · vence 04 OCT 2026. Pago en portal, ACH o cheque. 1.5% mensual sobre saldo vencido.</div>
+        <div class="ft"><span>TireNexus LLC · EIN VERIFY</span><span class="mono">Preguntas: cuentas@tirenexus.com</span></div>
+      </div>
+    </div><div class="plate-cap"><b>Factura</b><span class="mono">carta · mono tabular en toda cifra</span></div></div>
+
+    <div class="plate"><div class="stage" style="padding:26px">
+      <div class="sheet">
+        <div class="hd">
+          <div class="lock" style="--s:15px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div>
+          <div style="text-align:right"><div style="font-family:var(--display);font-style:italic;font-weight:900;font-size:.9rem">PACKING SLIP</div><div class="mono" style="font-size:.45rem;color:#666">Ruta IMM‑SR29 · Parada 4 de 11</div></div>
+        </div>
+        <div style="margin-top:12px;display:grid;gap:6px">
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding-bottom:5px;font-size:.5rem"><span class="mono">SAI‑29575‑S637 · 295/75R22.5</span><span class="mono">8 / 8 ✓</span></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding-bottom:5px;font-size:.5rem"><span class="mono">HAN‑11R245‑AH37 · 11R24.5</span><span class="mono">4 / 4 ✓</span></div>
+          <div style="display:flex;justify-content:space-between;border-bottom:1px solid #eee;padding-bottom:5px;font-size:.5rem;color:#C0341B"><span class="mono">CON‑29575‑HDL3 · 295/75R22.5</span><span class="mono">0 / 2 · backorder 11 SEP</span></div>
+        </div>
+        <div style="margin-top:14px;border:1px dashed #bbb;border-radius:4px;padding:8px;font-size:.46rem">
+          <b>Recibido por</b><div style="height:22px;border-bottom:1px solid #999;margin:6px 0"></div>
+          Nombre en letra de molde, fecha y hora. El chofer no se va sin firma ni sin foto del palet.
+        </div>
+        <div class="ft"><span>Faltantes se resuelven en 24 h con fecha, no con “pronto”.</span><span class="mono">v1.0</span></div>
+      </div>
+    </div><div class="plate-cap"><b>Packing slip / albarán</b><span class="mono">rojo = faltante con fecha obligatoria</span></div></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="panel"><div class="eyebrow">Plantilla</div><b>Line card</b><p style="font-size:.86rem;color:var(--ink-2)">Una hoja, marcas por aplicación, sin precios. Se actualiza el día 1 de cada mes.</p></div>
+    <div class="panel"><div class="eyebrow">Plantilla</div><b>Cotización</b><p style="font-size:.86rem;color:var(--ink-2)">Vigencia explícita en el encabezado. Sin vigencia no sale.</p></div>
+    <div class="panel"><div class="eyebrow">Plantilla</div><b>Solicitud de cuenta</b><p style="font-size:.86rem;color:var(--ink-2)">Una cara: licencia, resale certificate, referencias, línea solicitada. SLA de 24 horas impreso en la hoja.</p></div>
+  </div>
+</section>
+
+<section class="sec" id="s12">
+  <div class="sec-head"><div class="sec-num">12</div><div><h2>Flota y uniformes</h2><p class="lede">La flota es el medio con más impresiones por dólar del mix. En distribución, además, es el contacto diario con el cliente.</p></div></div>
+  <div class="plate">
+    <div class="truck">
+      <svg viewBox="0 0 900 260" role="img" aria-label="Rotulación de camión de reparto, vista lateral">
+        <rect x="150" y="40" width="620" height="150" rx="8" fill="#0A0A0A"/>
+        <path d="M770 40 L900 40 L900 190 L770 190 Z" fill="#141311" opacity="0"/>
+        <path d="M60 105 L150 105 L150 190 L40 190 L40 140 Z" fill="#0A0A0A"/>
+        <path d="M72 112 L146 112 L146 148 L52 148 Z" fill="#8AA0B8"/>
+        <path d="M640 40 L790 40 L700 190 L560 190 Z" fill="#E8431A" transform="skewX(0)"/>
+        <text x="182" y="122" font-family="Saira,Arial" font-style="italic" font-weight="900" font-size="72" letter-spacing="-3" fill="#FFFFFF">TIRE</text>
+        <text x="352" y="122" font-family="Saira,Arial" font-style="italic" font-weight="900" font-size="72" letter-spacing="-3" fill="#E8431A">NEXUS</text>
+        <text x="184" y="152" font-family="'IBM Plex Sans',Arial" font-weight="600" font-size="17" letter-spacing="6" fill="#FFFFFF">WHOLESALE TIRE DISTRIBUTOR</text>
+        <text x="184" y="178" font-family="'IBM Plex Mono',monospace" font-size="15" fill="#B8B2AA">tirenexus.com · (239) 000-0000 · Pedidos 24/7</text>
+        <text x="600" y="120" font-family="Saira,Arial" font-style="italic" font-weight="900" font-size="30" fill="#0A0A0A">SAME‑DAY</text>
+        <text x="600" y="150" font-family="Saira,Arial" font-style="italic" font-weight="900" font-size="30" fill="#0A0A0A">I‑75</text>
+        <circle cx="200" cy="196" r="34" fill="#141311"/><circle cx="200" cy="196" r="14" fill="#57534E"/>
+        <circle cx="660" cy="196" r="34" fill="#141311"/><circle cx="660" cy="196" r="14" fill="#57534E"/>
+        <circle cx="100" cy="196" r="30" fill="#141311"/><circle cx="100" cy="196" r="12" fill="#57534E"/>
+      </svg>
+    </div>
+    <div class="plate-cap"><b>Box truck — lateral</b><span class="mono">vinilo 3M 3630 · logotipo al 62% del alto de caja</span></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Reglas de rotulación</h4><ul class="rule-list">
+      <li>Fondo negro integral. Nunca camión blanco con calcomanía: el blanco lo hace parecer rentado.</li>
+      <li>El wordmark ocupa entre 55% y 65% del alto útil del lateral; el descriptor siempre debajo, nunca separado.</li>
+      <li>Un solo shear cut naranja por cara, siempre entrando desde la parte trasera.</li>
+      <li>Teléfono y URL en Plex Mono, legibles a 30 metros: altura mínima de 90 mm.</li>
+      <li>Puerta trasera: solo monograma TN grande + <span class="mono">tirenexus.com</span>. Es lo que se ve en el tráfico.</li>
+      <li>Sin frases sueltas, sin banderines, sin listado de marcas del fabricante en la caja.</li>
+    </ul></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Unidades</h4><div class="scroll"><table>
+      <tr><th>Unidad</th><th>Tratamiento</th></tr>
+      <tr><td>Box truck 26′</td><td>Negro integral + shear cut + claim de ruta</td></tr>
+      <tr><td>Sprinter de ruta</td><td>Negro integral, wordmark en ambos laterales y puerta trasera</td></tr>
+      <tr><td>Pickup de servicio</td><td>Puertas con monograma TN + teléfono; caja limpia</td></tr>
+      <tr><td>Montacargas</td><td>Calcomanía de monograma 200 mm + número de unidad</td></tr>
+      <tr><td>Remolque de feria</td><td>Negro con tread rail completo en el faldón</td></tr>
+    </table></div></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Uniforme y EPP</h4><ul class="rule-list">
+      <li>Polo negro, bordado izquierdo 45 mm, hilo naranja 1665 C + blanco.</li>
+      <li>Chaleco hi‑vis ANSI clase 2 en amarillo de seguridad — el naranja de marca <em>no</em> sustituye al color normado.</li>
+      <li>Espalda: wordmark blanco 200 mm; sin nombre de la persona.</li>
+      <li>Casco negro con calcomanía de spark; gafas y guantes obligatorios en muelle.</li>
+      <li>Chofer de ruta: camisa con nombre bordado — el dealer lo llama por su nombre.</li>
+    </ul></div>
+  </div>
+  <div class="grid g4" style="margin-top:16px">
+    <div class="plate"><div class="polo" style="background:#0A0A0A"><div class="lock rev" style="--s:15px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div></div><div class="plate-cap"><b>Polo negro</b><span class="mono">bordado 45 mm</span></div></div>
+    <div class="plate"><div class="polo" style="background:#E4E200"><div style="text-align:center"><div class="wm" style="font-size:15px;color:#0A0A0A">TIRENEXUS</div><div class="mono" style="font-size:.52rem;letter-spacing:.14em;color:#0A0A0A">ANSI CLASE 2</div></div></div><div class="plate-cap"><b>Hi‑vis</b><span class="mono">seguridad manda sobre marca</span></div></div>
+    <div class="plate"><div class="polo" style="background:#221F1C"><svg viewBox="0 0 200 200" width="52" height="52" aria-hidden="true"><path fill="#E8431A" d="M198 84 Q120 90 112 6 Q100 90 2 116 Q88 110 88 194 Q100 110 198 84 Z"/></svg></div><div class="plate-cap"><b>Casco</b><span class="mono">calcomanía spark 60 mm</span></div></div>
+    <div class="plate"><div class="polo" style="background:#0A0A0A"><div style="text-align:center"><div class="wm" style="font-size:28px"><span style="color:#fff">T</span><span style="color:#E8431A">N</span></div><div class="mono" style="font-size:.5rem;color:#B8B2AA;letter-spacing:.12em">UNIDAD 07</div></div></div><div class="plate-cap"><b>Puerta trasera</b><span class="mono">monograma + número</span></div></div>
+  </div>
+</section>
+
+<section class="sec" id="s13">
+  <div class="sec-head"><div class="sec-num">13</div><div><h2>Almacén y señalética</h2><p class="lede">El dealer que visita la bodega decide ahí si eres serio. El orden es un argumento de venta.</p></div></div>
+  <div class="grid g2">
+    <div class="plate"><div class="stage dark" style="padding:24px;min-height:190px">
+      <div style="width:100%;max-width:460px">
+        <div class="sign" style="border:1px solid #333">
+          <div class="lock rev" style="--s:24px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span><span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span></div>
+          <div class="mono" style="font-size:.62rem;color:#B8B2AA;text-align:right;line-height:1.7">WILL CALL<br>L–V 7–17 · SÁB 8–12</div>
+        </div>
+        <div style="display:grid;gap:8px;margin-top:12px">
+          <div class="rack"><span>PASILLO A · COMERCIAL 22.5</span><span style="color:#B8320F">A01–A24</span></div>
+          <div class="rack"><span>PASILLO B · COMERCIAL 24.5</span><span style="color:#B8320F">B01–B18</span></div>
+          <div class="rack"><span>PASILLO C · AGRÍCOLA / OTR</span><span style="color:#B8320F">C01–C12</span></div>
+          <div class="rack" style="background:#FDEDE7"><span>STAGING · RUTA IMM‑SR29</span><span style="color:#B8320F">CORTE 7:00</span></div>
+        </div>
+      </div>
+    </div><div class="plate-cap"><b>Fachada, will call y etiquetado de rack</b><span class="mono">Plex Mono · alto de carácter 60 mm</span></div></div>
+    <div class="panel">
+      <h4 class="sub4" style="margin-top:0">Sistema de señalética</h4>
+      <ul class="rule-list">
+        <li><b>Identificación</b> (fachada, will call, muelle): negro con logotipo, iluminación trasera, sin marquesina de fabricantes.</li>
+        <li><b>Direccional</b> (pasillos, oficina, baños): Plex Sans 600, flecha de trazo de 2 px a −11°.</li>
+        <li><b>Operativa</b> (racks, staging, ubicaciones): Plex Mono sobre blanco, código alfanumérico idéntico al del sistema — la etiqueta física y la pantalla dicen exactamente lo mismo.</li>
+        <li><b>Seguridad</b>: normativa OSHA/ANSI intacta. El color, la palabra y el pictograma normados no se rediseñan nunca.</li>
+        <li>Zona de staging por ruta marcada en piso con cinta naranja y placa de corte horario.</li>
+      </ul>
+      <h4 class="sub4">Piezas mínimas del DC</h4>
+      <p class="mono" style="font-size:.8rem;color:var(--ink-2);line-height:1.9">Fachada iluminada · tótem de acceso · will call · muelle numerado · mapa de pasillos · etiqueta de rack · piso de staging · sala de dealers · tablero de fill rate del mes</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="s14">
+  <div class="sec-head"><div class="sec-num">14</div><div><h2>Producto y empaque</h2><p class="lede">TireNexus no fabrica llanta. Marca el paso por su bodega: etiqueta, cinta, palet y garantía.</p></div></div>
+  <div class="grid g3">
+    <div class="plate"><div class="stage flat" style="padding:20px">
+      <div class="tag-hang" style="width:100%;max-width:230px">
+        <div class="lock" style="--s:14px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div>
+        <div style="border-top:2px solid #E8431A;margin:8px 0 6px"></div>
+        <div class="mono" style="line-height:1.8">SKU SAI‑29575‑S637<br>295/75R22.5 · 16PR<br>LI/SS 146/143L<br>DOT 3421 · Arrastre<br>DC LEH · A14‑03</div>
+        <div style="margin-top:8px;background:#0A0A0A;color:#fff;padding:5px 7px;border-radius:3px;font-size:.55rem" class="mono">Garantía TireNexus · 30 días de casco</div>
+      </div>
+    </div><div class="plate-cap"><b>Hang tag</b><span class="mono">DOT y medida siempre en mono</span></div></div>
+    <div class="plate"><div class="stage flat" style="padding:0;overflow:hidden"><div style="width:100%;height:160px;background:#E8431A;display:grid;place-items:center;position:relative">
+      <div style="transform:rotate(-11deg);text-align:center"><span class="wm" style="font-size:20px;color:#0A0A0A">TIRENEXUS</span><div class="mono" style="font-size:.55rem;letter-spacing:.2em;color:#0A0A0A">KEEP THE FLEET ROLLING · tirenexus.com</div></div>
+    </div></div><div class="plate-cap"><b>Cinta y banda de palet</b><span class="mono">naranja con impresión negra</span></div></div>
+    <div class="plate"><div class="stage flat" style="padding:20px">
+      <div class="tag-hang" style="width:100%;max-width:230px">
+        <div style="font-family:var(--display);font-style:italic;font-weight:900;font-size:.95rem">RETORNO / GARANTÍA</div>
+        <div class="mono" style="line-height:1.9;margin-top:6px">RMA ____________<br>Cuenta ____________<br>DOT ____________<br>Motivo ☐ fábrica ☐ daño ☐ error de envío<br>Recibió ____________</div>
+        <div style="margin-top:8px;font-size:.55rem;color:#666">Sin RMA no entra al muelle. Resolución de fábrica: 10 días hábiles; crédito provisional el mismo día.</div>
+      </div>
+    </div><div class="plate-cap"><b>Etiqueta de retorno</b><span class="mono">amarilla en físico</span></div></div>
+  </div>
+  <p style="font-size:.88rem;color:var(--ink-2);margin-top:14px;max-width:70ch"><strong>Prohibido:</strong> aplicar cualquier marca de TireNexus sobre el flanco de la llanta, sobre la etiqueta DOT o encima de la marca del fabricante. La etiqueta de TireNexus va en el hombro con adhesivo removible o en hang tag. Manipular el marcado de fábrica anula garantía y es un problema legal, no de diseño.</p>
+</section>
+
+<section class="sec" id="s15">
+  <div class="sec-head"><div class="sec-num">15</div><div><h2>Digital: sitio y portal de dealer</h2><p class="lede">El portal es el producto. Todo lo demás es publicidad de que el portal existe.</p></div></div>
+  <div class="ui">
+    <div class="ui-top">
+      <div class="lock rev" style="--s:15px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div>
+      <div class="nav"><span class="on">Buscar</span><span>Pedidos</span><span>Cuenta</span><span>Retornos</span><span>Programas</span></div>
+      <div style="margin-left:auto;font-family:var(--mono);font-size:.66rem;color:#B8B2AA">ORT‑2041 · Nivel 2 · ES</div>
+    </div>
+    <div class="ui-body">
+      <div class="stat">
+        <div><b>96.4%</b><span>Fill rate 30 días</span></div>
+        <div><b>2×</b><span>Entregas al día · ruta IMM</span></div>
+        <div><b>7:00</b><span>Próximo corte</span></div>
+        <div><b>$11,240</b><span>Crédito disponible</span></div>
+      </div>
+      <div class="ui-search">
+        <input value="295/75R22.5" aria-label="Medida" style="min-width:150px">
+        <select aria-label="Aplicación"><option>Arrastre</option><option>Dirección</option><option>Tracción</option></select>
+        <select aria-label="Centro de distribución"><option>DC Lehigh Acres</option><option>Todos los DC</option></select>
+        <button class="btn" type="button">Ver disponibilidad</button>
+        <button class="btn ghost" type="button">Cargar PO</button>
+      </div>
+      <div class="scroll"><table>
+        <tr><th>SKU</th><th>Producto</th><th>LI/SS</th><th>DC Lehigh</th><th>Neto</th><th></th></tr>
+        <tr><td class="mono">SAI‑29575‑S637</td><td>Sailun S637 · 16PR</td><td class="mono">146/143L</td><td><span class="pill yes">48 en stock</span></td><td class="mono">$248.00</td><td><button class="btn" type="button">Agregar</button></td></tr>
+        <tr><td class="mono">HAN‑29575‑AL22</td><td>Hankook AL22</td><td class="mono">146/143L</td><td><span class="pill" style="background:rgba(183,121,31,.16);color:#B7791F">6 · bajo</span></td><td class="mono">$312.00</td><td><button class="btn" type="button">Agregar</button></td></tr>
+        <tr><td class="mono">CON‑29575‑HDL3</td><td>Continental HDL3</td><td class="mono">146/143L</td><td><span class="pill no">Backorder 11 SEP</span></td><td class="mono">$389.00</td><td><button class="btn ghost" type="button">Avisarme</button></td></tr>
+      </table></div>
+      <div style="background:#FDEDE7;border-left:3px solid #E8431A;padding:9px 12px;font-size:.74rem">Pedidos antes de las 7:00 a. m. salen en la ruta de la mañana. Después del corte, entrega en la ruta de la 1:00 p. m.</div>
+    </div>
+  </div>
+  <div class="plate-cap" style="border:1px solid var(--line);border-top:0;border-radius:0 0 10px 10px"><b>Portal de dealer — vista de búsqueda</b><span class="mono">stock por DC, precio neto por nivel, corte de ruta visible</span></div>
+
+  <div class="grid g3" style="margin-top:18px">
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Principios de producto</h4><ul class="rule-list">
+      <li>Disponibilidad antes que precio: la primera columna que el ojo cruza es el stock.</li>
+      <li>El corte de ruta se ve en toda pantalla. Es la promesa que se cobra.</li>
+      <li>Cambio de idioma en el encabezado, persistente por cuenta.</li>
+      <li>Sin precio tachado, sin cuenta regresiva, sin “¡última pieza!”. Trucos de retail destruyen crédito B2B.</li>
+      <li>Todo estado de inventario lleva palabra + color + fecha. Nunca solo color.</li>
+    </ul></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Componentes</h4><div class="scroll"><table>
+      <tr><th>Componente</th><th>Regla</th></tr>
+      <tr><td>Botón primario</td><td>Naranja, radio 6, 44 px de alto mínimo</td></tr>
+      <tr><td>Botón secundario</td><td>Contorno carbón 1.5 px</td></tr>
+      <tr><td>Chip de stock</td><td>Pill + palabra + cantidad o fecha</td></tr>
+      <tr><td>Tabla</td><td>Mono tabular, fila 40 px, hover Orange 050</td></tr>
+      <tr><td>Foco</td><td>Contorno naranja 3 px, offset 3 px</td></tr>
+    </table></div></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Tokens y entrega</h4><p style="font-size:.88rem;color:var(--ink-2)">Los colores, tipos y espacios de este manual se entregan como design tokens en formato W3C DTCG (<span class="mono">$value / $type</span>), consumidos con Style Dictionary hacia CSS, Tailwind, iOS y Android. Sitio, portal y app leen el mismo archivo: la marca no se re‑teclea en cada plataforma.</p><p class="mono" style="font-size:.78rem;margin-top:8px;color:var(--ink-2)">brand/tirenexus/tokens/tokens.json<br>brand/tirenexus/tokens/tokens.css</p></div>
+  </div>
+  <h4 class="sub4">Accesibilidad — no negociable</h4>
+  <p style="font-size:.9rem;color:var(--ink-2);max-width:70ch">WCAG 2.2 AA: contraste 4.5:1 en texto y 3:1 en componentes, objetivos táctiles de 44 px, foco visible siempre, todo operable con teclado, nada comunicado solo por color. Condición de uso real: pantalla al sol, guante puesto, una mano ocupada.</p>
+</section>
+
+<section class="sec" id="s16">
+  <div class="sec-head"><div class="sec-num">16</div><div><h2>Correo y redes</h2><p class="lede">Correo transaccional primero: es el que se abre. Lo social es para reclutar dealers, no para entretener.</p></div></div>
+  <div class="grid g2">
+    <div class="plate"><div class="stage flat" style="padding:22px">
+      <div class="email" style="width:100%;max-width:420px">
+        <div class="band"><div class="lock rev" style="--s:14px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div></div>
+        <div class="body">
+          <div style="font-family:var(--display);font-style:italic;font-weight:900;font-size:1.05rem">Pedido 41‑2287 en ruta</div>
+          <div class="mono" style="font-size:.68rem;line-height:1.9;color:#333">12 llantas · Ruta IMM‑SR29 · Parada 4<br>Ventana: lunes 8 SEP, 8:00–10:00 a. m.<br>Chofer: Aldo M. · (239) 000‑0000</div>
+          <div style="background:#FDEDE7;border-left:3px solid #E8431A;padding:8px 10px;font-size:.7rem">2 Continental HDL3 salen el 11 SEP. Te avisamos cuando carguen.</div>
+          <div><span class="btn" style="display:inline-block">Ver pedido</span></div>
+          <div class="sigline">Marisol Herrera · Ejecutiva de cuenta<br>(239) 000‑0000 · marisol@tirenexus.com</div>
+        </div>
+      </div>
+    </div><div class="plate-cap"><b>Correo transaccional</b><span class="mono">600 px · Arial de respaldo · 1 CTA</span></div></div>
+
+    <div class="plate"><div class="stage flat" style="padding:22px">
+      <div class="ig" style="width:100%;max-width:290px">
+        <div style="position:absolute;inset:auto -30% -30% 40%;height:70%;background:#E8431A;transform:skewX(-11deg)" aria-hidden="true"></div>
+        <div class="lock rev" style="--s:16px;position:relative;z-index:2"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div>
+        <div style="position:relative;z-index:2">
+          <div class="wm" style="font-size:1.7rem;line-height:1.02;color:#fff">96.4%<br><span style="font-size:1rem">fill rate<br>en agosto</span></div>
+          <div class="mono" style="font-size:.6rem;letter-spacing:.14em;color:#0A0A0A;margin-top:8px;position:relative;z-index:3">DATO REAL · NO PROMESA</div>
+        </div>
+      </div>
+    </div><div class="plate-cap"><b>Post 1:1</b><span class="mono">un dato por pieza</span></div></div>
+  </div>
+
+  <div class="plate" style="margin-top:16px">
+    <div class="stage flat" style="padding:22px">
+      <div class="li-banner" style="width:100%">
+        <div class="lock rev" style="--s:clamp(16px,3vw,26px)"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span><span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span></div>
+        <div class="mono" style="font-size:clamp(.55rem,1.4vw,.72rem);color:#B8B2AA;text-align:right;line-height:1.8">Dealers · flotas · talleres<br>Suroeste de Florida &amp; corredor I‑75</div>
+        <div style="position:absolute;inset:0 -10% 0 78%;background:#E8431A;transform:skewX(-11deg);z-index:0" aria-hidden="true"></div>
+      </div>
+    </div>
+    <div class="plate-cap"><b>Portada de LinkedIn</b><span class="mono">1584 × 396 · texto fuera del área recortada por el avatar</span></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Qué se publica</h4><ul class="rule-list">
+      <li>Fill rate y cumplimiento de ventana, mensual, con el número real aunque sea malo.</li>
+      <li>Llegadas de contenedor y reposición de medidas escasas.</li>
+      <li>Dealer del mes: foto en su taller, con su marca visible.</li>
+      <li>Explicadores técnicos cortos: cuándo recauchutar, cómo leer un DOT, qué mata un casco.</li>
+      <li>Vacantes de ruta y bodega — el reclutamiento es marca en un mercado laboral apretado.</li>
+    </ul></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Qué no se publica</h4><ul class="rule-list">
+      <li>Memes de camiones, felicitaciones de día festivo genérico, frases motivacionales.</li>
+      <li>Precios al público: rompe al dealer, que es el cliente.</li>
+      <li>Fotos de bodega desordenada o de personal sin EPP.</li>
+      <li>Comparaciones despectivas con competidores nombrados.</li>
+      <li>Cualquier cifra sin fuente interna verificable.</li>
+    </ul></div>
+  </div>
+  <p style="font-size:.88rem;color:var(--ink-2);margin-top:12px;max-width:70ch">Canales por prioridad: <strong>LinkedIn</strong> (comprador B2B y reclutamiento) → <strong>Google Business Profile por DC</strong> (el más subestimado: es búsqueda con intención) → <strong>Facebook</strong> (dealers locales y comunidad hispana) → <strong>YouTube</strong> (explicadores técnicos, que además alimentan la citación en motores generativos).</p>
+</section>
+
+<section class="sec" id="s17">
+  <div class="sec-head"><div class="sec-num">17</div><div><h2>Feria y presentación</h2><p class="lede">SEMA, TIA y las convenciones de dealers. El stand tiene un solo trabajo: abrir cuentas.</p></div></div>
+  <div class="grid g2">
+    <div class="plate"><div class="stage dark" style="padding:22px;min-height:220px">
+      <div style="width:100%;max-width:460px">
+        <div style="background:#0A0A0A;border:1px solid #333;border-radius:6px;padding:18px;position:relative;overflow:hidden">
+          <div style="position:absolute;inset:auto -20% -40% 62%;height:90%;background:#E8431A;transform:skewX(-11deg)" aria-hidden="true"></div>
+          <div class="lock rev" style="--s:26px;position:relative;z-index:2"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span><span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span></div>
+          <div class="wm" style="color:#fff;font-size:1.3rem;margin-top:14px;position:relative;z-index:2;line-height:1.05">Abre tu cuenta<br>en 24 horas</div>
+          <div class="mono" style="font-size:.62rem;color:#B8B2AA;margin-top:8px;position:relative;z-index:2">Trae licencia y resale certificate · Stand 4218</div>
+        </div>
+      </div>
+    </div><div class="plate-cap"><b>Backwall de stand</b><span class="mono">3 × 2.4 m · un solo mensaje</span></div></div>
+    <div class="plate"><div class="stage flat" style="padding:22px">
+      <div class="slide" style="width:100%;max-width:460px">
+        <div style="position:absolute;inset:auto -20% -50% 70%;height:100%;background:#E8431A;transform:skewX(-11deg)" aria-hidden="true"></div>
+        <div class="lock rev" style="--s:13px;position:relative;z-index:2"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span></div>
+        <div style="position:relative;z-index:2">
+          <div class="eyebrow" style="color:#B8B2AA">Programa Nexus Dealer</div>
+          <div class="wm" style="font-size:1.5rem;color:#fff;line-height:1.04">Dos entregas<br>al día en Lee<br>y Collier</div>
+        </div>
+        <div class="mono" style="font-size:.58rem;color:#B8B2AA;position:relative;z-index:2">TireNexus · Sep 2026 · Confidencial</div>
+      </div>
+    </div><div class="plate-cap"><b>Diapositiva maestra</b><span class="mono">16:9 · titular Saira, cuerpo Plex</span></div></div>
+  </div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="panel"><div class="eyebrow">Kit obligatorio</div><b>Mesa de alta</b><p style="font-size:.86rem;color:var(--ink-2)">Tableta con el formulario de cuenta, impresora de line card y un ejecutivo con firma para aprobar crédito en el momento.</p></div>
+    <div class="panel"><div class="eyebrow">Kit obligatorio</div><b>Muro de disponibilidad</b><p style="font-size:.86rem;color:var(--ink-2)">Pantalla con el portal en vivo mostrando stock real. Es la demostración, no un video.</p></div>
+    <div class="panel"><div class="eyebrow">Kit obligatorio</div><b>Give‑away útil</b><p style="font-size:.86rem;color:var(--ink-2)">Medidor de profundidad de rodadura con monograma. Nada de plumas ni llaveros: herramienta que se usa cada semana.</p></div>
+  </div>
+</section>
+
+<section class="sec" id="s18">
+  <div class="sec-head"><div class="sec-num">18</div><div><h2>Estrategia 360: SEO · AEO · GEO · LLM · IA</h2><p class="lede">La marca no vive en el manual: vive donde el comprador busca proveedor. Hoy eso son cinco superficies, no una.</p></div></div>
+  <div class="prose"><p>Un distribuidor no compite por capacidad de fábrica, compite por <strong>surtido, plazo y servicio</strong>. Eso desplaza toda la superficie de búsqueda: las consultas que importan son <span class="mono">“distribuidor autorizado de [marca] en [región]”</span>, disponibilidad por zona, y comparativas de mayorista contra mayorista. Ese es el terreno.</p></div>
+
+  <h3 class="sub">SEO — arquitectura y catálogo</h3>
+  <ul class="rule-list">
+    <li><b>Una URL por intención:</b> marca × aplicación × zona. <span class="mono">/marcas/sailun</span>, <span class="mono">/comercial/arrastre-22-5</span>, <span class="mono">/entrega/fort-myers</span>. Sin página, no hay ranking.</li>
+    <li><b>Facetas bajo control.</b> El catálogo con filtros genera miles de casi‑duplicados: canónicas, <span class="mono">noindex</span> en combinaciones de faceta y paginación limpia. Es el error #1 de los distribuidores.</li>
+    <li><b>Ficha de producto completa:</b> número de parte, <em>cross‑reference</em> OEM, medida, índice de carga y velocidad, ply rating, aplicación y ficha descargable enlazada.</li>
+    <li><b>Localizador de dealers y DC indexable:</b> una URL estática por ubicación con NAP consistente, contenido local real (rutas, ventanas, marcas en stock) y Google Business Profile propio. Nunca una sola página con un mapa en JavaScript.</li>
+    <li><b>Rendimiento:</b> el comprador entra desde el celular en el mostrador. Core Web Vitals en verde o el resto no importa.</li>
+  </ul>
+
+  <h4 class="sub4">Datos estructurados obligatorios (JSON‑LD)</h4>
+  <div class="scroll"><table>
+    <tr><th>Tipo</th><th>Dónde</th><th>Campos que no pueden faltar</th></tr>
+    <tr><td class="mono">Organization</td><td>Global</td><td><span class="mono">legalName, sameAs</span> → LinkedIn, Wikidata, Crunchbase, D&amp;B, perfiles de asociación</td></tr>
+    <tr><td class="mono">Product + Offer</td><td>Cada SKU</td><td><span class="mono">gtin, mpn, sku, brand, price, priceCurrency, availability</span></td></tr>
+    <tr><td class="mono">ItemAvailability</td><td>Dentro de Offer</td><td>Valores exactos: <span class="mono">InStock · OutOfStock · BackOrder · PreOrder · Discontinued</span></td></tr>
+    <tr><td class="mono">AutoPartsStore</td><td>Cada DC</td><td><span class="mono">openingHoursSpecification, areaServed, geo</span> — contenido único por sede</td></tr>
+    <tr><td class="mono">FAQPage · HowTo</td><td>Soporte y guías</td><td>Preguntas reales del mostrador, respondidas en 40–60 palabras</td></tr>
+    <tr><td class="mono">BreadcrumbList · WebSite</td><td>Global</td><td>Jerarquía del catálogo + <span class="mono">SearchAction</span></td></tr>
+  </table></div>
+  <p style="font-size:.9rem;color:var(--ink-2);margin-top:10px;max-width:70ch"><strong>GTIN, MPN y SKU son el campo del que más depende todo lo demás</strong> — buscadores y agentes de compra de IA los usan para emparejar tu listado con el mismo producto en el resto de la web. Sin identificador no hay comparación cruzada ni elegibilidad de listado de comercio.</p>
+
+  <h3 class="sub">AEO — que la respuesta sea la tuya</h3>
+  <ul class="rule-list">
+    <li>Cada página abre con <b>una frase definitoria extraíble</b>: “TireNexus es un distribuidor mayorista de llantas que atiende a dealers y flotas en el suroeste de Florida desde su centro de Lehigh Acres.” Eso es lo que se cita literalmente.</li>
+    <li>Una entidad canónica por página. Una página que habla de tres cosas no responde ninguna.</li>
+    <li>Bloque de respuesta directa antes del desarrollo: pregunta como H2, respuesta de 40–60 palabras, después el detalle y la tabla.</li>
+    <li>Tablas de datos comparables —mínimos de pedido, términos de crédito, ventanas por zona, plazos de garantía— porque las tablas se extraen y los párrafos se resumen.</li>
+    <li>FAQ del mostrador, literal: “¿cuál es el mínimo?”, “¿me entregan hoy en Naples?”, “¿aceptan devoluciones sin RMA?”.</li>
+  </ul>
+
+  <h3 class="sub">GEO — ser recomendado dentro de la respuesta generada</h3>
+  <ul class="rule-list">
+    <li><b>Consistencia de entidad</b> es la palanca real, por encima de cualquier truco: mismo nombre legal, dirección, descripción y <span class="mono">sameAs</span> en sitio, LinkedIn, Wikidata, Crunchbase, D&amp;B, Google Business Profile, directorios de asociación y notas de prensa. Las contradicciones entre fuentes son la causa número uno de que un modelo no te nombre.</li>
+    <li><b>Contenido comparativo</b> es el formato de mayor rendimiento en B2B: “TireNexus vs. ATD vs. TireHub para dealers de Florida”, “cómo abrir cuenta mayorista de llantas”, “mayoristas con entrega el mismo día en el suroeste de Florida”. Si tu comparativa no existe, el modelo sintetiza la del competidor.</li>
+    <li><b>Fuentes que los modelos citan en esta categoría:</b> Modern Tire Dealer (y el ranking MTD 100 / Top 25 Commercial), Tire Review, Tire Business, aftermarketNews y Wikipedia — que a su vez cita a las tres primeras, de ahí su peso desproporcionado. Prioridad: entrar al ranking, publicar columna firmada en Tire Review, y mantener entrada de Wikidata correcta y con fuentes.</li>
+    <li><b>llms.txt</b>: se implementa porque cuesta una hora, no porque mueva la aguja. Es un índice curado en la raíz; hoy se lee poco. El schema describe relaciones que los motores <em>sí</em> consumen. No se le vende al cliente como palanca.</li>
+    <li>Reseñas y citación local: Google Business Profile por DC con reseñas de dealers reales, perfiles TIA/ASA, y presencia en directorios de la industria.</li>
+  </ul>
+
+  <h3 class="sub">LLM — medir la superficie generativa</h3>
+  <div class="prose"><p>Casi la mitad de las búsquedas ya muestran una capa de IA. Eso obliga a medir dos superficies, no una. Se monta un tablero de <strong>share of voice en modelos</strong>: un set fijo de <span class="mono">50 prompts de comprador</span> —“distribuidor mayorista de llantas en Fort Myers”, “alternativa a ATD en Florida”, “quién entrega dos veces al día en Collier”, “mayorista de llantas de camión que hable español”— ejecutado cada mes contra ChatGPT, Claude, Perplexity y AI Overviews, registrando mención, posición, sentimiento y fuentes citadas. Así GEO deja de ser una creencia y se vuelve un KPI.</p></div>
+
+  <h3 class="sub">IA en la operación de marca</h3>
+  <div class="grid g2">
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Sí</h4><ul class="rule-list">
+      <li>Traducción EN⇄ES de fichas y correos, con revisión humana del vocabulario de taller.</li>
+      <li>Enriquecimiento de catálogo: normalizar medidas, aplicaciones y cross‑reference desde archivos de fabricante.</li>
+      <li>Borradores de respuesta a reseñas y a solicitudes de cotización, aprobados por una persona.</li>
+      <li>Resumen de llamadas de ruta a notas de cuenta en el CRM.</li>
+      <li>Detección de patrones de rotura de stock para anticipar reposición.</li>
+    </ul></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">No</h4><ul class="rule-list">
+      <li>Cifras de fill rate, plazos o inventario generadas o estimadas por un modelo.</li>
+      <li>Imágenes de instalaciones, personal, flota o producto real.</li>
+      <li>Testimonios, reseñas o casos de dealer sintéticos — es fraude, no marketing.</li>
+      <li>Respuestas automáticas sin revisión en reclamos de garantía o cobranza.</li>
+      <li>Publicación autónoma en cualquier canal, sin aprobación humana registrada.</li>
+    </ul></div>
+  </div>
+  <p style="font-size:.88rem;color:var(--ink-2);margin-top:12px;max-width:70ch">Todo activo asistido por IA se registra en el DAM con <span class="mono">ai-generated: true</span> y el nombre de quien lo aprobó. Si una cifra no la puede sostener un reporte interno, no se publica: en B2B, una promesa incumplida cuesta la cuenta completa.</p>
+</section>
+
+<section class="sec" id="s19">
+  <div class="sec-head"><div class="sec-num">19</div><div><h2>Gobernanza</h2><p class="lede">Un manual sin custodio se muere en seis meses. Estas son las reglas de quién decide y dónde viven los archivos.</p></div></div>
+  <div class="grid g2">
+    <div class="panel"><h4 class="sub4" style="margin-top:0">Roles</h4><div class="scroll"><table>
+      <tr><th>Rol</th><th>Decide</th></tr>
+      <tr><td>Custodio de marca</td><td>Cambios al manual, excepciones, aprobación final de piezas externas</td></tr>
+      <tr><td>Ventas</td><td>Contenido de line card, cotización y one‑pager, dentro de plantilla</td></tr>
+      <tr><td>Operaciones</td><td>Señalética interna, etiquetado de rack, rotulación de unidad nueva</td></tr>
+      <tr><td>Proveedor externo</td><td>Nada. Ejecuta contra especificación y entrega archivos editables</td></tr>
+    </table></div></div>
+    <div class="panel"><h4 class="sub4" style="margin-top:0">DAM y nomenclatura</h4>
+      <p class="mono" style="font-size:.78rem;color:var(--ink-2);line-height:1.9">tirenexus_[pieza]_[variante]_[idioma]_[version].[ext]<br>tirenexus_logo_horizontal_reverse_v1.svg<br>tirenexus_linecard_comercial_es_2609.pdf</p>
+      <ul class="rule-list" style="margin-top:10px">
+        <li>Fuente única: el repositorio de marca. Nada se comparte por WhatsApp ni por captura de pantalla.</li>
+        <li>SVG para todo lo vectorial; PNG solo para correo y plataformas que no aceptan vector; nunca JPG de logotipo.</li>
+        <li>Cada activo con fecha de caducidad de uso y con derechos de imagen adjuntos.</li>
+        <li>Auditoría trimestral: flota, uniforme, señalética, portal, correo y redes contra el manual. Se corrige lo que no cumple.</li>
+      </ul>
+    </div>
+  </div>
+  <h4 class="sub4">Excepciones</h4>
+  <p style="font-size:.9rem;color:var(--ink-2);max-width:70ch">Se piden por escrito, se aprueban por escrito y se documentan en el manual como versión nueva. Una excepción no documentada es un error que se replica. El manual sube de versión menor cada trimestre y de versión mayor solo si cambia el logotipo, el color primario o el posicionamiento.</p>
+</section>
+
+<section class="sec" id="s20">
+  <div class="sec-head"><div class="sec-num">20</div><div><h2>Lanzamiento en 90 días</h2><p class="lede">Orden por impacto sobre venta, no por facilidad de producción.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th>Ventana</th><th>Entrega</th><th>Dueño</th><th>Señal de éxito</th></tr>
+    <tr><td class="num">Día 1–15</td><td>Archivos de logotipo, tokens, plantillas de factura, packing slip, cotización y firma de correo. Verificación de todos los campos VERIFY.</td><td>Custodio</td><td>Cero documentos con la marca vieja saliendo de la bodega</td></tr>
+    <tr><td class="num">Día 15–30</td><td>Rotulación de flota completa, uniforme, señalética de will call y etiquetado de racks.</td><td>Operaciones</td><td>Ninguna unidad en ruta sin rotular</td></tr>
+    <tr><td class="num">Día 30–60</td><td>Sitio con arquitectura por marca × aplicación × zona, schema completo, GBP por DC, llms.txt, línea base de share of voice en modelos.</td><td>Marketing</td><td>Fichas indexadas con <span class="mono">gtin/mpn/sku</span> y ficha de DC en el mapa</td></tr>
+    <tr><td class="num">Día 45–75</td><td>Portal de dealer con tokens aplicados, stock por DC, corte de ruta visible y modo bilingüe.</td><td>Producto</td><td>Primer pedido cerrado sin llamada telefónica</td></tr>
+    <tr><td class="num">Día 60–90</td><td>Contenido comparativo, alta en rankings de la industria, columna firmada, kit de co‑branding para dealers.</td><td>Marketing</td><td>Primera cita del sitio en una respuesta generada por IA</td></tr>
+  </table></div>
+
+  <h3 class="sub">KPI de marca</h3>
+  <div class="kpi">
+    <div class="k"><b>≥ 96%</b><span>Fill rate publicado mensual</span></div>
+    <div class="k"><b>≥ 95%</b><span>Cumplimiento de ventana de entrega</span></div>
+    <div class="k"><b>&lt; 24 h</b><span>Alta de cuenta de dealer nuevo</span></div>
+    <div class="k"><b>≥ 40%</b><span>Pedidos hechos en portal sin llamada</span></div>
+    <div class="k"><b>≥ 30%</b><span>Menciones en el set de 50 prompts de IA</span></div>
+    <div class="k"><b>100%</b><span>Unidades y uniformes conformes en auditoría</span></div>
+  </div>
+  <p class="eyebrow" style="margin-top:16px">Los umbrales son metas de arranque propuestas — VERIFY contra el histórico real de despacho antes de publicarlos hacia afuera. Un KPI publicado y no cumplido cuesta más que no publicarlo.</p>
+</section>
+
+<div class="footer">
+  <div>
+    <div class="lock" style="--s:20px"><span class="word" style="font-size:var(--s)"><span class="t">TIRE</span><span class="n">NEXUS</span></span><span class="desc" style="font-size:calc(var(--s)*.175);letter-spacing:calc(var(--s)*.055)">Wholesale Tire Distributor</span></div>
+  </div>
+  <div style="text-align:right">
+    Manual de marca v1.0 · septiembre 2026<br>
+    <span class="mono" style="font-size:.78rem">Archivos y tokens: brand/tirenexus/ · Custodio: dirección de marca</span>
+  </div>
+</div>
+
+</main>
+</div>

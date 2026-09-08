@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="TireNexus monogram">
+  <title>TireNexus — monograma TN</title>
+  <rect width="256" height="256" rx="56" fill="#0A0A0A"/>
+  <g fill="#FFFFFF" font-family="Saira, 'Archivo', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" letter-spacing="-4">
+    <text x="34" y="170">T</text>
+  </g>
+  <g fill="#E8431A" font-family="Saira, 'Archivo', 'Helvetica Neue', Arial, sans-serif" font-weight="900" font-style="italic" font-size="118" letter-spacing="-4">
+    <text x="112" y="170">N</text>
+  </g>
+  <path fill="#E8431A" d="M226 60 Q196 66 192 30 Q188 66 150 76 Q184 72 184 108 Q190 72 226 60 Z" opacity="0"/>
+</svg>

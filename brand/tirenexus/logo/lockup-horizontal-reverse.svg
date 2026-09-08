@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1174 284" role="img" aria-label="TireNexus en fondo oscuro">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Saira:ital,wght@1,900&amp;family=IBM+Plex+Sans:wght@600&amp;display=swap');
+      .wm{font-family:'Saira','Archivo',Impact,Arial,sans-serif;font-weight:900;font-style:italic;font-size:150px;letter-spacing:-4px}
+      .lt{fill:#FFFFFF}.or{fill:#E8431A}
+      .desc{font-family:'IBM Plex Sans',Arial,sans-serif;font-weight:600;font-size:41px;letter-spacing:11px;fill:#FFFFFF}
+    </style>
+  </defs>
+  <rect width="1174" height="284" fill="#0A0A0A"/>
+  <text class="wm lt" x="24" y="150">TIRE</text>
+  <text class="wm or" x="372" y="150">NEXUS</text>
+  <path class="or" d="M980 22 Q900 74 866 22 Q906 86 806 176 Q900 118 934 172 Q898 108 980 22 Z"/>
+  <text class="desc" x="30" y="242">WHOLESALE TIRE DISTRIBUTOR</text>
+</svg>
