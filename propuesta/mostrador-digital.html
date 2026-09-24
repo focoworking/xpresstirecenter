@@ -1,0 +1,343 @@
+<title>El Mostrador Digital</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,600;0,800;1,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --orange:#E8431A; --orange-700:#B8320F; --orange-050:#FDEDE7; --carbon:#0A0A0A;
+  --bg:#F1EEEA; --bg-2:#FFFFFF; --bg-3:#E7E3DD;
+  --ink:#141311; --ink-2:#57534E; --ink-3:#8A857E;
+  --line:#D7D3CD; --line-strong:#0A0A0A; --accent:var(--orange); --accent-ink:#B8320F;
+  --ok:#1F7A45; --warn:#B7791F; --bad:#C0341B;
+  --shadow:0 6px 16px rgba(10,10,10,.10),0 20px 44px rgba(10,10,10,.08);
+  --display:"Saira","Archivo",Impact,Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E0D0C; --bg-2:#181614; --bg-3:#221F1C; --ink:#F3F0EC; --ink-2:#B8B2AA; --ink-3:#8A857E;
+  --line:#332F2B; --line-strong:#F3F0EC; --accent:#FF5C2E; --accent-ink:#FF7A50;
+  --shadow:0 6px 16px rgba(0,0,0,.5),0 20px 44px rgba(0,0,0,.4);
+}}
+:root[data-theme="dark"]{
+  --bg:#0E0D0C; --bg-2:#181614; --bg-3:#221F1C; --ink:#F3F0EC; --ink-2:#B8B2AA; --ink-3:#8A857E;
+  --line:#332F2B; --line-strong:#F3F0EC; --accent:#FF5C2E; --accent-ink:#FF7A50;
+  --shadow:0 6px 16px rgba(0,0,0,.5),0 20px 44px rgba(0,0,0,.4);
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;text-wrap:balance}p{margin:0}
+a{color:var(--accent-ink)}img,svg{max-width:100%}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.wm{font-family:var(--display);font-weight:900;font-style:italic;letter-spacing:-.03em}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.mono{font-family:var(--mono)}
+.wrap{width:min(100% - 2.5rem,1140px);margin-inline:auto}
+
+.hero{background:var(--carbon);color:#fff;padding:clamp(34px,6vw,72px) 0 0;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -10% -1px -10%;height:58px;background:var(--bg);transform:skewY(2deg);transform-origin:left}
+.hero .wrap{position:relative;z-index:2;padding-bottom:76px}
+.hero .kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#B8B2AA}
+.hero h1{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(2.1rem,6.4vw,4.2rem);line-height:.98;letter-spacing:-.035em;margin:14px 0 0;max-width:16ch}
+.hero h1 em{color:var(--orange);font-style:italic}
+.hero .sub{margin-top:18px;max-width:58ch;color:#D8D3CC;font-size:1.05rem}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:26px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#8A857E}
+.hero .meta b{color:#fff;font-weight:600}
+
+section{padding:56px 0 8px}
+.sh{display:flex;gap:16px;align-items:baseline;border-top:3px solid var(--line-strong);padding-top:14px;margin-bottom:24px}
+.sh .n{font-family:var(--mono);font-size:.78rem;color:var(--accent-ink);padding-top:.4em}
+.sh h2{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3.3vw,2.4rem);letter-spacing:-.02em;line-height:1.06}
+.lede{color:var(--ink-2);max-width:68ch;margin-top:8px}
+.prose{max-width:70ch;color:var(--ink-2)}.prose p+p{margin-top:.9em}.prose strong{color:var(--ink)}
+h3.sub{font-family:var(--display);font-weight:800;font-size:1.1rem;text-transform:uppercase;margin:32px 0 12px}
+.grid{display:grid;gap:16px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.panel{background:var(--bg-2);border:1px solid var(--line);border-radius:10px;padding:18px}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.rl{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.rl li{padding-left:22px;position:relative;color:var(--ink-2);font-size:.93rem}
+.rl li::before{content:"";position:absolute;left:0;top:.6em;width:10px;height:2px;background:var(--accent)}
+.pill{display:inline-flex;gap:6px;align-items:center;border-radius:999px;padding:3px 10px;font-size:.72rem;font-weight:600;font-family:var(--mono)}
+.ok{background:rgba(31,122,69,.14);color:var(--ok)}
+.bad{background:rgba(192,52,27,.14);color:var(--bad)}
+.warn{background:rgba(183,121,31,.16);color:var(--warn)}
+
+/* beat strip */
+.beats{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg-2)}
+.beat{padding:14px 16px;border-right:1px solid var(--line)}
+.beat:last-child{border-right:0}
+.beat .t{font-family:var(--mono);font-size:.64rem;color:var(--accent-ink);letter-spacing:.1em}
+.beat b{display:block;margin:4px 0 6px;font-size:.95rem}
+.beat p{font-size:.82rem;color:var(--ink-2)}
+.quote{font-family:var(--mono);font-size:.78rem;color:var(--ink);background:var(--bg-3);border-radius:4px;padding:3px 6px;display:inline-block;margin-top:6px}
+
+/* anchor diagram */
+.layers{display:grid;gap:10px}
+.layer{display:grid;grid-template-columns:118px minmax(0,1fr);gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg-2)}
+.layer .lab{background:var(--carbon);color:#fff;padding:16px 14px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.layer .lab b{font-family:var(--display);font-style:italic;font-weight:900;font-size:1.05rem}
+.layer .lab span{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;color:#B8B2AA}
+.layer .bd{padding:14px 16px}
+.layer.hot .lab{background:var(--orange)}
+.layer.hot .lab span{color:#2a0c03}
+
+/* mock UI */
+.ui{background:#fff;color:#111;border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);font-size:.8rem}
+.ui-top{background:var(--carbon);color:#fff;display:flex;align-items:center;gap:14px;padding:9px 14px;flex-wrap:wrap}
+.ui-top .nav{display:flex;gap:13px;font-size:.7rem;color:#B8B2AA;flex-wrap:wrap}
+.ui-top .nav .on{color:#fff;border-bottom:2px solid var(--orange);padding-bottom:2px}
+.ui-hero{padding:18px 16px;background:linear-gradient(#fff,#F6F4F1);border-bottom:1px solid #e9e6e2}
+.ui-hero h4{font-family:var(--display);font-style:italic;font-weight:900;font-size:clamp(1.1rem,3vw,1.7rem);line-height:1.02;letter-spacing:-.02em;color:#0A0A0A}
+.tabs{display:flex;gap:0;margin-top:12px;border-bottom:1px solid #e0dcd7}
+.tabs span{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;padding:7px 12px;color:#777}
+.tabs .on{color:#0A0A0A;border-bottom:2px solid var(--orange)}
+.fields{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.fields input,.fields select{font:inherit;font-family:var(--mono);font-size:.72rem;padding:9px 10px;border:1px solid #d5d1cb;border-radius:6px;background:#fff;color:#111;min-width:118px}
+.btn{background:var(--orange);color:#fff;border:0;border-radius:6px;padding:9px 16px;font-weight:700;font-size:.76rem;font-family:var(--body);cursor:pointer}
+.btn.ghost{background:transparent;color:#0A0A0A;border:1.5px solid #0A0A0A}
+.btn.dark{background:#0A0A0A;color:#fff}
+.ui-body{padding:14px 16px;display:grid;gap:12px}
+.ui table{font-size:.72rem}
+.ui th,.ui td{border-bottom:1px solid #eceae7;padding:7px 9px;color:#111}
+.stat{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:9px}
+.stat div{border:1px solid #e6e3df;border-radius:8px;padding:8px 10px}
+.stat b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:1.35rem;letter-spacing:-.02em;color:#0A0A0A}
+.stat span{font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:#666}
+.cap{padding:10px 14px;border:1px solid var(--line);border-top:0;border-radius:0 0 12px 12px;font-size:.78rem;color:var(--ink-2);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--bg-2)}
+.cap b{color:var(--ink)}
+.gate{background:#0A0A0A;color:#fff;border-radius:8px;padding:11px 13px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+.gate .mono{font-size:.68rem;color:#B8B2AA}
+
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px}
+.kpi .k{border-left:3px solid var(--accent);padding:6px 0 6px 12px}
+.kpi .k b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:1.55rem;letter-spacing:-.02em;line-height:1.1}
+.kpi .k span{font-size:.8rem;color:var(--ink-2)}
+.foot{border-top:3px solid var(--line-strong);margin-top:44px;padding:28px 0 70px;color:var(--ink-2);font-size:.86rem}
+@media(max-width:620px){.layer{grid-template-columns:1fr}.beat{border-right:0;border-bottom:1px solid var(--line)}}
+</style>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Propuesta · sitio web como motor del negocio mayorista</div>
+    <h1>El sitio no cuenta el modelo. <em>El sitio es</em> el modelo.</h1>
+    <p class="sub">Análisis del reel de referencia (@russotires, Miami) y una arquitectura que mete el mostrador mayorista completo —stock real, precio de dealer, alta de cuenta y reposición— en el ancla de la página. No un folleto con login pegado al lado.</p>
+    <div class="meta">
+      <span>Referencia <b>Russo Tires · 47 s</b></span>
+      <span>Modelo <b>Mayoreo B2B de llantas</b></span>
+      <span>Alcance <b>Web + portal + contenido + 360</b></span>
+      <span>Fecha <b>Sep 2026</b></span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="s1">
+  <div class="sh"><div class="n">01</div><div><h2>Qué hace el video, exactamente</h2><p class="lede">47 segundos, vertical, una toma caminando por el rack. No vende llantas: vende <strong>acceso a la cuenta</strong>. Esa es toda la jugada.</p></div></div>
+  <div class="beats">
+    <div class="beat"><div class="t">0–5 s · GANCHO</div><b>Dolor operativo, no producto</b><p>Le habla al taller que ya tiene al cliente enfrente y no tiene la medida.</p><span class="quote">"¿Tienes un taller en Miami y te quedaste sin la goma que tu cliente necesita ahora mismo?"</span></div>
+    <div class="beat"><div class="t">5–12 s · PRUEBA</div><b>Inventario como argumento</b><p>El rack de fondo hace de evidencia. La cifra y la logística en una frase.</p><span class="quote">"Veinte mil gomas en stock y tres locaciones que hacemos delivery el mismo día"</span></div>
+    <div class="beat"><div class="t">12–17 s · OBJECIÓN</div><b>"No te quito el cliente"</b><p>Desactiva el miedo número uno del taller frente a un mayorista con tienda.</p><span class="quote">"Nosotros no te [quitamos el cliente], te salvamos la venta"</span></div>
+    <div class="beat"><div class="t">17–40 s · CTA</div><b>Demo del alta en pantalla</b><p>Muestra la web, el botón New Dealer y el formulario bilingüe. Fricción declarada: cinco datos.</p><span class="quote">"Cinco datos superbásicos, lo envías y te abrimos la cuenta"</span></div>
+    <div class="beat"><div class="t">40–47 s · LOOP</div><b>Follow por más</b><p>Cierra pidiendo seguir la cuenta: el reel es adquisición recurrente, no campaña.</p><span class="quote">"Si te gustó este video, por favor sigue la cuenta"</span></div>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="panel"><div class="eyebrow">Lo que copiamos</div><ul class="rl">
+      <li>El dolor es <b>“me quedé sin la medida con el cliente enfrente”</b>. Todo el sitio debe responder a eso.</li>
+      <li>La prueba es el inventario, y se muestra, no se adjetiva.</li>
+      <li>La conversión es <b>abrir cuenta</b>, no pedir cotización.</li>
+      <li>Bilingüe de fábrica: el formulario tiene botón English/Español.</li>
+    </ul></div>
+    <div class="panel"><div class="eyebrow">Dónde se queda corto</div><ul class="rl">
+      <li>La home sigue siendo un <b>buscador retail</b> (“Find the perfect tires for your vehicle”). El mayorista entra por medida y por stock, no por vehículo.</li>
+      <li>Las 20,000 gomas son un <b>claim</b>, no un dato consultable. Nadie puede verificar nada sin cuenta.</li>
+      <li>El reel manda a una home genérica; se pierde la medida que disparó la búsqueda.</li>
+      <li>El alta es un formulario que espera revisión humana: la promesa de velocidad muere ahí.</li>
+      <li>Catálogo 100% tras login = invisible para Google y para los modelos de IA.</li>
+      <li>Nada para máquinas: ni feed, ni API para el POS del taller, ni schema de disponibilidad.</li>
+    </ul></div>
+    <div class="panel"><div class="eyebrow">La conclusión</div><p style="font-size:.93rem;color:var(--ink-2)">Russo usa el contenido para empujar tráfico hacia una web que <strong>habla</strong> del modelo. La propuesta es una web que <strong>ejecuta</strong> el modelo: consultar disponibilidad real, abrir cuenta sola, comprar y repetir el pedido sin llamar. El contenido deja de ser el motor y pasa a ser el combustible.</p></div>
+  </div>
+</section>
+
+<section id="s2">
+  <div class="sh"><div class="n">02</div><div><h2>El ancla: el mostrador digital</h2><p class="lede">Una sola idea de producto: <strong>la home es una consulta de disponibilidad</strong>. Lo primero que se ve no es un mensaje, es un campo de medida y una respuesta con stock, hora de corte y ventana de entrega.</p></div></div>
+  <div class="layers">
+    <div class="layer"><div class="lab"><b>Capa 1</b><span>PÚBLICA</span></div><div class="bd">
+      <b>Stock visible sin precio.</b> Cualquiera —y cualquier buscador— ve medida, marca, aplicación, cantidad por bodega y ventana de entrega. El precio neto es lo único bajo llave. Esto convierte el inventario en el activo de contenido más difícil de copiar del mercado: miles de páginas reales, con datos que cambian solos.
+      <div style="margin-top:8px"><span class="pill ok">Indexable</span> <span class="pill ok">Citable por IA</span> <span class="pill warn">Sin precio</span></div>
+    </div></div>
+    <div class="layer hot"><div class="lab"><b>Capa 2</b><span>DEALER</span></div><div class="bd">
+      <b>El mostrador.</b> Precio neto por nivel, crédito disponible, corte de ruta, carrito, recompra en un clic desde el historial, RMA y estado de entrega en vivo. Alta de cuenta automática: cinco campos + licencia y resale certificate, validación instantánea y cuenta provisional operando el mismo día, con límite bajo hasta revisión humana.
+      <div style="margin-top:8px"><span class="pill ok">Cuenta en minutos</span> <span class="pill ok">Precio por nivel</span> <span class="pill ok">Recompra 1 clic</span></div>
+    </div></div>
+    <div class="layer"><div class="lab"><b>Capa 3</b><span>MÁQUINA</span></div><div class="bd">
+      <b>El canal que nadie tiene.</b> Feed de producto con GTIN/MPN/SKU y disponibilidad por bodega, schema <span class="mono">Product/Offer/ItemAvailability</span>, API de consulta para el POS del taller, y un agente de pedidos en WhatsApp que responde “¿tienes 295/75R22.5?” con stock y hora de corte reales. Cuando el comprador pregunte a un modelo de IA, el dato sale de aquí.
+      <div style="margin-top:8px"><span class="pill ok">Feed</span> <span class="pill ok">API</span> <span class="pill ok">Agente WhatsApp</span></div>
+    </div></div>
+  </div>
+  <div class="prose" style="margin-top:18px"><p><strong>La regla que ordena todo el sitio:</strong> ninguna página promete disponibilidad — todas la muestran. Si el dato no se puede mostrar, la pieza no se publica. Es lo que hace imposible de imitar a un competidor que solo tiene un PDF de line card y un teléfono.</p></div>
+</section>
+
+<section id="s3">
+  <div class="sh"><div class="n">03</div><div><h2>La home, pantalla por pantalla</h2><p class="lede">Lo que ve el taller en los primeros tres segundos decide si abre cuenta o cierra la pestaña.</p></div></div>
+  <div class="ui">
+    <div class="ui-top">
+      <div class="wm" style="font-size:16px"><span style="color:#fff">TIRE</span><span style="color:#E8431A">NEXUS</span></div>
+      <div class="nav"><span class="on">Disponibilidad</span><span>Marcas</span><span>Entrega</span><span>Programa dealer</span><span>Aprende</span></div>
+      <div style="margin-left:auto;display:flex;gap:8px"><span class="btn ghost" style="border-color:#fff;color:#fff">Abrir cuenta</span><span class="btn">Entrar</span></div>
+    </div>
+    <div class="ui-hero">
+      <div class="eyebrow" style="color:#8A857E">Mayorista · Suroeste de Florida · corredor I‑75</div>
+      <h4>¿Qué medida necesitas<br>en este momento?</h4>
+      <div class="tabs"><span class="on">Por medida</span><span>Por vehículo</span><span>Por número de parte</span><span>Subir lista</span></div>
+      <div class="fields">
+        <input value="295/75R22.5" aria-label="Medida">
+        <select aria-label="Aplicación"><option>Arrastre</option><option>Dirección</option><option>Tracción</option></select>
+        <input value="33971" aria-label="Código postal" style="min-width:96px">
+        <button class="btn" type="button">Ver stock y entrega</button>
+      </div>
+      <div class="mono" style="font-size:.66rem;color:#666;margin-top:9px">Stock real, actualizado cada 15 min. El precio neto aparece al entrar a tu cuenta.</div>
+    </div>
+    <div class="ui-body">
+      <div class="scroll"><table>
+        <tr><th>Producto</th><th>Medida · LI/SS</th><th>Bodega Lehigh</th><th>Bodega Fort Myers</th><th>Entrega a 33971</th><th>Precio</th></tr>
+        <tr><td>Sailun S637 · 16PR</td><td class="mono">295/75R22.5 · 146/143L</td><td><span class="pill ok">48</span></td><td><span class="pill ok">22</span></td><td class="mono">Hoy 1:00 p. m.</td><td><span class="mono" style="color:#B8320F">Entra para ver</span></td></tr>
+        <tr><td>Hankook AL22</td><td class="mono">295/75R22.5 · 146/143L</td><td><span class="pill warn">6 · bajo</span></td><td><span class="pill ok">31</span></td><td class="mono">Hoy 1:00 p. m.</td><td><span class="mono" style="color:#B8320F">Entra para ver</span></td></tr>
+        <tr><td>Continental HDL3</td><td class="mono">295/75R22.5 · 146/143L</td><td><span class="pill bad">0 · 11 SEP</span></td><td><span class="pill ok">14</span></td><td class="mono">Mañana 8 a. m.</td><td><span class="mono" style="color:#B8320F">Entra para ver</span></td></tr>
+      </table></div>
+      <div class="gate">
+        <div><b style="font-family:var(--display);font-style:italic">Abre cuenta y ve tu precio neto</b><div class="mono">5 campos · licencia + resale certificate · cuenta operando hoy</div></div>
+        <span class="btn" style="white-space:nowrap">Abrir cuenta en 2 minutos</span>
+      </div>
+      <div class="stat">
+        <div><b>20,400</b><span>Llantas en piso ahora</span></div>
+        <div><b>2×</b><span>Rutas diarias</span></div>
+        <div><b>96.4%</b><span>Fill rate · agosto</span></div>
+        <div><b>1:00 p. m.</b><span>Próximo corte</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="cap"><b>Home pública</b><span class="mono">La cifra de inventario es un contador en vivo, no un texto. El precio es el único dato gated.</span></div>
+
+  <h3 class="sub">Las cuatro pantallas que sostienen el modelo</h3>
+  <div class="grid g2">
+    <div class="panel"><div class="eyebrow">Pantalla 01</div><b>Resultado de medida (pública, una URL por medida)</b><p style="font-size:.9rem;color:var(--ink-2);margin-top:6px">Miles de URLs reales del tipo <span class="mono">/stock/295-75r22-5/arrastre</span>, con stock por bodega, marcas disponibles, ficha técnica y FAQ de la medida. Es el activo de SEO, AEO y GEO al mismo tiempo, y el destino natural de cada reel.</p></div>
+    <div class="panel"><div class="eyebrow">Pantalla 02</div><b>Alta de cuenta en cinco campos</b><p style="font-size:.9rem;color:var(--ink-2);margin-top:6px">Nombre del negocio, EIN o licencia, resale certificate (foto), teléfono y dirección de entrega. Validación automática del certificado contra el estado, cuenta provisional con límite bajo al instante y aprobación de línea completa en 24 h. La promesa del video, cumplida por software.</p></div>
+    <div class="panel"><div class="eyebrow">Pantalla 03</div><b>Mostrador del dealer</b><p style="font-size:.9rem;color:var(--ink-2);margin-top:6px">Precio neto por nivel, crédito disponible, corte de ruta, historial con recompra en un clic, listas guardadas por cliente frecuente y estado del camión en ruta. Aquí vive el margen: cada pedido sin llamada es costo de venta que desaparece.</p></div>
+    <div class="panel"><div class="eyebrow">Pantalla 04</div><b>Entrega por código postal</b><p style="font-size:.9rem;color:var(--ink-2);margin-top:6px">Una página por zona con la ruta, los cortes, la ventana comprometida y el cumplimiento real del mes. Es la página que gana las búsquedas locales y la que un modelo de IA cita cuando alguien pregunta quién entrega hoy en Naples.</p></div>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="sh"><div class="n">04</div><div><h2>El contenido, convertido en máquina</h2><p class="lede">El reel de referencia es bueno y es uno solo. La propuesta es una fábrica con cinco formatos, cada uno apuntando a una URL con stock real, no a la home.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th>Formato</th><th>Frecuencia</th><th>Gancho</th><th>Destino</th><th>Qué prueba</th></tr>
+    <tr><td><b>Medida de la semana</b></td><td class="num">1 / semana</td><td>“Se acabó la 11R24.5 en Miami. Aquí hay 38.”</td><td class="mono">/stock/11r24-5</td><td>Inventario verificable</td></tr>
+    <tr><td><b>Salvada de venta</b></td><td class="num">2 / semana</td><td>Caso real: llamada a las 4 p. m., llanta en el taller a las 6.</td><td class="mono">/entrega/{zona}</td><td>Velocidad</td></tr>
+    <tr><td><b>Alta en vivo</b></td><td class="num">1 / mes</td><td>Grabar una cuenta abriéndose en dos minutos, cronómetro en pantalla.</td><td class="mono">/abrir-cuenta</td><td>Cero fricción</td></tr>
+    <tr><td><b>Escuela de mostrador</b></td><td class="num">1 / semana</td><td>Leer un DOT, cuándo el casco ya no sirve, qué índice de carga aguanta.</td><td class="mono">/aprende/{tema}</td><td>Autoridad citable</td></tr>
+    <tr><td><b>Número del mes</b></td><td class="num">1 / mes</td><td>Fill rate y cumplimiento de ventana publicados, aunque salgan feos.</td><td class="mono">/desempeno</td><td>Honestidad radical</td></tr>
+  </table></div>
+  <div class="grid g3" style="margin-top:16px">
+    <div class="panel"><div class="eyebrow">Regla 01</div><b>Un reel, una URL</b><p style="font-size:.88rem;color:var(--ink-2)">Nunca “link en bio” hacia la home. El video que habla de una medida manda a la página de esa medida, con el stock ya cargado.</p></div>
+    <div class="panel"><div class="eyebrow">Regla 02</div><b>Bilingüe simultáneo</b><p style="font-size:.88rem;color:var(--ink-2)">Cada pieza sale en inglés y español el mismo día. El mercado hispano del sur de Florida es el menos disputado y el más leal.</p></div>
+    <div class="panel"><div class="eyebrow">Regla 03</div><b>El dato manda</b><p style="font-size:.88rem;color:var(--ink-2)">Ninguna pieza publica una cifra que el sistema no pueda sostener. Una promesa incumplida en B2B no cuesta un like: cuesta la cuenta.</p></div>
+  </div>
+</section>
+
+<section id="s5">
+  <div class="sh"><div class="n">05</div><div><h2>Estrategia 360: SEO · AEO · GEO · LLM · IA</h2><p class="lede">El catálogo tras login es cómodo y es un suicidio de visibilidad. La arquitectura de tres capas existe precisamente para resolver eso sin regalar el precio.</p></div></div>
+  <div class="grid g2">
+    <div class="panel"><h4 style="font-family:var(--display);font-style:italic;font-weight:900">SEO</h4><ul class="rl" style="margin-top:8px">
+      <li>Una URL por <b>medida × aplicación</b> y una por <b>zona de entrega</b>: es el inventario convertido en arquitectura.</li>
+      <li>Ficha con número de parte, cross‑reference OEM, LI/SS, ply rating y ficha descargable. Bajo 150 palabras no rankea nada.</li>
+      <li>Facetas del catálogo con canónicas y <span class="mono">noindex</span> — el error clásico del distribuidor: miles de casi‑duplicados.</li>
+      <li>Ficha de Google Business por bodega, con reseñas de dealers reales, no de consumidores.</li>
+    </ul></div>
+    <div class="panel"><h4 style="font-family:var(--display);font-style:italic;font-weight:900">AEO</h4><ul class="rl" style="margin-top:8px">
+      <li>Frase definitoria extraíble al inicio de cada página: qué es, a quién sirve, desde dónde, en cuánto tiempo.</li>
+      <li>Bloque de respuesta de 40–60 palabras antes del desarrollo, y tabla comparable después.</li>
+      <li>FAQ literal del mostrador: mínimo de pedido, términos de crédito, devoluciones sin RMA, entrega el mismo día por zona.</li>
+      <li>Una entidad por página. La página que habla de tres cosas no responde ninguna.</li>
+    </ul></div>
+    <div class="panel"><h4 style="font-family:var(--display);font-style:italic;font-weight:900">GEO</h4><ul class="rl" style="margin-top:8px">
+      <li><b>Consistencia de entidad</b> como prioridad uno: mismo nombre, dirección y descripción en sitio, LinkedIn, Wikidata, Crunchbase, D&amp;B, GBP y directorios. Las contradicciones son la causa número uno de que un modelo no te nombre.</li>
+      <li>Contenido comparativo: “alternativas a X para talleres de Florida”, “cómo abrir cuenta mayorista de llantas”, con tablas de mínimos y términos.</li>
+      <li>Citación en prensa de industria (Modern Tire Dealer, Tire Review, Tire Business): es lo que los modelos leen de esta categoría.</li>
+      <li><span class="mono">llms.txt</span> se pone porque cuesta una hora; el schema es lo que de verdad consumen los motores.</li>
+    </ul></div>
+    <div class="panel"><h4 style="font-family:var(--display);font-style:italic;font-weight:900">LLM · IA</h4><ul class="rl" style="margin-top:8px">
+      <li>Tablero mensual de 50 prompts de comprador contra ChatGPT, Claude, Perplexity y AI Overviews: mención, posición, sentimiento y fuentes citadas.</li>
+      <li><b>Agente de pedidos en WhatsApp</b>: responde disponibilidad y corte con datos reales del inventario, y levanta el pedido de un dealer ya identificado.</li>
+      <li>Enriquecimiento automático del catálogo desde los archivos del fabricante: medidas, aplicaciones y cross‑reference normalizados.</li>
+      <li>Traducción EN⇄ES de fichas y correos con revisión humana del vocabulario de taller.</li>
+      <li>Prohibido: cifras de stock o plazos generadas por modelo, fotos sintéticas de la bodega, testimonios inventados.</li>
+    </ul></div>
+  </div>
+  <div class="prose" style="margin-top:16px"><p><strong>El argumento comercial de todo esto en una línea:</strong> cuando un taller le pregunte a un asistente de IA “¿quién tiene 295/75R22.5 hoy cerca de Fort Myers?”, la respuesta necesita un dato de inventario público y estructurado para poder existir. Hoy nadie en el mercado lo publica. El primero que lo haga se queda con la pregunta entera.</p></div>
+</section>
+
+<section id="s6">
+  <div class="sh"><div class="n">06</div><div><h2>Contra la referencia</h2><p class="lede">Mismo modelo de negocio, distinto lugar donde vive. Ahí está toda la diferencia de valor.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th style="width:24%">Frente</th><th style="width:38%">Referencia (Russo Tires)</th><th>Propuesta</th></tr>
+    <tr><td><b>Entrada de la home</b></td><td>Buscador retail por vehículo. El mayorista tiene que adivinar dónde va.</td><td>Campo de medida + código postal. Respuesta: stock por bodega y hora de corte.</td></tr>
+    <tr><td><b>Inventario</b></td><td>“Más de 20,000 llantas” como texto. No verificable.</td><td>Contador en vivo y stock consultable por medida, sin cuenta. Verificable por cualquiera, incluidas las IA.</td></tr>
+    <tr><td><b>Precio</b></td><td>Todo tras login.</td><td>Solo el precio tras login. Todo lo demás público e indexable.</td></tr>
+    <tr><td><b>Alta de dealer</b></td><td>Formulario que espera revisión humana.</td><td>Validación automática y cuenta provisional operando el mismo día; línea completa en 24 h.</td></tr>
+    <tr><td><b>Destino del contenido</b></td><td>Home genérica: se pierde la intención del video.</td><td>Una URL por medida y por zona, con el stock ya cargado.</td></tr>
+    <tr><td><b>Recompra</b></td><td>No visible en el flujo público.</td><td>Historial con repetición en un clic y listas por cliente frecuente. El margen está aquí.</td></tr>
+    <tr><td><b>Canal de máquina</b></td><td>Inexistente.</td><td>Feed con GTIN/MPN/SKU, schema de disponibilidad, API para el POS del taller y agente de WhatsApp.</td></tr>
+    <tr><td><b>Idioma</b></td><td>Bilingüe en el formulario.</td><td>Bilingüe en todo: catálogo, portal, factura, soporte y contenido.</td></tr>
+    <tr><td><b>Prueba de servicio</b></td><td>Promesa de entrega el mismo día.</td><td>Fill rate y cumplimiento de ventana publicados cada mes, con el número real.</td></tr>
+  </table></div>
+</section>
+
+<section id="s7">
+  <div class="sh"><div class="n">07</div><div><h2>Cómo se construye</h2><p class="lede">La única pieza técnica de verdad es una: sacar el inventario del sistema y ponerlo en la web sin que nadie lo teclee.</p></div></div>
+  <div class="grid g3">
+    <div class="panel"><div class="eyebrow">Dato</div><b>Puente de inventario</b><p style="font-size:.88rem;color:var(--ink-2)">Exportación del POS/ERP cada 15 minutos —API o archivo plano— normalizada a un catálogo único: SKU, marca, medida, LI/SS, aplicación, cantidad por bodega, nivel de precio. Si el sistema actual no exporta, se resuelve con un lector programado; nunca con captura manual.</p></div>
+    <div class="panel"><div class="eyebrow">Front</div><b>Sitio estático + capa viva</b><p style="font-size:.88rem;color:var(--ink-2)">Páginas de medida, zona y marca generadas en build (rápidas, indexables, baratas de servir) y el stock inyectado en vivo por un endpoint. Es el mismo enfoque del sitio actual del grupo, que ya genera estático con validación previa a publicar.</p></div>
+    <div class="panel"><div class="eyebrow">Portal</div><b>Comprar, no cotizar</b><p style="font-size:.88rem;color:var(--ink-2)">Precio por nivel, crédito, carrito, recompra, RMA y estado de ruta. Se puede montar sobre una plataforma B2B del sector (tipo Tireweb Wholesale o TireBase) o a medida sobre el mismo catálogo; la decisión depende de qué exporte el ERP y de cuánto pesa el catálogo.</p></div>
+    <div class="panel"><div class="eyebrow">Máquina</div><b>Feed, schema y API</b><p style="font-size:.88rem;color:var(--ink-2)">Feed de producto con identificadores, JSON‑LD <span class="mono">Product/Offer/ItemAvailability</span> y <span class="mono">AutoPartsStore</span> por bodega, y un endpoint de consulta para que el POS del taller pregunte stock sin abrir el navegador.</p></div>
+    <div class="panel"><div class="eyebrow">Conversación</div><b>Agente bilingüe</b><p style="font-size:.88rem;color:var(--ink-2)">WhatsApp y el chat del sitio responden disponibilidad real y corte de ruta, identifican al dealer por su número y levantan el pedido. Escala a humano en garantía, cobranza y reclamos.</p></div>
+    <div class="panel"><div class="eyebrow">Medición</div><b>Dos superficies</b><p style="font-size:.88rem;color:var(--ink-2)">Analítica clásica (tráfico, altas, pedidos sin llamada) y panel de visibilidad en modelos de IA con el set fijo de 50 prompts. Lo segundo es lo que nadie del sector está midiendo todavía.</p></div>
+  </div>
+</section>
+
+<section id="s8">
+  <div class="sh"><div class="n">08</div><div><h2>Fases y entregables</h2><p class="lede">Cada fase termina en algo que ya factura o que ya rankea. Nada de tres meses de maqueta.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th>Fase</th><th>Duración</th><th>Entregable</th><th>Cierra cuando</th></tr>
+    <tr><td><b>0 · Diagnóstico y dato</b></td><td class="num">2 semanas</td><td>Auditoría del inventario exportable, mapa de medidas con demanda real, arquitectura de URLs y definición de niveles de dealer.</td><td>Hay un archivo de catálogo normalizado saliendo del sistema solo.</td></tr>
+    <tr><td><b>1 · Mostrador público</b></td><td class="num">4–5 semanas</td><td>Home de disponibilidad, páginas de medida y de zona, contador en vivo, schema completo, bilingüe, alta de cuenta en cinco campos.</td><td>Un taller que nunca llamó abre cuenta desde el celular.</td></tr>
+    <tr><td><b>2 · Portal de dealer</b></td><td class="num">5–7 semanas</td><td>Precio por nivel, crédito, carrito, recompra en un clic, RMA, estado de ruta, factura y packing slip con la marca aplicada.</td><td>El primer pedido se cierra sin que suene el teléfono.</td></tr>
+    <tr><td><b>3 · Motor de contenido</b></td><td class="num">Continuo · desde semana 4</td><td>Cinco formatos de video bilingües, calendario, guías citables, página de desempeño mensual, kit de co‑branding para dealers.</td><td>El contenido genera altas de cuenta medibles, no vistas.</td></tr>
+    <tr><td><b>4 · Capa de máquina</b></td><td class="num">3 semanas</td><td>Feed de producto, API de consulta, agente de WhatsApp bilingüe, <span class="mono">llms.txt</span>, panel de visibilidad en modelos.</td><td>El sitio aparece citado en una respuesta generada por IA.</td></tr>
+  </table></div>
+  <p class="eyebrow" style="margin-top:12px">La línea de honorarios va en la carta de propuesta, no aquí: este documento sirve para que el cliente vea el alcance y entienda por qué no es “una página web”.</p>
+
+  <h3 class="sub">Lo que se mide</h3>
+  <div class="kpi">
+    <div class="k"><b>&lt; 5 min</b><span>De reel a cuenta abierta</span></div>
+    <div class="k"><b>≥ 40%</b><span>Pedidos sin llamada a los 6 meses</span></div>
+    <div class="k"><b>≥ 25</b><span>Altas de dealer nuevas por trimestre</span></div>
+    <div class="k"><b>≥ 30%</b><span>Menciones en el set de 50 prompts de IA</span></div>
+    <div class="k"><b>≥ 3×</b><span>Frecuencia de recompra del dealer activo</span></div>
+    <div class="k"><b>≥ 96%</b><span>Fill rate publicado cada mes</span></div>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="wm" style="font-size:1.5rem;color:var(--ink)">El inventario es el contenido.</div>
+  <p style="max-width:66ch;margin-top:10px">Todo lo demás —los reels, el manual de marca, la campaña— existe para llevar tráfico a un dato que solo tú puedes publicar. Por eso el ancla del sitio no es un mensaje: es la consulta de stock.</p>
+  <p class="mono" style="font-size:.76rem;margin-top:14px;color:var(--ink-3)">Propuesta de arquitectura · septiembre 2026 · referencia analizada: reel de @russotires (47 s) · cifras de ejemplo marcadas para verificar con el inventario real antes de publicar.</p>
+</div>
+
+</div>
