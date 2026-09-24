@@ -1,0 +1,337 @@
+<title>El Sistema TireNexus</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,600;0,800;1,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Mundo visual único y deliberado: carbón. Es una propuesta de operación
+   industrial, no un documento de oficina. Se pinta todo explícitamente. */
+:root{
+  --carbon:#0A0A0A; --ink-900:#0E0D0C; --ink-850:#141311; --ink-800:#1B1917; --ink-700:#252220;
+  --line:#2E2A27; --line-2:#3C3733;
+  --txt:#F4F1ED; --txt-2:#B5AEA6; --txt-3:#847D75;
+  --orange:#FF5427; --orange-2:#E8431A; --orange-dim:#7A2A12;
+  --ok:#3FA86B; --warn:#D79A2B; --bad:#E0563A;
+  --display:"Saira","Archivo",Impact,Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink-900);color:var(--txt);font-family:var(--body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;text-wrap:balance}p{margin:0}
+a{color:var(--orange)}
+img,svg{max-width:100%}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.wrap{width:min(100% - 2.5rem,1120px);margin-inline:auto}
+.wm{font-family:var(--display);font-weight:900;font-style:italic;letter-spacing:-.03em}
+.eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-3)}
+.mono{font-family:var(--mono)}
+.tab{font-variant-numeric:tabular-nums}
+
+/* portada */
+.cover{padding:clamp(40px,7vw,96px) 0 clamp(44px,6vw,80px);border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.cover::before{content:"";position:absolute;inset:-30% -40% auto 58%;height:220%;background:linear-gradient(180deg,rgba(255,84,39,.16),rgba(255,84,39,0));transform:skewX(-11deg);pointer-events:none}
+.cover .wrap{position:relative;z-index:2}
+.brandline{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.brandline .lg{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(20px,3.4vw,30px);letter-spacing:-.03em}
+.brandline .lg .o{color:var(--orange)}
+.brandline .dv{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--txt-3)}
+.cover h1{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(2.2rem,6.6vw,4.4rem);line-height:.96;letter-spacing:-.038em;margin:30px 0 0;max-width:17ch}
+.cover h1 em{color:var(--orange);font-style:italic}
+.cover .sub{margin-top:20px;max-width:60ch;color:var(--txt-2);font-size:1.08rem}
+.cover .strip{display:flex;flex-wrap:wrap;gap:0;margin-top:34px;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.cover .strip div{flex:1 1 180px;padding:13px 16px;border-right:1px solid var(--line);background:var(--ink-850)}
+.cover .strip div:last-child{border-right:0}
+.cover .strip b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:1.25rem;letter-spacing:-.02em}
+.cover .strip span{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt-3)}
+
+section{padding:58px 0 6px}
+.sh{display:flex;gap:16px;align-items:baseline;border-top:2px solid var(--line-2);padding-top:14px;margin-bottom:24px}
+.sh .n{font-family:var(--mono);font-size:.78rem;color:var(--orange);padding-top:.45em}
+.sh h2{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3.4vw,2.45rem);letter-spacing:-.022em;line-height:1.05}
+.lede{color:var(--txt-2);max-width:66ch;margin-top:8px}
+.prose{max-width:70ch;color:var(--txt-2)}.prose p+p{margin-top:.95em}.prose strong{color:var(--txt)}
+h3.sub{font-family:var(--display);font-weight:800;font-size:1.08rem;text-transform:uppercase;letter-spacing:.01em;margin:34px 0 12px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(232px,1fr))}
+.card{background:var(--ink-850);border:1px solid var(--line);border-radius:10px;padding:18px}
+.card.hot{border-color:var(--orange-dim);background:linear-gradient(var(--ink-800),var(--ink-850))}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:.64rem;letter-spacing:.13em;text-transform:uppercase;color:var(--txt-3);font-weight:600}
+td{color:var(--txt-2)}td b,td strong{color:var(--txt)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--txt)}
+.rl{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.rl li{padding-left:22px;position:relative;color:var(--txt-2);font-size:.93rem}
+.rl li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--orange)}
+.pill{display:inline-flex;gap:6px;align-items:center;border-radius:999px;padding:3px 10px;font-size:.7rem;font-weight:600;font-family:var(--mono)}
+.p-ok{background:rgba(63,168,107,.16);color:var(--ok)}
+.p-bad{background:rgba(224,86,58,.16);color:var(--bad)}
+.p-warn{background:rgba(215,154,43,.16);color:var(--warn)}
+.quote{border-left:3px solid var(--orange);padding:4px 0 4px 16px;margin:22px 0;font-family:var(--display);font-style:italic;font-weight:800;font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.22;letter-spacing:-.02em;color:var(--txt);max-width:24ch}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.88rem;color:var(--txt-2)}
+.kv b{color:var(--txt);font-family:var(--mono);font-size:.78rem;white-space:nowrap}
+.note{font-family:var(--mono);font-size:.72rem;color:var(--txt-3);margin-top:12px;line-height:1.7}
+.foot{border-top:2px solid var(--line-2);margin-top:46px;padding:30px 0 74px;color:var(--txt-2);font-size:.88rem}
+.bar{display:flex;height:34px;border:1px solid var(--line);border-radius:7px;overflow:hidden;font-family:var(--mono);font-size:.68rem;margin-top:6px}
+.bar span{display:grid;place-items:center;color:#0A0A0A;font-weight:600;white-space:nowrap;overflow:hidden}
+.ledger{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.gear{display:grid;grid-template-columns:52px minmax(0,1fr);gap:14px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line)}
+.gear .num{font-family:var(--display);font-style:italic;font-weight:900;font-size:1.9rem;color:var(--orange);line-height:1}
+.gear h4{font-size:1.02rem;font-weight:700;margin-bottom:4px}
+.gear p{font-size:.92rem;color:var(--txt-2)}
+.gear .out{margin-top:8px;font-family:var(--mono);font-size:.72rem;color:var(--txt-3)}
+.gear .out b{color:var(--ok)}
+@media(max-width:560px){.gear{grid-template-columns:1fr}}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="brandline">
+      <div class="lg">TIRE<span class="o">NEXUS</span></div>
+      <div class="dv">Propuesta de sistema comercial · Sep 2026</div>
+    </div>
+    <h1>No compran piezas.<br>Compran una máquina<br>que <em>abre cuentas</em>.</h1>
+    <p class="sub">Esta propuesta no vende logotipo, video ni sitio web. Vende el sistema que los usa: inventario que se publica solo, cuentas de dealer que se abren sin llamada, pedidos que se repiten sin vendedor y un canal de datos que te deja aparecer cuando un comprador —o una IA— pregunta quién tiene la medida hoy.</p>
+    <div class="strip">
+      <div><b>El activo</b><span>El inventario, no la campaña</span></div>
+      <div><b>La métrica</b><span>Cuentas activas, no vistas</span></div>
+      <div><b>El motor</b><span>Recompra sin llamada</span></div>
+      <div><b>La ventaja</b><span>Ser el dato que la IA cita</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="s1">
+  <div class="sh"><div class="n">01</div><div><h2>Por qué la producción sola no mueve la aguja</h2><p class="lede">Un mayorista de llantas no pierde por falta de creatividad. Pierde por fricción: el taller llama, nadie contesta, el competidor sí, y esa cuenta no vuelve.</p></div></div>
+  <div class="prose">
+    <p>El trabajo gráfico y audiovisual es necesario y es insuficiente. Un reel bien hecho genera atención durante 48 horas; una identidad bien hecha evita que la atención se desperdicie. Ninguna de las dos <strong>abre una cuenta a las 9 de la noche de un sábado</strong>, ni evita que el mostrador gaste doce minutos tomando un pedido que el dealer pudo poner solo.</p>
+    <p>El dinero del mayoreo está en dos números que ninguna campaña toca por sí misma: <strong>cuántas cuentas nuevas quedan activas</strong> y <strong>cuántas veces al mes recompra cada una</strong>. Todo lo demás —el logotipo, el video, el stand, el catálogo— es insumo de la máquina que mueve esos dos números.</p>
+  </div>
+  <div class="quote">La marca hace que te crean. El sistema hace que te compren otra vez.</div>
+  <div class="scroll" style="margin-top:8px"><table>
+    <tr><th style="width:32%">La fricción real</th><th style="width:34%">Lo que cuesta hoy</th><th>Lo que la resuelve</th></tr>
+    <tr><td><b>El taller no sabe si tienes la medida</b></td><td>Llama, espera, cuelga y llama al siguiente. La venta se decide en esa llamada.</td><td>Stock consultable en público, sin cuenta y sin llamada.</td></tr>
+    <tr><td><b>Abrir cuenta toma días</b></td><td>Formulario, revisión manual, seguimiento. La mitad de los interesados se enfría.</td><td>Alta en cinco campos con validación automática y cuenta operando el mismo día.</td></tr>
+    <tr><td><b>Cada pedido pasa por una persona</b></td><td>Doce minutos de mostrador, errores de medida, doble captura.</td><td>Portal con precio neto y recompra en un clic desde el historial.</td></tr>
+    <tr><td><b>Nadie te encuentra cuando urge</b></td><td>La búsqueda con intención se la lleva quien publicó el dato.</td><td>Una URL por medida y por zona, con stock real y schema que los motores leen.</td></tr>
+    <tr><td><b>Las IA recomiendan a otro</b></td><td>El comprador ya pregunta al asistente antes de llamar; tu entidad no existe ahí.</td><td>Consistencia de entidad, contenido comparativo y feed de disponibilidad.</td></tr>
+  </table></div>
+</section>
+
+<section id="s2">
+  <div class="sh"><div class="n">02</div><div><h2>La tesis: tu inventario es el contenido</h2><p class="lede">Tienes un activo de marketing que ningún competidor puede copiar y que hoy está apagado dentro del ERP.</p></div></div>
+  <div class="prose">
+    <p>Una agencia produce lo que cualquiera puede producir: un video, una plantilla, un post. Tu inventario, en cambio, es <strong>propietario, cambia solo y es verificable</strong>. Publicado correctamente se convierte en miles de páginas reales —una por medida, una por zona— que se actualizan sin que nadie escriba una línea, y que responden exactamente la pregunta que decide la compra: <em>¿lo tienes hoy, cerca de mí?</em></p>
+    <p>Ese mismo dato alimenta las tres superficies que importan en 2026: el buscador, el asistente de IA y el portal donde el dealer compra. <strong>Un solo activo, tres canales, cero producción recurrente.</strong> Esa es la diferencia entre contratar una agencia y montar un sistema.</p>
+  </div>
+  <div class="grid g3" style="margin-top:18px">
+    <div class="card"><div class="eyebrow">Difícil de copiar</div><b style="display:block;margin:6px 0">Nadie puede inventar tu piso</b><p style="font-size:.9rem;color:var(--txt-2)">Un competidor puede copiar tu campaña en una semana. No puede copiar 20,000 llantas en rack ni la ruta que las mueve dos veces al día.</p></div>
+    <div class="card"><div class="eyebrow">Se mantiene solo</div><b style="display:block;margin:6px 0">Contenido sin calendario</b><p style="font-size:.9rem;color:var(--txt-2)">Las páginas de medida y zona se actualizan desde el sistema cada 15 minutos. El costo marginal de la página mil es cero.</p></div>
+    <div class="card"><div class="eyebrow">Convierte</div><b style="display:block;margin:6px 0">Intención pura</b><p style="font-size:.9rem;color:var(--txt-2)">Quien busca una medida con aplicación y ciudad no está explorando: tiene el camión levantado. Es el tráfico más caro de comprar y el más barato de ganar con dato propio.</p></div>
+  </div>
+</section>
+
+<section id="s3">
+  <div class="sh"><div class="n">03</div><div><h2>El sistema, engranaje por engranaje</h2><p class="lede">Cinco piezas que se alimentan entre sí. Cada una entrega un resultado de negocio medible, no un archivo.</p></div></div>
+
+  <div class="gear"><div class="num">01</div><div>
+    <h4>El puente de datos</h4>
+    <p>El inventario sale del POS/ERP cada 15 minutos y se normaliza en un catálogo único: SKU, marca, medida, índice de carga y velocidad, aplicación, cantidad por bodega y nivel de precio. Si el sistema no exporta, se resuelve con un lector programado. Nadie vuelve a teclear una existencia.</p>
+    <div class="out">Resultado · <b>una sola verdad de inventario</b> para web, portal, feed y mostrador</div>
+  </div></div>
+
+  <div class="gear"><div class="num">02</div><div>
+    <h4>El mostrador público</h4>
+    <p>La página de inicio es una consulta de disponibilidad, no un folleto: medida, código postal, respuesta con stock por bodega, hora de corte y ventana de entrega. Todo público e indexable. El precio neto es lo único bajo llave — y es justamente el incentivo para abrir cuenta.</p>
+    <div class="out">Resultado · <b>tráfico de intención</b> que hoy se lleva el competidor que publicó el dato</div>
+  </div></div>
+
+  <div class="gear"><div class="num">03</div><div>
+    <h4>La cuenta que se abre sola</h4>
+    <p>Cinco campos, foto del resale certificate, validación automática contra el estado y cuenta provisional con límite bajo operando en minutos; línea completa aprobada en 24 horas. La promesa de velocidad deja de depender de que alguien revise el correo.</p>
+    <div class="out">Resultado · <b>altas fuera de horario</b>, que hoy simplemente no ocurren</div>
+  </div></div>
+
+  <div class="gear"><div class="num">04</div><div>
+    <h4>La recompra sin vendedor</h4>
+    <p>Portal con precio por nivel, crédito disponible, corte de ruta visible, historial con repetición en un clic y listas guardadas por cliente frecuente. Aquí vive el margen: cada pedido que no pasa por el teléfono es costo de venta que desaparece y capacidad de mostrador que se libera.</p>
+    <div class="out">Resultado · <b>más pedidos por dealer</b> con el mismo equipo</div>
+  </div></div>
+
+  <div class="gear" style="border-bottom:0"><div class="num">05</div><div>
+    <h4>El canal de máquina</h4>
+    <p>Feed de producto con GTIN/MPN/SKU y disponibilidad por bodega, schema <span class="mono">Product / Offer / ItemAvailability</span>, API para que el POS del taller consulte stock sin abrir el navegador, y un agente bilingüe en WhatsApp que responde disponibilidad real y levanta el pedido de un dealer identificado.</p>
+    <div class="out">Resultado · <b>existir en la respuesta de la IA</b> y en el sistema del cliente, no solo en su memoria</div>
+  </div></div>
+
+  <div class="card hot" style="margin-top:22px">
+    <div class="eyebrow">El bucle</div>
+    <p style="margin-top:6px;color:var(--txt-2)">Más dato publicado → más búsquedas ganadas → más altas de cuenta → más pedidos en portal → <strong style="color:var(--txt)">más datos de demanda real</strong> → mejor decisión de compra de inventario → más disponibilidad → más dato que publicar. El sistema se vuelve más difícil de alcanzar con cada vuelta. Una campaña, en cambio, empieza de cero cada mes.</p>
+  </div>
+</section>
+
+<section id="s4">
+  <div class="sh"><div class="n">04</div><div><h2>Qué cambia el lunes por la mañana</h2><p class="lede">Un sistema se reconoce porque cambia la operación, no el escritorio del diseñador.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th style="width:18%">Quién</th><th style="width:41%">Hoy</th><th>Con el sistema</th></tr>
+    <tr><td><b>Mostrador</b></td><td>Contesta, busca en pantalla, dicta precio, captura el pedido. Doce minutos por llamada, errores de medida.</td><td>Atiende excepciones, crédito y garantías. El pedido rutinario entra solo, ya capturado y sin error de medida.</td></tr>
+    <tr><td><b>Ventas</b></td><td>Persigue prospectos fríos y contesta “¿tienes la 22.5?” todo el día.</td><td>Trabaja cuentas que ya se abrieron solas y las hace crecer. Llega con el historial del dealer en la mano.</td></tr>
+    <tr><td><b>Ruta</b></td><td>Entrega y espera que el dealer se acuerde de volver a pedir.</td><td>Entrega, y el dealer repite desde el historial en treinta segundos. El chofer también da de alta al taller vecino.</td></tr>
+    <tr><td><b>Compras</b></td><td>Decide reposición por intuición y por lo que se acabó.</td><td>Decide con demanda real: qué medidas se buscaron y no había. La búsqueda fallida se vuelve dato de compra.</td></tr>
+    <tr><td><b>Dirección</b></td><td>Mide facturación y poco más.</td><td>Mide cuentas activas, frecuencia de recompra, fill rate publicado y visibilidad en IA. Cuatro números, un tablero.</td></tr>
+  </table></div>
+</section>
+
+<section id="s5">
+  <div class="sh"><div class="n">05</div><div><h2>La economía del sistema</h2><p class="lede">El argumento no es estético. Es aritmético, y se revisa cada trimestre contra los números reales.</p></div></div>
+  <h3 class="sub">Unidad de medida: la cuenta activa</h3>
+  <div class="grid g2">
+    <div class="card"><div class="eyebrow">Supuestos de trabajo · VERIFY con el cliente</div>
+      <div class="kv" style="margin-top:10px">
+        <b>US$ 1,750</b><span>Pedido promedio de dealer</span>
+        <b>17%</b><span>Margen bruto mayorista</span>
+        <b>US$ 298</b><span>Margen bruto por pedido</span>
+        <b>1.8 / mes</b><span>Frecuencia actual del dealer activo</span>
+        <b>120</b><span>Dealers activos hoy</span>
+        <b>12 min</b><span>Tiempo de mostrador por pedido telefónico</span>
+      </div>
+      <p class="note">Ninguno de estos números es nuestro: salen de tu sistema. La propuesta se recalcula con los reales en la primera semana y el modelo queda en manos del cliente, abierto.</p>
+    </div>
+    <div class="card hot"><div class="eyebrow">Lo que vale una cuenta</div>
+      <p style="margin-top:8px;color:var(--txt-2)">Una cuenta activa deja <span class="ledger" style="color:var(--txt)">US$ 536</span> de margen bruto al mes y <span class="ledger" style="color:var(--txt)">US$ 6,430</span> al año. Esa es la unidad con la que se juzga cualquier inversión de marketing en este negocio.</p>
+      <p style="margin-top:10px;color:var(--txt-2)">El sistema mueve tres palancas sobre esa unidad: <strong>cuántas cuentas nuevas quedan activas</strong>, <strong>cuántas veces compra cada una</strong> y <strong>cuánto cuesta atenderlas</strong>.</p>
+    </div>
+  </div>
+
+  <h3 class="sub">Las tres palancas, en dinero</h3>
+  <div class="scroll"><table>
+    <tr><th>Palanca</th><th>Movimiento objetivo</th><th>Cálculo</th><th>Margen incremental año 1</th></tr>
+    <tr><td><b>Altas activadas</b></td><td>100 altas al año · 60% activación · rampa de seis meses promedio</td><td class="num">60 × 536 × 6</td><td class="num">US$ 193,000</td></tr>
+    <tr><td><b>Frecuencia de recompra</b></td><td>De 1.8 a 2.4 pedidos/mes en la base existente</td><td class="num">120 × 0.6 × 298 × 12</td><td class="num">US$ 257,000</td></tr>
+    <tr><td><b>Costo de atención</b></td><td>40% de los pedidos migran al portal</td><td class="num">≈ 17 h/mes de mostrador</td><td class="num">Capacidad, no ahorro</td></tr>
+    <tr><td colspan="3"><b>Total incremental, escenario base</b></td><td class="num" style="color:var(--ok)"><b>≈ US$ 450,000</b></td></tr>
+  </table></div>
+  <div class="bar" role="img" aria-label="Escenarios de margen incremental: conservador 225 mil, base 450 mil, agresivo 675 mil dólares">
+    <span style="flex:225;background:#7A2A12;color:#fff">Conservador · 225k</span>
+    <span style="flex:225;background:#E8431A">Base · 450k</span>
+    <span style="flex:225;background:#FF7A50">Agresivo · 675k</span>
+  </div>
+  <p class="note">Escenario conservador = la mitad de las metas; agresivo = una vez y media. La rampa real depende de la profundidad de inventario y del cumplimiento de la ventana de entrega: el sistema amplifica el servicio, no lo sustituye.</p>
+
+  <h3 class="sub">Punto de equilibrio</h3>
+  <div class="scroll"><table>
+    <tr><th>Inversión total del año 1</th><th>Cuentas activas nuevas que la pagan</th><th>Equivale a</th></tr>
+    <tr><td class="num">US$ 60,000</td><td class="num">10</td><td>Una alta activada cada cinco semanas</td></tr>
+    <tr><td class="num">US$ 90,000</td><td class="num">14</td><td>Poco más de una alta activada al mes</td></tr>
+    <tr><td class="num">US$ 120,000</td><td class="num">19</td><td>Menos de dos altas activadas al mes</td></tr>
+    <tr><td class="num">US$ 180,000</td><td class="num">28</td><td>Dos altas y media al mes</td></tr>
+  </table></div>
+  <p class="note">A razón de US$ 6,430 de margen bruto por cuenta activa al año. La meta del sistema es 60 cuentas activadas en el año: entre dos y seis veces el punto de equilibrio, según el nivel de inversión.</p>
+</section>
+
+<section id="s6">
+  <div class="sh"><div class="n">06</div><div><h2>Lo que esto no es</h2><p class="lede">Conviene decirlo antes de firmar, para que nadie mida esto con la vara equivocada.</p></div></div>
+  <div class="grid g2">
+    <div class="card"><b>No es un rebranding.</b><p style="font-size:.92rem;color:var(--txt-2);margin-top:6px">La identidad ya está resuelta y entregada: logotipo, color, tipografía, aplicaciones y tokens. Es un insumo del sistema, no el proyecto.</p></div>
+    <div class="card"><b>No es una campaña.</b><p style="font-size:.92rem;color:var(--txt-2);margin-top:6px">No se compra alcance. Se construye un activo que sigue trabajando el mes que nadie publique nada.</p></div>
+    <div class="card"><b>No es “una página web”.</b><p style="font-size:.92rem;color:var(--txt-2);margin-top:6px">Es el mostrador. Si se cae, se deja de vender, igual que si se cerrara la cortina de la bodega. Se opera con esa seriedad.</p></div>
+    <div class="card"><b>No es una fábrica de contenido.</b><p style="font-size:.92rem;color:var(--txt-2);margin-top:6px">El video existe para llevar a una medida con stock real. Sin dato detrás, el video es gasto.</p></div>
+  </div>
+  <h3 class="sub">Las objeciones que van a salir</h3>
+  <div class="scroll"><table>
+    <tr><th style="width:34%">Objeción</th><th>Respuesta</th></tr>
+    <tr><td><b>“Publicar mi stock ayuda a mi competencia.”</b></td><td>Ve tu disponibilidad; no ve tu precio neto, tus niveles, tu crédito ni tus rutas. Y para cuando reaccione, tú ya tienes la cuenta abierta. El costo de no publicarlo es ser invisible para el buscador y para la IA justo cuando el comprador decide.</td></tr>
+    <tr><td><b>“Mis dealers son de teléfono, no van a usar un portal.”</b></td><td>Algunos no. Por eso el teléfono sigue y el agente de WhatsApp responde igual. El portal no reemplaza al mostrador: se lleva el pedido rutinario y le devuelve horas al mostrador para vender.</td></tr>
+    <tr><td><b>“Mi sistema no exporta nada.”</b></td><td>Casi ninguno exporta limpio. La fase 0 existe justo para eso y contempla el plan alterno de lectura programada. No se empieza a construir hasta que el dato sale solo.</td></tr>
+    <tr><td><b>“¿Y si el inventario que publico está mal?”</b></td><td>Se publica con margen de seguridad y sello de hora. Un dato con quince minutos de retraso y una reserva conservadora es infinitamente más confiable que un “sí, creo que sí lo tenemos”.</td></tr>
+    <tr><td><b>“Eso lo hace cualquier agencia.”</b></td><td>Cualquier agencia produce el video. Muy pocas conectan el ERP, publican disponibilidad estructurada, montan la alta automática y miden la visibilidad en modelos de IA. La prueba está en la fase 0: si el dato no fluye, no cobramos la construcción.</td></tr>
+  </table></div>
+</section>
+
+<section id="s7">
+  <div class="sh"><div class="n">07</div><div><h2>Quién hace qué</h2><p class="lede">Un sistema falla casi siempre del lado del cliente, no del proveedor. Por eso esto se acuerda por escrito antes de empezar.</p></div></div>
+  <div class="grid g2">
+    <div class="card"><div class="eyebrow">Nosotros</div><ul class="rl" style="margin-top:10px">
+      <li>Arquitectura del sistema, puente de datos y normalización del catálogo.</li>
+      <li>Mostrador público, portal de dealer, alta automática y capa de máquina.</li>
+      <li>Motor de contenido bilingüe y dirección de las piezas gráficas y audiovisuales.</li>
+      <li>Schema, feed, <span class="mono">llms.txt</span>, fichas por bodega y tablero de visibilidad en modelos de IA.</li>
+      <li>Tablero de negocio y revisión trimestral con recálculo del modelo económico.</li>
+    </ul></div>
+    <div class="card"><div class="eyebrow">TireNexus</div><ul class="rl" style="margin-top:10px">
+      <li><b>Un dueño del dato</b> con nombre y apellido, y acceso de lectura al ERP o POS.</li>
+      <li>Decisión firmada sobre niveles de precio, política de crédito y reglas de alta de cuenta.</li>
+      <li>Cumplir la ventana de entrega publicada. El sistema amplifica el servicio real, bueno o malo.</li>
+      <li>Treinta minutos a la semana de una persona frente a cámara en la bodega.</li>
+      <li>Autorización para publicar el fill rate mensual con el número real.</li>
+    </ul></div>
+  </div>
+  <p class="note">Si alguna de estas cinco no se puede garantizar, conviene saberlo ahora: el sistema pierde una de sus vueltas y hay que ajustar las metas antes de comprometerlas.</p>
+</section>
+
+<section id="s8">
+  <div class="sh"><div class="n">08</div><div><h2>Los primeros doce meses</h2><p class="lede">Cada fase cierra con un hecho de negocio verificable, no con la entrega de un archivo.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th>Fase</th><th>Ventana</th><th>Qué se construye</th><th>Cierra cuando</th></tr>
+    <tr><td><b>0 · Dato</b></td><td class="num">Sem. 1–2</td><td>Auditoría del ERP, catálogo normalizado, mapa de medidas con demanda real, niveles de dealer y modelo económico con cifras reales.</td><td>Sale un archivo de inventario limpio del sistema, solo, cada 15 minutos.</td></tr>
+    <tr><td><b>1 · Mostrador</b></td><td class="num">Sem. 3–7</td><td>Home de disponibilidad, páginas por medida y por zona, contador en vivo, schema, bilingüe, alta de cuenta en cinco campos.</td><td>Un taller que nunca llamó abre cuenta desde el celular, fuera de horario.</td></tr>
+    <tr><td><b>2 · Portal</b></td><td class="num">Sem. 6–13</td><td>Precio por nivel, crédito, carrito, recompra en un clic, RMA, estado de ruta, factura y packing slip con la marca aplicada.</td><td>El primer pedido se cierra sin que suene el teléfono.</td></tr>
+    <tr><td><b>3 · Motor</b></td><td class="num">Sem. 5 en adelante</td><td>Cinco formatos de video bilingües, guías citables, página pública de desempeño, kit de co‑branding para el dealer.</td><td>El contenido produce altas medibles, no vistas.</td></tr>
+    <tr><td><b>4 · Máquina</b></td><td class="num">Sem. 14–17</td><td>Feed con identificadores, API de consulta, agente bilingüe de WhatsApp, panel de 50 prompts de IA.</td><td>El sitio aparece citado en una respuesta generada por IA.</td></tr>
+    <tr><td><b>5 · Operación</b></td><td class="num">Mes 5–12</td><td>Contenido, mejoras del portal, expansión de zonas y medidas, optimización de entidad y de visibilidad en modelos.</td><td>Las tres palancas se mueven en el tablero trimestre a trimestre.</td></tr>
+  </table></div>
+</section>
+
+<section id="s9">
+  <div class="sh"><div class="n">09</div><div><h2>Modelo de inversión</h2><p class="lede">Tres componentes, y una regla que mantiene honesta la relación.</p></div></div>
+  <div class="grid g3">
+    <div class="card"><div class="eyebrow">Componente 01</div><b style="display:block;margin:6px 0">Construcción por fases</b><p style="font-size:.9rem;color:var(--txt-2)">Se paga contra el hecho de negocio que cierra cada fase, no contra horas. La fase 0 se factura solo si el dato fluye: si el sistema del cliente no puede alimentar la máquina, no hay proyecto que cobrar.</p></div>
+    <div class="card"><div class="eyebrow">Componente 02</div><b style="display:block;margin:6px 0">Operación mensual</b><p style="font-size:.9rem;color:var(--txt-2)">Contenido bilingüe, mantenimiento del dato, mejoras del portal, visibilidad en buscadores y en modelos, y el tablero. Es lo que mantiene girando el bucle; sin esto el activo se degrada en un trimestre.</p></div>
+    <div class="card hot"><div class="eyebrow">Componente 03</div><b style="display:block;margin:6px 0">Variable por cuenta activada</b><p style="font-size:.9rem;color:var(--txt-2)">Un monto por cada cuenta nueva que llega a su tercer pedido. Alinea el incentivo con el único número que importa y le da al cliente una razón dura para creer en la propuesta: cobramos más cuando el sistema funciona.</p></div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="eyebrow">Regla de anclaje</div>
+    <p style="margin-top:8px;color:var(--txt-2)">El costo total anual del sistema —construcción más operación más variable— se mantiene <strong>por debajo del 20% del margen bruto incremental atribuido</strong>, medido cada trimestre con el tablero abierto. Si el sistema no genera ese margen, la conversación no es sobre creatividad: es sobre cuál de las cinco piezas no está girando, y se corrige o se detiene.</p>
+    <p class="note">Las cifras de honorarios van en la carta comercial adjunta. Este documento define el alcance, el mecanismo y la forma de juzgarlo.</p>
+  </div>
+</section>
+
+<section id="s10">
+  <div class="sh"><div class="n">10</div><div><h2>Riesgos, dichos de frente</h2><p class="lede">Los tres que pueden hundir el proyecto y cómo se contienen.</p></div></div>
+  <div class="scroll"><table>
+    <tr><th style="width:26%">Riesgo</th><th style="width:16%">Probabilidad</th><th>Contención</th></tr>
+    <tr><td><b>El ERP no entrega dato limpio</b></td><td><span class="pill p-warn">Alta</span></td><td>Fase 0 independiente y previa. Plan alterno de lectura programada. No se construye nada encima hasta que el archivo sale solo y cuadra con el conteo físico.</td></tr>
+    <tr><td><b>La ventana de entrega no se cumple</b></td><td><span class="pill p-warn">Media</span></td><td>El sistema publica el cumplimiento real. Se arranca publicando solo las zonas donde la ruta ya es confiable, y se abren las demás conforme el dato aguante.</td></tr>
+    <tr><td><b>El dealer no adopta el portal</b></td><td><span class="pill p-warn">Media</span></td><td>Alta asistida en ruta: el chofer abre la cuenta con el dealer en el mostrador. Primer pedido en portal con incentivo. WhatsApp cubre a quien nunca va a entrar a una web.</td></tr>
+    <tr><td><b>La competencia copia el mostrador público</b></td><td><span class="pill p-ok">Baja · y tarde</span></td><td>Copiar la pantalla es fácil; copiar el puente de datos, la ruta y las cuentas ya abiertas no. La ventaja es la vuelta de adelanto, y se defiende con velocidad, no con secreto.</td></tr>
+  </table></div>
+</section>
+
+<section id="s11">
+  <div class="sh"><div class="n">11</div><div><h2>Para arrancar</h2><p class="lede">Cinco cosas. Ninguna cuesta dinero y todas existen ya en la operación.</p></div></div>
+  <div class="grid g2">
+    <div class="card"><ul class="rl">
+      <li>Acceso de lectura al ERP o POS, y el nombre de quien lo administra.</li>
+      <li>Una exportación de inventario de un día cualquiera, tal como salga.</li>
+      <li>La tabla vigente de niveles de precio de dealer y la política de crédito.</li>
+      <li>El histórico de pedidos de los últimos doce meses, aunque esté sucio.</li>
+      <li>Las rutas actuales con sus cortes y las zonas que realmente se cumplen.</li>
+    </ul></div>
+    <div class="card hot">
+      <div class="eyebrow">Primera entrega</div>
+      <p style="margin-top:8px;color:var(--txt-2)">Con eso, en <strong>dos semanas</strong> devolvemos el modelo económico recalculado con las cifras reales de TireNexus, el mapa de medidas con demanda insatisfecha y la arquitectura de URLs. Ese documento se queda con el cliente, se contrate o no el resto.</p>
+    </div>
+  </div>
+</section>
+
+<div class="foot">
+  <div class="wm" style="font-size:clamp(1.4rem,3.6vw,2.1rem);color:var(--txt);max-width:22ch;line-height:1.05">El logotipo hace que te recuerden. El sistema hace que te compren el martes.</div>
+  <p style="max-width:64ch;margin-top:14px">La producción gráfica y audiovisual ya está resuelta y entregada. Lo que falta es la máquina que la convierte en cuentas abiertas, pedidos repetidos y presencia en el lugar donde hoy se decide el proveedor.</p>
+  <p class="note">TireNexus · propuesta de sistema comercial · septiembre 2026 · todas las cifras del modelo son supuestos de trabajo, marcados para recalcular con los datos reales en la fase 0.</p>
+</div>
+
+</div>
