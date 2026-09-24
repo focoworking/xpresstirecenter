@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TireNexus Mostrador</title>
+<meta name="description" content="Prototipo navegable del sitio mayorista TireNexus: consulta de disponibilidad por medida y zona, alta de cuenta y portal de dealer.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,600;0,800;1,900&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --orange:#E8431A; --orange-700:#B8320F; --orange-300:#F79470; --orange-050:#FDEDE7;
+  --carbon:#0A0A0A;
+  --bg:#F1EEEA; --surface:#FFFFFF; --surface-2:#E7E3DD; --header:#0A0A0A;
+  --ink:#141311; --ink-2:#57534E; --ink-3:#8A857E;
+  --line:#D7D3CD; --line-2:#C2BCB4;
+  --ok:#1F7A45; --ok-bg:rgba(31,122,69,.12);
+  --warn:#B7791F; --warn-bg:rgba(183,121,31,.14);
+  --bad:#C0341B; --bad-bg:rgba(192,52,27,.12);
+  --info:#245C9E;
+  --shadow-sm:0 1px 2px rgba(10,10,10,.08),0 2px 8px rgba(10,10,10,.05);
+  --shadow:0 6px 16px rgba(10,10,10,.10),0 20px 44px rgba(10,10,10,.08);
+  --display:"Saira","Archivo",Impact,Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --wrap:1200px; --r:8px; --r-lg:14px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E0D0C; --surface:#181614; --surface-2:#221F1C; --header:#000;
+  --ink:#F3F0EC; --ink-2:#B8B2AA; --ink-3:#8A857E;
+  --line:#332F2B; --line-2:#443E39;
+  --orange:#FF5427; --orange-700:#FF7A50; --orange-050:#2A140D;
+  --ok:#3FA86B; --ok-bg:rgba(63,168,107,.16);
+  --warn:#D79A2B; --warn-bg:rgba(215,154,43,.16);
+  --bad:#E0563A; --bad-bg:rgba(224,86,58,.16);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.5); --shadow:0 6px 16px rgba(0,0,0,.5),0 20px 44px rgba(0,0,0,.4);
+}}
+:root[data-theme="dark"]{
+  --bg:#0E0D0C; --surface:#181614; --surface-2:#221F1C; --header:#000;
+  --ink:#F3F0EC; --ink-2:#B8B2AA; --ink-3:#8A857E;
+  --line:#332F2B; --line-2:#443E39;
+  --orange:#FF5427; --orange-700:#FF7A50; --orange-050:#2A140D;
+  --ok:#3FA86B; --ok-bg:rgba(63,168,107,.16);
+  --warn:#D79A2B; --warn-bg:rgba(215,154,43,.16);
+  --bad:#E0563A; --bad-bg:rgba(224,86,58,.16);
+  --shadow-sm:0 1px 2px rgba(0,0,0,.5); --shadow:0 6px 16px rgba(0,0,0,.5),0 20px 44px rgba(0,0,0,.4);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{margin:0;text-wrap:balance;line-height:1.1}
+p{margin:0}
+img,svg{max-width:100%}
+a{color:var(--orange-700);text-underline-offset:2px}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+.wrap{width:min(100% - 2rem,var(--wrap));margin-inline:auto}
+.mono{font-family:var(--mono)}
+.tab{font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-3)}
+.wm{font-family:var(--display);font-weight:900;font-style:italic;letter-spacing:-.03em}
+.hide{display:none!important}
+
+/* demo ribbon */
+.demo{background:var(--carbon);color:#C9C3BB;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid #2a2724}
+.demo .wrap{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.demo b{color:var(--orange)}
+.demo .sp{margin-left:auto;display:flex;gap:8px;align-items:center}
+.demo button{background:transparent;border:1px solid #3a3633;color:#C9C3BB;border-radius:999px;padding:3px 10px;font-family:var(--mono);font-size:.66rem;cursor:pointer;letter-spacing:.08em}
+.demo button[aria-pressed="true"]{background:var(--orange);border-color:var(--orange);color:#fff}
+
+/* header */
+header.site{background:var(--header);color:#fff;position:sticky;top:0;z-index:50}
+header.site .bar{display:flex;align-items:center;gap:18px;min-height:60px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:900;font-style:italic;font-size:22px;letter-spacing:-.03em;text-decoration:none;color:#fff;white-space:nowrap}
+.logo .o{color:var(--orange)}
+.logo small{display:block;font-family:var(--body);font-style:normal;font-weight:600;font-size:7.5px;letter-spacing:.24em;color:#B8B2AA;margin-top:-2px}
+nav.main{display:flex;gap:16px;flex-wrap:wrap}
+nav.main a{color:#C9C3BB;text-decoration:none;font-size:.86rem;padding:4px 0;border-bottom:2px solid transparent}
+nav.main a:hover{color:#fff}
+nav.main a.on{color:#fff;border-bottom-color:var(--orange)}
+.hdr-right{margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.phone{font-family:var(--mono);font-size:.78rem;color:#C9C3BB;text-decoration:none;white-space:nowrap}
+
+/* buttons */
+.btn{background:var(--orange);color:#fff;border:0;border-radius:var(--r);padding:11px 18px;font-weight:700;font-size:.84rem;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:8px;justify-content:center;min-height:44px}
+.btn:hover{background:var(--orange-700);color:#fff}
+.btn.sm{padding:7px 12px;min-height:36px;font-size:.78rem}
+.btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--ink)}
+.btn.ghost.light{color:#fff;border-color:#fff}
+.btn.ghost:hover{background:var(--orange);border-color:var(--orange);color:#fff}
+.btn.quiet{background:var(--surface-2);color:var(--ink)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* hero + search */
+.hero{background:linear-gradient(var(--surface),var(--bg));border-bottom:1px solid var(--line);padding:38px 0 30px}
+.hero h1{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(1.9rem,5vw,3.25rem);letter-spacing:-.035em;max-width:16ch}
+.hero .sub{margin-top:12px;color:var(--ink-2);max-width:60ch}
+.searchbox{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow);margin-top:22px;overflow:hidden}
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto}
+.tabs button{background:transparent;border:0;border-bottom:2px solid transparent;color:var(--ink-3);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:12px 16px;cursor:pointer;white-space:nowrap}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--orange)}
+.searchform{padding:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:5px;flex:1 1 168px;min-width:0}
+.field label{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.field input,.field select{font:inherit;font-family:var(--mono);font-size:.86rem;padding:11px 12px;border:1px solid var(--line-2);border-radius:var(--r);background:var(--surface);color:var(--ink);min-height:44px;width:100%}
+.searchform .btn{flex:0 0 auto}
+.hint{padding:0 16px 14px;font-size:.78rem;color:var(--ink-3)}
+.hint b{color:var(--ink-2);font-weight:600}
+.chips{display:flex;gap:8px;flex-wrap:wrap;padding:0 16px 16px}
+.chip{background:var(--surface-2);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-family:var(--mono);font-size:.72rem;cursor:pointer;color:var(--ink)}
+.chip:hover{border-color:var(--orange);color:var(--orange-700)}
+
+/* generic layout */
+main{min-height:60vh}
+section.band{padding:40px 0}
+section.band.alt{background:var(--surface);border-block:1px solid var(--line)}
+.sec-title{font-family:var(--display);font-weight:800;font-size:clamp(1.35rem,2.8vw,1.9rem);letter-spacing:-.02em}
+.sec-lede{color:var(--ink-2);max-width:64ch;margin-top:8px}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(168px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:18px}
+.card h3{font-size:1.02rem;margin-bottom:6px}
+.card p{font-size:.9rem;color:var(--ink-2)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:20px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.stat b{display:block;font-family:var(--display);font-style:italic;font-weight:900;font-size:1.7rem;letter-spacing:-.02em;line-height:1.05}
+.stat span{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.stat .live{color:var(--ok);font-size:.58rem}
+
+/* tables */
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+th,td{text-align:left;padding:11px 13px;border-bottom:1px solid var(--line);vertical-align:middle}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover{background:var(--orange-050)}
+th{font-family:var(--mono);font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);font-weight:600;white-space:nowrap}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.pill{display:inline-flex;gap:6px;align-items:center;border-radius:999px;padding:3px 10px;font-size:.72rem;font-weight:600;font-family:var(--mono);white-space:nowrap}
+.p-ok{background:var(--ok-bg);color:var(--ok)}
+.p-warn{background:var(--warn-bg);color:var(--warn)}
+.p-bad{background:var(--bad-bg);color:var(--bad)}
+.gatecell{font-family:var(--mono);font-size:.78rem;color:var(--orange-700);cursor:pointer;background:none;border:0;padding:0;text-decoration:underline;text-underline-offset:3px}
+
+/* gate / notices */
+.gate{background:var(--carbon);color:#fff;border-radius:var(--r-lg);padding:16px 18px;display:flex;gap:14px;justify-content:space-between;align-items:center;flex-wrap:wrap;margin-top:16px}
+.gate b{font-family:var(--display);font-style:italic;font-weight:900;font-size:1.15rem}
+.gate .mono{color:#B8B2AA;font-size:.76rem}
+.notice{background:var(--orange-050);border-left:3px solid var(--orange);border-radius:var(--r);padding:11px 14px;font-size:.86rem;color:var(--ink)}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.filters select{font:inherit;font-family:var(--mono);font-size:.78rem;padding:8px 10px;border:1px solid var(--line-2);border-radius:var(--r);background:var(--surface);color:var(--ink);min-height:38px}
+.crumb{font-family:var(--mono);font-size:.72rem;color:var(--ink-3);padding:16px 0 0}
+.crumb a{color:var(--ink-3);text-decoration:none}
+.crumb a:hover{color:var(--orange-700)}
+.pagehead{padding:10px 0 18px}
+.pagehead h1{font-family:var(--display);font-weight:900;font-style:italic;font-size:clamp(1.6rem,4vw,2.5rem);letter-spacing:-.03em}
+.pagehead .answer{margin-top:12px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--orange);border-radius:var(--r);padding:13px 16px;max-width:76ch;font-size:.94rem}
+
+/* forms */
+.form{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:20px;max-width:560px}
+.form .field{flex:1 1 100%;margin-bottom:12px}
+.form .err{color:var(--bad);font-size:.76rem;font-family:var(--mono);margin-top:4px}
+.upload{border:1.5px dashed var(--line-2);border-radius:var(--r);padding:14px;text-align:center;font-size:.84rem;color:var(--ink-2);cursor:pointer}
+.upload.done{border-style:solid;border-color:var(--ok);color:var(--ok)}
+.steps{display:flex;gap:0;margin-bottom:18px;flex-wrap:wrap}
+.steps div{flex:1 1 90px;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);border-top:3px solid var(--line);padding-top:8px;margin-right:8px}
+.steps div.on{color:var(--ink);border-top-color:var(--orange)}
+
+/* portal */
+.portal-top{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);padding:16px;display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.acct{font-family:var(--mono);font-size:.76rem;color:var(--ink-2)}
+.acct b{color:var(--ink)}
+.cartbar{position:sticky;bottom:0;background:var(--carbon);color:#fff;border-radius:var(--r-lg);padding:12px 16px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:18px;box-shadow:var(--shadow);z-index:20}
+.cartbar .mono{color:#B8B2AA;font-size:.78rem}
+
+/* footer */
+footer.site{background:var(--carbon);color:#B8B2AA;margin-top:48px;padding:38px 0 60px;font-size:.86rem}
+footer.site a{color:#C9C3BB;text-decoration:none;display:block;padding:3px 0}
+footer.site a:hover{color:var(--orange)}
+footer.site h4{color:#fff;font-family:var(--mono);font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:22px}
+.fbot{border-top:1px solid #241f1c;margin-top:26px;padding-top:16px;font-family:var(--mono);font-size:.7rem;color:#6f6862;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.faq dt{font-weight:700;margin-top:14px}
+.faq dd{margin:4px 0 0;color:var(--ink-2);font-size:.92rem}
+@media(max-width:760px){
+  nav.main{order:3;width:100%;gap:12px;padding-bottom:8px}
+  .hdr-right{margin-left:0}
+}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+"use strict";
+/* ============================================================
+   TireNexus · prototipo de mostrador digital
+   Datos de demostración. Sustituir por el feed real del ERP.
+   ============================================================ */
+const WH = {
+  LEH:{id:"LEH", name:"Lehigh Acres", short:"Lehigh"},
+  FMY:{id:"FMY", name:"Fort Myers",  short:"Ft. Myers"}
+};
+
+const SIZES = [
+  {size:"295/75R22.5", cls:"comercial", li:"146/143L"},
+  {size:"11R22.5",     cls:"comercial", li:"146/143M"},
+  {size:"11R24.5",     cls:"comercial", li:"149/146L"},
+  {size:"285/75R24.5", cls:"comercial", li:"144/141L"},
+  {size:"225/70R19.5", cls:"mediano",   li:"128/126N"},
+  {size:"245/70R19.5", cls:"mediano",   li:"133/131M"},
+  {size:"LT265/70R17", cls:"ligero",    li:"121/118S"},
+  {size:"235/80R16",   cls:"remolque",  li:"124/120M"}
+];
+const APPS = ["arrastre","direccion","traccion","todo terreno"];
+const PROD = [
+  // sku, marca, modelo, medida, aplicación, ply, stock LEH, stock FMY, neto N1/N2/N3, backorder
+  ["SAI-29575-S637","Sailun","S637","295/75R22.5","arrastre",16,48,22,[236,248,262],null],
+  ["HAN-29575-AL22","Hankook","AL22","295/75R22.5","direccion",16,6,31,[298,312,329],null],
+  ["CON-29575-HDL3","Continental","HDL3","295/75R22.5","traccion",16,0,14,[371,389,408],"2026-10-02"],
+  ["DBC-29575-FD405","Double Coin","FD405","295/75R22.5","traccion",16,34,18,[268,281,296],null],
+  ["MIC-29575-XDA5","Michelin","X Line D","295/75R22.5","traccion",16,12,9,[498,522,548],null],
+  ["SAI-11225-S825","Sailun","S825","11R22.5","arrastre",16,52,27,[224,236,249],null],
+  ["BRS-11225-M726","Bridgestone","M726 EL","11R22.5","arrastre",16,8,16,[392,411,432],null],
+  ["GDY-11225-G661","Goodyear","G661 HSA","11R22.5","direccion",16,0,0,[404,424,446],"2026-10-09"],
+  ["HAN-11225-AH37","Hankook","AH37","11R22.5","direccion",16,29,11,[286,300,316],null],
+  ["SAI-11245-S637","Sailun","S637","11R24.5","arrastre",16,38,21,[252,265,279],null],
+  ["CON-11245-HSL3","Continental","HSL3","11R24.5","direccion",16,14,4,[389,408,429],null],
+  ["DBC-11245-RLB1","Double Coin","RLB1","11R24.5","traccion",16,26,12,[281,295,310],null],
+  ["MIC-11245-XDN2","Michelin","XDN2","11R24.5","traccion",16,5,7,[542,568,596],null],
+  ["SAI-28575-S753","Sailun","S753","285/75R24.5","traccion",14,17,9,[276,290,305],null],
+  ["HAN-28575-DL11","Hankook","DL11","285/75R24.5","arrastre",14,22,13,[264,277,292],null],
+  ["FIR-22570-FS561","Firestone","FS561","225/70R19.5","direccion",14,19,8,[238,250,263],null],
+  ["SAI-22570-S606","Sailun","S606","225/70R19.5","arrastre",14,31,14,[186,196,206],null],
+  ["HAN-24570-AH11","Hankook","AH11","245/70R19.5","direccion",16,12,6,[242,255,268],null],
+  ["BFG-26570-KO2","BFGoodrich","All-Terrain KO2","LT265/70R17","todo terreno",10,44,26,[248,261,275],null],
+  ["MIC-26570-LTX","Michelin","LTX A/T2","LT265/70R17","todo terreno",10,18,11,[289,304,320],null],
+  ["SAI-23580-ST","Sailun","ST Radial","235/80R16","arrastre",12,63,38,[96,101,107],null],
+  ["CAR-23580-HD","Carlisle","Radial HD","235/80R16","arrastre",12,41,29,[104,110,116],null]
+].map(function(r){
+  return {sku:r[0],brand:r[1],model:r[2],size:r[3],app:r[4],ply:r[5],
+          stock:{LEH:r[6],FMY:r[7]},net:{1:r[8][0],2:r[8][1],3:r[8][2]},bo:r[9],
+          li:(SIZES.find(function(s){return s.size===r[3];})||{}).li||""};
+});
+
+/* Zonas de entrega: ZIP → ruta, cortes, ventana y cumplimiento real publicado */
+const ZONES = [
+  {zip:"33971", city:"Lehigh Acres",  route:"LEH-CENTRO", wh:"LEH", cuts:["07:00","13:00"], win:"2 h", sla:98.1, miles:2},
+  {zip:"33905", city:"Fort Myers",    route:"FMY-I75",    wh:"FMY", cuts:["07:00","13:00"], win:"3 h", sla:96.8, miles:11},
+  {zip:"33913", city:"Gateway",       route:"FMY-I75",    wh:"FMY", cuts:["07:00","13:00"], win:"3 h", sla:96.2, miles:14},
+  {zip:"34142", city:"Immokalee",     route:"IMM-SR29",   wh:"LEH", cuts:["07:00"],         win:"mañana siguiente", sla:94.4, miles:32},
+  {zip:"34104", city:"Naples",        route:"NAP-SR951",  wh:"FMY", cuts:["07:00"],         win:"4 h", sla:95.1, miles:38},
+  {zip:"33950", city:"Punta Gorda",   route:"PGD-US41",   wh:"FMY", cuts:["07:00"],         win:"4 h", sla:93.6, miles:41},
+  {zip:"33440", city:"LaBelle",       route:"LAB-SR80",   wh:"LEH", cuts:["07:00"],         win:"mañana siguiente", sla:92.8, miles:29},
+  {zip:"33935", city:"Clewiston",     route:"LAB-SR80",   wh:"LEH", cuts:["07:00"],         win:"mañana siguiente", sla:91.9, miles:47}
+];
+const PERF = {fill:96.4, window:95.2, month:"agosto 2026", orders:1842, newAcc:31, portalShare:38};
+
+/* Historial de ejemplo del dealer demo */
+const HIST = [
+  {po:"41-2287", date:"2026-09-18", items:[["SAI-29575-S637",8],["CON-11245-HSL3",4]], total:3590.40, status:"entregado"},
+  {po:"41-2241", date:"2026-09-11", items:[["SAI-11225-S825",12]], total:2832.00, status:"entregado"},
+  {po:"41-2196", date:"2026-09-04", items:[["DBC-11245-RLB1",6],["SAI-23580-ST",8]], total:2578.00, status:"entregado"},
+  {po:"41-2301", date:"2026-09-24", items:[["SAI-29575-S637",4],["BFG-26570-KO2",4]], total:2036.00, status:"en ruta"}
+];
+
+/* ---------------- idioma ---------------- */
+const I18N = {
+ es:{
+  nav_stock:"Disponibilidad", nav_delivery:"Entrega", nav_brands:"Marcas", nav_program:"Programa dealer",
+  nav_learn:"Aprende", nav_perf:"Desempeño", nav_portal:"Mi cuenta",
+  cta_open:"Abrir cuenta", cta_login:"Entrar", cta_logout:"Salir",
+  hero_h1:"¿Qué medida necesitas en este momento?",
+  hero_sub:"Distribuidor mayorista para talleres, flotas y llanteras del suroeste de Florida y el corredor I-75. Consulta el stock real antes de prometerle nada a tu cliente.",
+  tab_size:"Por medida", tab_vehicle:"Por vehículo", tab_part:"Por número de parte", tab_list:"Subir lista",
+  f_size:"Medida", f_app:"Aplicación", f_zip:"Código postal", f_brand:"Marca", f_avail:"Disponibilidad",
+  f_search:"Ver stock y entrega",
+  hint:"Stock real, actualizado cada 15 minutos. El precio neto aparece al entrar a tu cuenta.",
+  popular:"Medidas más pedidas:",
+  st_stock:"Llantas en piso", st_routes:"Rutas diarias", st_fill:"Fill rate", st_cut:"Próximo corte",
+  live:"En vivo",
+  gate_t:"Abre cuenta y ve tu precio neto",
+  gate_s:"5 campos · licencia y resale certificate · cuenta operando hoy",
+  gate_b:"Abrir cuenta en 2 minutos",
+  col_prod:"Producto", col_size:"Medida · LI/SS", col_app:"Aplicación", col_price:"Precio neto", col_delivery:"Entrega", col_add:"",
+  see_price:"Entra para ver", add:"Agregar", notify:"Avisarme",
+  instock:"en stock", low:"bajo", backorder:"Backorder",
+  all:"Todas", any:"Cualquiera", only_stock:"Solo con stock hoy",
+  results_for:"Disponibilidad de", no_results:"No hay producto para ese filtro. Prueba con otra aplicación o marca.",
+  deliver_to:"Entrega en", cut_today:"corte de hoy", route:"Ruta", compliance:"Cumplimiento de ventana",
+  how_t:"Cómo funciona", how_1:"Consulta el stock", how_1d:"Por medida, vehículo o número de parte. Sin cuenta y sin llamada.",
+  how_2:"Abre tu cuenta", how_2d:"Cinco campos y tu resale certificate. Queda operando el mismo día.",
+  how_3:"Pide y repite", how_3d:"Precio neto en pantalla, corte de ruta visible y recompra en un clic desde tu historial.",
+  why_t:"Por qué los talleres compran aquí",
+  faq_t:"Preguntas del mostrador",
+  perf_t:"Desempeño publicado", perf_l:"El número real de cada mes, salga como salga. Si no lo cumplimos, aquí se ve.",
+  acc_t:"Abre tu cuenta de dealer", acc_l:"Cinco datos. Validamos tu resale certificate al instante y tu cuenta queda operando hoy con línea provisional; la línea completa se aprueba en 24 horas.",
+  fld_biz:"Nombre del negocio", fld_ein:"EIN o licencia estatal", fld_phone:"Teléfono", fld_addr:"Dirección de entrega", fld_zip:"Código postal",
+  fld_cert:"Resale certificate (foto o PDF)", cert_drop:"Toca para adjuntar", cert_ok:"Certificado adjunto · validado",
+  submit:"Abrir mi cuenta", req:"Campo obligatorio", bad_zip:"Código postal fuera de zona de ruta. Te contactamos para cotizar flete.",
+  welcome:"Cuenta abierta", welcome_s:"Cuenta provisional activa · nivel 2 · línea de US$ 5,000 hasta aprobación completa.",
+  portal_t:"Mostrador", credit:"Crédito disponible", nextcut:"Próximo corte", tier:"Nivel de dealer", openorders:"Pedidos abiertos",
+  reorder:"Repetir pedido", history:"Historial", inroute:"En ruta", delivered:"Entregado",
+  cart:"Carrito", cart_empty:"Tu carrito está vacío.", place:"Enviar pedido", placed:"Pedido enviado. Sale en el corte de las",
+  qty:"Cant", remove:"Quitar", subtotal:"Subtotal",
+  learn_t:"Aprende", brands_t:"Marcas que manejamos", prog_t:"Programa Nexus Dealer",
+  zones_t:"Zonas y ventanas de entrega",
+  demo_tag:"Prototipo · datos de demostración",
+  lang:"EN", theme_l:"Claro", theme_d:"Oscuro"
+ },
+ en:{
+  nav_stock:"Availability", nav_delivery:"Delivery", nav_brands:"Brands", nav_program:"Dealer program",
+  nav_learn:"Learn", nav_perf:"Performance", nav_portal:"My account",
+  cta_open:"Open account", cta_login:"Log in", cta_logout:"Log out",
+  hero_h1:"What size do you need right now?",
+  hero_sub:"Wholesale distributor for shops, fleets and independent tire dealers across Southwest Florida and the I-75 corridor. Check real stock before you promise your customer anything.",
+  tab_size:"By size", tab_vehicle:"By vehicle", tab_part:"By part number", tab_list:"Upload list",
+  f_size:"Size", f_app:"Application", f_zip:"ZIP code", f_brand:"Brand", f_avail:"Availability",
+  f_search:"See stock and delivery",
+  hint:"Real stock, refreshed every 15 minutes. Net pricing shows once you log in.",
+  popular:"Most requested sizes:",
+  st_stock:"Tires on the floor", st_routes:"Daily routes", st_fill:"Fill rate", st_cut:"Next cutoff",
+  live:"Live",
+  gate_t:"Open an account to see your net price",
+  gate_s:"5 fields · license and resale certificate · account running today",
+  gate_b:"Open account in 2 minutes",
+  col_prod:"Product", col_size:"Size · LI/SS", col_app:"Application", col_price:"Net price", col_delivery:"Delivery", col_add:"",
+  see_price:"Log in to see", add:"Add", notify:"Notify me",
+  instock:"in stock", low:"low", backorder:"Backorder",
+  all:"All", any:"Any", only_stock:"In stock today only",
+  results_for:"Availability for", no_results:"Nothing matches that filter. Try another application or brand.",
+  deliver_to:"Delivering to", cut_today:"today's cutoff", route:"Route", compliance:"Window compliance",
+  how_t:"How it works", how_1:"Check stock", how_1d:"By size, vehicle or part number. No account, no phone call.",
+  how_2:"Open your account", how_2d:"Five fields and your resale certificate. Running the same day.",
+  how_3:"Order and repeat", how_3d:"Net price on screen, route cutoff visible, one-click reorder from your history.",
+  why_t:"Why shops buy here",
+  faq_t:"Counter questions",
+  perf_t:"Published performance", perf_l:"The real number every month, good or bad. If we miss, you see it here.",
+  acc_t:"Open your dealer account", acc_l:"Five fields. We validate your resale certificate instantly and your account runs today on a provisional line; full line approved within 24 hours.",
+  fld_biz:"Business name", fld_ein:"EIN or state license", fld_phone:"Phone", fld_addr:"Delivery address", fld_zip:"ZIP code",
+  fld_cert:"Resale certificate (photo or PDF)", cert_drop:"Tap to attach", cert_ok:"Certificate attached · validated",
+  submit:"Open my account", req:"Required field", bad_zip:"ZIP outside our route area. We'll contact you to quote freight.",
+  welcome:"Account opened", welcome_s:"Provisional account active · tier 2 · US$5,000 line until full approval.",
+  portal_t:"Counter", credit:"Available credit", nextcut:"Next cutoff", tier:"Dealer tier", openorders:"Open orders",
+  reorder:"Reorder", history:"Order history", inroute:"On the truck", delivered:"Delivered",
+  cart:"Cart", cart_empty:"Your cart is empty.", place:"Place order", placed:"Order placed. Ships on the",
+  qty:"Qty", remove:"Remove", subtotal:"Subtotal",
+  learn_t:"Learn", brands_t:"Brands we carry", prog_t:"Nexus Dealer program",
+  zones_t:"Delivery zones and windows",
+  demo_tag:"Prototype · demonstration data",
+  lang:"ES", theme_l:"Light", theme_d:"Dark"
+ }
+};
+
+/* ---------------- estado ---------------- */
+const S = {
+  lang:"es",
+  theme:null,          // null = sistema
+  session:null,        // {biz, tier, zip, credit}
+  cart:[],             // {sku, qty}
+  zip:"33971",
+  filters:{app:"", brand:"", onlyStock:false}
+};
+function load(){
+  try{
+    const raw = localStorage.getItem("tn_demo");
+    if(raw){ const d = JSON.parse(raw); Object.assign(S, d); }
+  }catch(e){}
+}
+function save(){
+  try{ localStorage.setItem("tn_demo", JSON.stringify({lang:S.lang,theme:S.theme,session:S.session,cart:S.cart,zip:S.zip})); }catch(e){}
+}
+function t(k){ return (I18N[S.lang] && I18N[S.lang][k]) || (I18N.es[k] || k); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];}); }
+function money(n){ return "$ " + n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2}); }
+function zone(zip){ return ZONES.find(function(z){return z.zip===zip;}) || null; }
+function totalStock(){ return PROD.reduce(function(a,p){return a + p.stock.LEH + p.stock.FMY;},0); }
+function stockOf(p){ return p.stock.LEH + p.stock.FMY; }
+function nextCut(z){
+  const now = new Date(); const mins = now.getHours()*60 + now.getMinutes();
+  const cuts = (z ? z.cuts : ["07:00","13:00"]);
+  for(var i=0;i<cuts.length;i++){
+    const parts = cuts[i].split(":"); const m = (+parts[0])*60 + (+parts[1]);
+    if(mins < m) return {label:cuts[i], today:true};
+  }
+  return {label:cuts[0], today:false};
+}
+function appLabel(a){
+  const m = {es:{arrastre:"Arrastre",direccion:"Dirección",traccion:"Tracción","todo terreno":"Todo terreno"},
+             en:{arrastre:"Trailer",direccion:"Steer",traccion:"Drive","todo terreno":"All-terrain"}};
+  return m[S.lang][a] || a;
+}
+function stockPill(n, bo){
+  if(n > 12) return '<span class="pill p-ok">'+n+' '+t("instock")+'</span>';
+  if(n > 0)  return '<span class="pill p-warn">'+n+' · '+t("low")+'</span>';
+  return '<span class="pill p-bad">'+t("backorder")+(bo?' '+bo.slice(5):'')+'</span>';
+}
+function priceCell(p){
+  if(S.session) return '<td class="num"><b>'+money(p.net[S.session.tier])+'</b></td>';
+  return '<td><button class="gatecell" data-go="#/cuenta">'+t("see_price")+'</button></td>';
+}
+function deliveryFor(p, z){
+  const n = stockOf(p);
+  if(n === 0) return {txt: (p.bo || "—"), cls:"p-bad"};
+  if(!z) return {txt:"—", cls:""};
+  const c = nextCut(z);
+  return {txt: c.today ? (z.win==="mañana siguiente"||z.win==="next morning" ? (S.lang==="es"?"Mañana a. m.":"Tomorrow a.m.") : (S.lang==="es"?"Hoy · corte "+c.label:"Today · cut "+c.label)) : (S.lang==="es"?"Mañana · corte "+c.label:"Tomorrow · cut "+c.label), cls:""};
+}
+function cartCount(){ return S.cart.reduce(function(a,i){return a+i.qty;},0); }
+function cartTotal(){
+  return S.cart.reduce(function(a,i){
+    const p = PROD.find(function(x){return x.sku===i.sku;});
+    return a + (p ? p.net[S.session?S.session.tier:2] * i.qty : 0);
+  },0);
+}
+
+/* ---------------- chrome ---------------- */
+function header(route){
+  const on = function(r){ return route.indexOf(r)===0 ? "on" : ""; };
+  return ''+
+  '<div class="demo"><div class="wrap">'+
+    '<span><b>'+t("demo_tag")+'</b></span>'+
+    '<span class="sp">'+
+      '<button id="btn-lang">'+t("lang")+'</button>'+
+      '<button id="btn-theme" aria-pressed="'+(S.theme==="dark")+'">'+(S.theme==="dark"?t("theme_l"):t("theme_d"))+'</button>'+
+    '</span>'+
+  '</div></div>'+
+  '<header class="site"><div class="wrap bar">'+
+    '<a class="logo" href="#/">TIRE<span class="o">NEXUS</span><small>WHOLESALE TIRE DISTRIBUTOR</small></a>'+
+    '<nav class="main">'+
+      '<a class="'+on("/stock")+'" href="#/stock/295-75R22-5">'+t("nav_stock")+'</a>'+
+      '<a class="'+on("/entrega")+'" href="#/entrega">'+t("nav_delivery")+'</a>'+
+      '<a class="'+on("/marcas")+'" href="#/marcas">'+t("nav_brands")+'</a>'+
+      '<a class="'+on("/programa")+'" href="#/programa">'+t("nav_program")+'</a>'+
+      '<a class="'+on("/aprende")+'" href="#/aprende">'+t("nav_learn")+'</a>'+
+      '<a class="'+on("/desempeno")+'" href="#/desempeno">'+t("nav_perf")+'</a>'+
+    '</nav>'+
+    '<div class="hdr-right">'+
+      '<a class="phone" href="tel:+12393148100">(239) 314-8100</a>'+
+      (S.session
+        ? '<a class="btn sm ghost light" href="#/portal">'+t("nav_portal")+(cartCount()?' · '+cartCount():'')+'</a><button class="btn sm quiet" id="btn-logout">'+t("cta_logout")+'</button>'
+        : '<a class="btn sm ghost light" href="#/portal">'+t("cta_login")+'</a><a class="btn sm" href="#/cuenta">'+t("cta_open")+'</a>')+
+    '</div>'+
+  '</div></header>';
+}
+function footer(){
+  return '<footer class="site"><div class="wrap">'+
+    '<div class="fgrid">'+
+      '<div><h4>'+t("nav_stock")+'</h4>'+
+        SIZES.slice(0,5).map(function(s){return '<a href="#/stock/'+s.size.replace(/[\/\.]/g,"-")+'">'+s.size+'</a>';}).join("")+
+      '</div>'+
+      '<div><h4>'+t("nav_delivery")+'</h4>'+
+        ZONES.slice(0,5).map(function(z){return '<a href="#/entrega/'+z.zip+'">'+z.city+' · '+z.zip+'</a>';}).join("")+
+      '</div>'+
+      '<div><h4>'+t("nav_program")+'</h4>'+
+        '<a href="#/cuenta">'+t("cta_open")+'</a><a href="#/programa">Nexus Dealer</a><a href="#/desempeno">'+t("nav_perf")+'</a><a href="#/aprende">'+t("nav_learn")+'</a>'+
+      '</div>'+
+      '<div><h4>TireNexus</h4>'+
+        '<span class="mono" style="font-size:.76rem;display:block;line-height:1.8">5530 4th St W<br>Lehigh Acres, FL 33971<br>(239) 314-8100<br>dealers@tirenexus.com</span>'+
+      '</div>'+
+    '</div>'+
+    '<div class="fbot"><span>© 2026 TireNexus · Wholesale Tire Distributor</span><span>EN · ES · Kreyòl</span></div>'+
+  '</div></footer>';
+}
+
+/* ---------------- vista: inicio ---------------- */
+function viewHome(){
+  const z = zone(S.zip); const c = nextCut(z);
+  const popular = ["295/75R22.5","11R22.5","11R24.5","LT265/70R17"];
+  return ''+
+  '<section class="hero"><div class="wrap">'+
+    '<div class="eyebrow">Mayoreo · Lee · Collier · Charlotte · Hendry · corredor I-75</div>'+
+    '<h1>'+t("hero_h1")+'</h1>'+
+    '<p class="sub">'+t("hero_sub")+'</p>'+
+    '<div class="searchbox">'+
+      '<div class="tabs" role="tablist">'+
+        '<button role="tab" aria-selected="true">'+t("tab_size")+'</button>'+
+        '<button role="tab" aria-selected="false">'+t("tab_vehicle")+'</button>'+
+        '<button role="tab" aria-selected="false">'+t("tab_part")+'</button>'+
+        '<button role="tab" aria-selected="false">'+t("tab_list")+'</button>'+
+      '</div>'+
+      '<form class="searchform" id="search">'+
+        '<div class="field"><label for="q-size">'+t("f_size")+'</label>'+
+          '<select id="q-size">'+SIZES.map(function(s){return '<option>'+s.size+'</option>';}).join("")+'</select></div>'+
+        '<div class="field"><label for="q-app">'+t("f_app")+'</label>'+
+          '<select id="q-app"><option value="">'+t("any")+'</option>'+APPS.map(function(a){return '<option value="'+a+'">'+appLabel(a)+'</option>';}).join("")+'</select></div>'+
+        '<div class="field"><label for="q-zip">'+t("f_zip")+'</label>'+
+          '<select id="q-zip">'+ZONES.map(function(zz){return '<option value="'+zz.zip+'"'+(zz.zip===S.zip?" selected":"")+'>'+zz.zip+' · '+zz.city+'</option>';}).join("")+'</select></div>'+
+        '<button class="btn" type="submit">'+t("f_search")+'</button>'+
+      '</form>'+
+      '<div class="hint">'+t("hint")+'</div>'+
+      '<div class="chips"><span class="mono" style="font-size:.72rem;color:var(--ink-3);align-self:center">'+t("popular")+'</span>'+
+        popular.map(function(s){return '<button class="chip" data-size="'+s+'">'+s+'</button>';}).join("")+
+      '</div>'+
+    '</div>'+
+    '<div class="stats">'+
+      '<div class="stat"><b class="tab" id="counter">'+totalStock().toLocaleString("en-US")+'</b><span>'+t("st_stock")+' · <span class="live">'+t("live")+'</span></span></div>'+
+      '<div class="stat"><b>2×</b><span>'+t("st_routes")+'</span></div>'+
+      '<div class="stat"><b class="tab">'+PERF.fill+'%</b><span>'+t("st_fill")+' · '+PERF.month+'</span></div>'+
+      '<div class="stat"><b class="tab">'+c.label+'</b><span>'+t("st_cut")+' · '+(z?z.route:"")+'</span></div>'+
+    '</div>'+
+  '</div></section>'+
+
+  '<section class="band"><div class="wrap">'+
+    '<h2 class="sec-title">'+t("how_t")+'</h2>'+
+    '<div class="grid g3" style="margin-top:16px">'+
+      '<div class="card"><div class="eyebrow">01</div><h3>'+t("how_1")+'</h3><p>'+t("how_1d")+'</p></div>'+
+      '<div class="card"><div class="eyebrow">02</div><h3>'+t("how_2")+'</h3><p>'+t("how_2d")+'</p></div>'+
+      '<div class="card"><div class="eyebrow">03</div><h3>'+t("how_3")+'</h3><p>'+t("how_3d")+'</p></div>'+
+    '</div>'+
+    (S.session ? '' :
+    '<div class="gate"><div><b>'+t("gate_t")+'</b><div class="mono">'+t("gate_s")+'</div></div><a class="btn" href="#/cuenta">'+t("gate_b")+'</a></div>')+
+  '</div></section>'+
+
+  '<section class="band alt"><div class="wrap">'+
+    '<h2 class="sec-title">'+t("zones_t")+'</h2>'+
+    '<p class="sec-lede">'+(S.lang==="es"
+      ? "Cada zona publica su ruta, sus cortes y el cumplimiento real del mes. Si una zona no aparece, todavía no la servimos con ventana comprometida."
+      : "Every zone publishes its route, cutoffs and the real compliance of the month. If a zone is not listed, we do not yet serve it with a committed window.")+'</p>'+
+    '<div class="tablewrap" style="margin-top:14px"><table>'+
+      '<thead><tr><th>ZIP</th><th>'+(S.lang==="es"?"Ciudad":"City")+'</th><th>'+t("route")+'</th><th>'+(S.lang==="es"?"Cortes":"Cutoffs")+'</th><th>'+(S.lang==="es"?"Ventana":"Window")+'</th><th>'+t("compliance")+'</th></tr></thead><tbody>'+
+      ZONES.map(function(zz){
+        return '<tr><td class="num"><a href="#/entrega/'+zz.zip+'">'+zz.zip+'</a></td><td>'+zz.city+'</td><td class="num">'+zz.route+'</td><td class="num">'+zz.cuts.join(" · ")+'</td><td class="num">'+zz.win+'</td>'+
+          '<td class="num">'+(zz.sla>=95?'<span class="pill p-ok">':'<span class="pill p-warn">')+zz.sla+'%</span></td></tr>';
+      }).join("")+
+      '</tbody></table></div>'+
+  '</div></section>'+
+
+  '<section class="band"><div class="wrap">'+
+    '<h2 class="sec-title">'+t("faq_t")+'</h2>'+
+    '<dl class="faq" style="max-width:72ch">'+
+      faqItems().map(function(f){return '<dt>'+f.q+'</dt><dd>'+f.a+'</dd>';}).join("")+
+    '</dl>'+
+  '</div></section>';
+}
+function faqItems(){
+  return S.lang==="es" ? [
+    {q:"¿Cuál es el pedido mínimo?", a:"Cuatro llantas por entrega en ruta propia. Menos de cuatro se recoge en bodega sin cargo, o se agrega a la siguiente entrega de la zona."},
+    {q:"¿Entregan el mismo día?", a:"Sí en Lehigh Acres, Fort Myers, Gateway y Naples si el pedido entra antes del corte de la ruta. Immokalee, LaBelle y Clewiston se entregan a la mañana siguiente."},
+    {q:"¿Qué necesito para abrir cuenta?", a:"EIN o licencia estatal y tu resale certificate. Cinco campos en línea. La cuenta queda operando el mismo día con línea provisional de US$ 5,000; la línea completa se aprueba en 24 horas."},
+    {q:"¿Aceptan devoluciones?", a:"Sí, con número de RMA generado en el portal. Sin RMA no entra al muelle. La resolución de fábrica tarda hasta 10 días hábiles y el crédito provisional se aplica el mismo día."},
+    {q:"¿Manejan precio distinto por volumen?", a:"Tres niveles de dealer por volumen trimestral. El precio es el mismo para todos los del mismo nivel y se ve en el portal; no se negocia por llamada."}
+  ] : [
+    {q:"What is the minimum order?", a:"Four tires for route delivery. Under four, pick up at the warehouse at no charge or ride along on the next delivery to your zone."},
+    {q:"Do you deliver same day?", a:"Yes in Lehigh Acres, Fort Myers, Gateway and Naples when the order lands before the route cutoff. Immokalee, LaBelle and Clewiston deliver next morning."},
+    {q:"What do I need to open an account?", a:"EIN or state license plus your resale certificate. Five fields online. The account runs the same day on a provisional $5,000 line; the full line is approved within 24 hours."},
+    {q:"Do you take returns?", a:"Yes, with an RMA number generated in the portal. No RMA, no dock. Manufacturer resolution takes up to 10 business days and provisional credit posts the same day."},
+    {q:"Is pricing different by volume?", a:"Three dealer tiers based on quarterly volume. Everyone in a tier pays the same published net price. It is not negotiated call by call."}
+  ];
+}
+
+/* ---------------- vista: stock por medida ---------------- */
+function viewStock(slug){
+  const size = SIZES.map(function(s){return s.size;}).find(function(s){return s.replace(/[\/\.]/g,"-")===slug;}) || "295/75R22.5";
+  const z = zone(S.zip);
+  var rows = PROD.filter(function(p){return p.size===size;});
+  if(S.filters.app) rows = rows.filter(function(p){return p.app===S.filters.app;});
+  if(S.filters.brand) rows = rows.filter(function(p){return p.brand===S.filters.brand;});
+  if(S.filters.onlyStock) rows = rows.filter(function(p){return stockOf(p)>0;});
+  const brands = Array.from(new Set(PROD.filter(function(p){return p.size===size;}).map(function(p){return p.brand;})));
+  const inStock = PROD.filter(function(p){return p.size===size && stockOf(p)>0;}).reduce(function(a,p){return a+stockOf(p);},0);
+  const answer = S.lang==="es"
+    ? "TireNexus tiene <b>"+inStock+" llantas "+size+"</b> en piso entre sus bodegas de Lehigh Acres y Fort Myers, de "+brands.length+" marcas. Con pedido antes del corte de las "+nextCut(z).label+", la entrega en "+(z?z.city:"la zona")+" es "+(z&&z.win!=="mañana siguiente"?"el mismo día":"a la mañana siguiente")+"."
+    : "TireNexus has <b>"+inStock+" "+size+" tires</b> on the floor across its Lehigh Acres and Fort Myers warehouses, from "+brands.length+" brands. Ordered before the "+nextCut(z).label+" cutoff, delivery in "+(z?z.city:"the zone")+" is "+(z&&z.win!=="mañana siguiente"?"same day":"next morning")+".";
+
+  return ''+
+  '<div class="wrap">'+
+    '<div class="crumb"><a href="#/">'+(S.lang==="es"?"Inicio":"Home")+'</a> · <a href="#/stock/295-75R22-5">'+t("nav_stock")+'</a> · '+size+'</div>'+
+    '<div class="pagehead">'+
+      '<h1>'+t("results_for")+' '+size+'</h1>'+
+      '<div class="answer">'+answer+'</div>'+
+    '</div>'+
+    '<div class="filters">'+
+      '<select id="f-size">'+SIZES.map(function(s){return '<option'+(s.size===size?" selected":"")+'>'+s.size+'</option>';}).join("")+'</select>'+
+      '<select id="f-app"><option value="">'+t("f_app")+': '+t("all")+'</option>'+APPS.map(function(a){return '<option value="'+a+'"'+(S.filters.app===a?" selected":"")+'>'+appLabel(a)+'</option>';}).join("")+'</select>'+
+      '<select id="f-brand"><option value="">'+t("f_brand")+': '+t("all")+'</option>'+brands.map(function(b){return '<option'+(S.filters.brand===b?" selected":"")+'>'+b+'</option>';}).join("")+'</select>'+
+      '<select id="f-zip">'+ZONES.map(function(zz){return '<option value="'+zz.zip+'"'+(zz.zip===S.zip?" selected":"")+'>'+t("deliver_to")+' '+zz.zip+' · '+zz.city+'</option>';}).join("")+'</select>'+
+      '<label class="mono" style="display:flex;align-items:center;gap:7px;font-size:.78rem"><input type="checkbox" id="f-stock"'+(S.filters.onlyStock?" checked":"")+'> '+t("only_stock")+'</label>'+
+    '</div>'+
+    (rows.length ? '<div class="tablewrap"><table>'+
+      '<thead><tr><th>'+t("col_prod")+'</th><th>'+t("col_size")+'</th><th>'+t("col_app")+'</th><th>'+WH.LEH.short+'</th><th>'+WH.FMY.short+'</th><th>'+t("col_delivery")+'</th><th>'+t("col_price")+'</th><th></th></tr></thead><tbody>'+
+      rows.map(function(p){
+        const d = deliveryFor(p, z); const n = stockOf(p);
+        return '<tr>'+
+          '<td><b>'+esc(p.brand)+' '+esc(p.model)+'</b><div class="mono" style="font-size:.72rem;color:var(--ink-3)">'+p.sku+' · '+p.ply+'PR</div></td>'+
+          '<td class="num">'+p.size+'<div class="mono" style="font-size:.72rem;color:var(--ink-3)">'+p.li+'</div></td>'+
+          '<td>'+appLabel(p.app)+'</td>'+
+          '<td>'+stockPill(p.stock.LEH, p.bo)+'</td>'+
+          '<td>'+stockPill(p.stock.FMY, p.bo)+'</td>'+
+          '<td class="num">'+d.txt+'</td>'+
+          priceCell(p)+
+          '<td>'+(n>0
+            ? (S.session ? '<button class="btn sm" data-add="'+p.sku+'">'+t("add")+'</button>' : '<a class="btn sm ghost" href="#/cuenta">'+t("add")+'</a>')
+            : '<button class="btn sm quiet" data-notify="'+p.sku+'">'+t("notify")+'</button>')+'</td>'+
+        '</tr>';
+      }).join("")+
+      '</tbody></table></div>'
+      : '<div class="notice">'+t("no_results")+'</div>')+
+    (S.session ? '' : '<div class="gate"><div><b>'+t("gate_t")+'</b><div class="mono">'+t("gate_s")+'</div></div><a class="btn" href="#/cuenta">'+t("gate_b")+'</a></div>')+
+    '<div class="grid g3" style="margin-top:26px">'+
+      '<div class="card"><h3>'+(S.lang==="es"?"Otras medidas":"Other sizes")+'</h3><p>'+
+        SIZES.filter(function(s){return s.size!==size;}).slice(0,5).map(function(s){return '<a href="#/stock/'+s.size.replace(/[\/\.]/g,"-")+'">'+s.size+'</a>';}).join(" · ")+'</p></div>'+
+      '<div class="card"><h3>'+(S.lang==="es"?"Ficha técnica":"Spec sheet")+'</h3><p class="mono" style="font-size:.8rem">'+size+' · '+(SIZES.find(function(s){return s.size===size;})||{}).li+' · '+(S.lang==="es"?"presión y montaje según fabricante":"pressure and mounting per manufacturer")+'</p></div>'+
+      '<div class="card"><h3>'+(S.lang==="es"?"¿No la encuentras?":"Can't find it?")+'</h3><p>'+(S.lang==="es"?"Escribe al WhatsApp de despacho: te decimos si entra en el próximo contenedor y en qué fecha.":"Message dispatch on WhatsApp: we'll tell you if it's on the next container and the exact date.")+'</p></div>'+
+    '</div>'+
+    (S.session ? cartBar() : '')+
+  '</div>';
+}
+
+/* ---------------- vista: entrega ---------------- */
+function viewZona(zip){
+  if(!zip){
+    return '<div class="wrap"><div class="pagehead"><h1>'+t("zones_t")+'</h1>'+
+      '<div class="answer">'+(S.lang==="es"
+        ? "TireNexus entrega en ocho zonas del suroeste de Florida desde dos bodegas, con dos rutas diarias en Lee y Collier. Cada zona publica su corte, su ventana y su cumplimiento real."
+        : "TireNexus delivers to eight Southwest Florida zones from two warehouses, with two daily routes in Lee and Collier. Every zone publishes its cutoff, window and real compliance.")+'</div></div>'+
+      '<div class="grid g3">'+ZONES.map(function(z){
+        return '<div class="card"><div class="eyebrow">'+z.route+'</div><h3>'+z.city+' · '+z.zip+'</h3>'+
+        '<p class="mono" style="font-size:.8rem">'+(S.lang==="es"?"Cortes":"Cutoffs")+': '+z.cuts.join(" · ")+'<br>'+(S.lang==="es"?"Ventana":"Window")+': '+z.win+'<br>'+t("compliance")+': '+z.sla+'%</p>'+
+        '<p style="margin-top:8px"><a href="#/entrega/'+z.zip+'">'+(S.lang==="es"?"Ver la zona":"See the zone")+' →</a></p></div>';
+      }).join("")+'</div></div>';
+  }
+  const z = zone(zip); if(!z) return viewZona(null);
+  const top = PROD.filter(function(p){return stockOf(p)>20;}).slice(0,6);
+  return '<div class="wrap">'+
+    '<div class="crumb"><a href="#/">'+(S.lang==="es"?"Inicio":"Home")+'</a> · <a href="#/entrega">'+t("nav_delivery")+'</a> · '+z.city+'</div>'+
+    '<div class="pagehead"><h1>'+(S.lang==="es"?"Entrega de llantas en ":"Tire delivery in ")+z.city+', FL '+z.zip+'</h1>'+
+      '<div class="answer">'+(S.lang==="es"
+        ? "TireNexus entrega en "+z.city+" por la ruta <b>"+z.route+"</b> desde la bodega de "+WH[z.wh].name+", a "+z.miles+" millas. Cortes a las "+z.cuts.join(" y ")+". Ventana comprometida: <b>"+z.win+"</b>. Cumplimiento real en "+PERF.month+": <b>"+z.sla+"%</b>."
+        : "TireNexus delivers to "+z.city+" on route <b>"+z.route+"</b> out of the "+WH[z.wh].name+" warehouse, "+z.miles+" miles away. Cutoffs at "+z.cuts.join(" and ")+". Committed window: <b>"+z.win+"</b>. Real compliance in "+PERF.month+": <b>"+z.sla+"%</b>.")+'</div>'+
+    '</div>'+
+    '<div class="stats">'+
+      '<div class="stat"><b class="tab">'+z.sla+'%</b><span>'+t("compliance")+'</span></div>'+
+      '<div class="stat"><b class="tab">'+z.cuts[0]+'</b><span>'+(S.lang==="es"?"Primer corte":"First cutoff")+'</span></div>'+
+      '<div class="stat"><b class="tab">'+z.miles+' mi</b><span>'+(S.lang==="es"?"Desde ":"From ")+WH[z.wh].short+'</span></div>'+
+      '<div class="stat"><b>'+(z.cuts.length===2?"2×":"1×")+'</b><span>'+(S.lang==="es"?"Entregas al día":"Deliveries per day")+'</span></div>'+
+    '</div>'+
+    '<h2 class="sec-title" style="margin-top:30px">'+(S.lang==="es"?"Lo que sale más en esta ruta":"What moves most on this route")+'</h2>'+
+    '<div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>'+t("col_prod")+'</th><th>'+t("col_size")+'</th><th>'+(S.lang==="es"?"En piso":"On floor")+'</th><th></th></tr></thead><tbody>'+
+      top.map(function(p){return '<tr><td><b>'+esc(p.brand)+' '+esc(p.model)+'</b></td><td class="num">'+p.size+'</td><td>'+stockPill(stockOf(p),null)+'</td>'+
+        '<td><a class="btn sm ghost" href="#/stock/'+p.size.replace(/[\/\.]/g,"-")+'">'+(S.lang==="es"?"Ver":"View")+'</a></td></tr>';}).join("")+
+    '</tbody></table></div>'+
+    '<div class="gate"><div><b>'+(S.lang==="es"?"¿Taller en "+z.city+"?":"Shop in "+z.city+"?")+'</b><div class="mono">'+(S.lang==="es"?"Abre cuenta y entra a la ruta "+z.route:"Open an account and join route "+z.route)+'</div></div><a class="btn" href="#/cuenta">'+t("gate_b")+'</a></div>'+
+  '</div>';
+}
+
+/* ---------------- vista: alta de cuenta ---------------- */
+function viewCuenta(){
+  return '<div class="wrap">'+
+    '<div class="pagehead"><h1>'+t("acc_t")+'</h1><p class="sec-lede">'+t("acc_l")+'</p></div>'+
+    '<div class="steps"><div class="on">01 · '+(S.lang==="es"?"Datos":"Details")+'</div><div class="on">02 · '+(S.lang==="es"?"Certificado":"Certificate")+'</div><div>03 · '+(S.lang==="es"?"Cuenta activa":"Account live")+'</div></div>'+
+    '<form class="form" id="signup" novalidate>'+
+      '<div class="field"><label for="s-biz">'+t("fld_biz")+'</label><input id="s-biz" autocomplete="organization" placeholder="Ortega Truck Tire &amp; Service"></div>'+
+      '<div class="field"><label for="s-ein">'+t("fld_ein")+'</label><input id="s-ein" class="mono" placeholder="59-1234567"></div>'+
+      '<div class="field"><label for="s-phone">'+t("fld_phone")+'</label><input id="s-phone" class="mono" inputmode="tel" placeholder="(239) 555-0148"></div>'+
+      '<div class="field"><label for="s-addr">'+t("fld_addr")+'</label><input id="s-addr" placeholder="1201 N 15th St"></div>'+
+      '<div class="field"><label for="s-zip">'+t("fld_zip")+'</label><input id="s-zip" class="mono" inputmode="numeric" maxlength="5" value="'+S.zip+'"></div>'+
+      '<div class="field"><label>'+t("fld_cert")+'</label><div class="upload" id="s-cert" tabindex="0" role="button">'+t("cert_drop")+'</div></div>'+
+      '<button class="btn" type="submit" style="width:100%">'+t("submit")+'</button>'+
+      '<p class="mono" style="font-size:.72rem;color:var(--ink-3);margin-top:12px">'+(S.lang==="es"
+        ? "Validación automática del certificado contra el registro estatal. Cuenta provisional inmediata; línea completa en 24 h hábiles."
+        : "Automatic certificate validation against the state registry. Provisional account is immediate; full line within 24 business hours.")+'</p>'+
+    '</form>'+
+  '</div>';
+}
+
+/* ---------------- vista: portal ---------------- */
+function cartBar(){
+  if(!S.cart.length) return '';
+  return '<div class="cartbar"><div><b class="wm" style="font-size:1.05rem">'+t("cart")+' · '+cartCount()+'</b>'+
+    '<div class="mono">'+t("subtotal")+' '+money(cartTotal())+'</div></div>'+
+    '<div style="display:flex;gap:8px"><a class="btn ghost light sm" href="#/portal">'+t("nav_portal")+'</a><button class="btn sm" id="btn-place">'+t("place")+'</button></div></div>';
+}
+function viewPortal(){
+  if(!S.session){
+    return '<div class="wrap"><div class="pagehead"><h1>'+t("cta_login")+'</h1>'+
+      '<div class="answer">'+(S.lang==="es"
+        ? "Este prototipo no pide contraseña. Entra como la cuenta de demostración <b>Ortega Truck Tire &amp; Service</b> (nivel 2) o abre una cuenta nueva para ver el flujo completo."
+        : "This prototype has no password. Log in as the demo account <b>Ortega Truck Tire &amp; Service</b> (tier 2) or open a new account to see the full flow.")+'</div></div>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="btn-demo">'+(S.lang==="es"?"Entrar como cuenta demo":"Log in as demo account")+'</button>'+
+      '<a class="btn ghost" href="#/cuenta">'+t("cta_open")+'</a></div></div>';
+  }
+  const z = zone(S.session.zip) || zone(S.zip); const c = nextCut(z);
+  return '<div class="wrap">'+
+    '<div class="pagehead"><h1>'+t("portal_t")+'</h1></div>'+
+    '<div class="portal-top">'+
+      '<div class="acct"><b>'+esc(S.session.biz)+'</b><br>'+(S.lang==="es"?"Cuenta":"Account")+' '+S.session.acct+' · '+t("tier")+' '+S.session.tier+' · '+(z?z.route:"")+'</div>'+
+      '<div style="display:flex;gap:10px;flex-wrap:wrap">'+
+        '<a class="btn sm ghost" href="#/stock/295-75R22-5">'+(S.lang==="es"?"Buscar producto":"Find product")+'</a>'+
+        '<button class="btn sm quiet" id="btn-rma">RMA</button>'+
+      '</div>'+
+    '</div>'+
+    '<div class="stats">'+
+      '<div class="stat"><b class="tab">'+money(S.session.credit)+'</b><span>'+t("credit")+'</span></div>'+
+      '<div class="stat"><b class="tab">'+c.label+'</b><span>'+t("nextcut")+' · '+(c.today?(S.lang==="es"?"hoy":"today"):(S.lang==="es"?"mañana":"tomorrow"))+'</span></div>'+
+      '<div class="stat"><b class="tab">'+PERF.fill+'%</b><span>'+t("st_fill")+'</span></div>'+
+      '<div class="stat"><b class="tab">1</b><span>'+t("openorders")+'</span></div>'+
+    '</div>'+
+    (S.session.provisional ? '<div class="notice" style="margin-top:16px">'+t("welcome_s")+'</div>' : '')+
+    '<h2 class="sec-title" style="margin-top:30px">'+t("cart")+'</h2>'+
+    (S.cart.length
+      ? '<div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>'+t("col_prod")+'</th><th>'+t("qty")+'</th><th>'+t("col_price")+'</th><th>'+t("subtotal")+'</th><th></th></tr></thead><tbody>'+
+        S.cart.filter(function(i){return PROD.some(function(x){return x.sku===i.sku;});}).map(function(i){
+          const p = PROD.find(function(x){return x.sku===i.sku;});
+          return '<tr><td><b>'+esc(p.brand)+' '+esc(p.model)+'</b><div class="mono" style="font-size:.72rem;color:var(--ink-3)">'+p.sku+' · '+p.size+'</div></td>'+
+            '<td class="num">'+i.qty+'</td><td class="num">'+money(p.net[S.session.tier])+'</td><td class="num"><b>'+money(p.net[S.session.tier]*i.qty)+'</b></td>'+
+            '<td><button class="btn sm quiet" data-del="'+p.sku+'">'+t("remove")+'</button></td></tr>';
+        }).join("")+'</tbody></table></div>'
+      : '<div class="notice" style="margin-top:12px">'+t("cart_empty")+'</div>')+
+    '<h2 class="sec-title" style="margin-top:30px">'+t("history")+'</h2>'+
+    '<div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>PO</th><th>'+(S.lang==="es"?"Fecha":"Date")+'</th><th>'+(S.lang==="es"?"Contenido":"Contents")+'</th><th>Total</th><th>'+(S.lang==="es"?"Estado":"Status")+'</th><th></th></tr></thead><tbody>'+
+      HIST.map(function(h){
+        const desc = h.items.map(function(it){
+          const p = PROD.find(function(x){return x.sku===it[0];});
+          return it[1]+" × "+(p?p.brand+" "+p.size:it[0]);
+        }).join(" · ");
+        return '<tr><td class="num">'+h.po+'</td><td class="num">'+h.date+'</td><td style="font-size:.82rem">'+esc(desc)+'</td><td class="num">'+money(h.total)+'</td>'+
+          '<td>'+(h.status==="en ruta"?'<span class="pill p-warn">'+t("inroute")+'</span>':'<span class="pill p-ok">'+t("delivered")+'</span>')+'</td>'+
+          '<td><button class="btn sm" data-reorder="'+h.po+'">'+t("reorder")+'</button></td></tr>';
+      }).join("")+
+    '</tbody></table></div>'+
+    cartBar()+
+  '</div>';
+}
+
+/* ---------------- vistas de contenido ---------------- */
+function viewMarcas(){
+  const brands = Array.from(new Set(PROD.map(function(p){return p.brand;})));
+  return '<div class="wrap"><div class="pagehead"><h1>'+t("brands_t")+'</h1>'+
+    '<div class="answer">'+(S.lang==="es"
+      ? "TireNexus distribuye "+brands.length+" marcas en tres niveles de precio: premium, de valor y económicas. Cada ficha muestra el stock real por bodega; el precio neto se ve con cuenta de dealer."
+      : "TireNexus distributes "+brands.length+" brands across three price tiers: premium, value and economy. Each listing shows real stock by warehouse; net pricing requires a dealer account.")+'</div></div>'+
+    '<div class="grid g3">'+brands.map(function(b){
+      const items = PROD.filter(function(p){return p.brand===b;});
+      const units = items.reduce(function(a,p){return a+stockOf(p);},0);
+      return '<div class="card"><h3>'+esc(b)+'</h3><p class="mono" style="font-size:.8rem">'+items.length+' SKU · '+units+' '+(S.lang==="es"?"en piso":"on floor")+'</p>'+
+        '<p style="margin-top:8px">'+items.slice(0,3).map(function(p){return '<a href="#/stock/'+p.size.replace(/[\/\.]/g,"-")+'">'+p.size+'</a>';}).join(" · ")+'</p></div>';
+    }).join("")+'</div></div>';
+}
+function viewPrograma(){
+  const rows = S.lang==="es"
+    ? [["Nivel 1","Hasta US$ 25,000 por trimestre","Precio nivel 1 · net 15 · 1 entrega diaria"],
+       ["Nivel 2","US$ 25,000 – 75,000","Precio nivel 2 · net 30 · 2 entregas diarias · ejecutivo asignado"],
+       ["Nivel 3","Más de US$ 75,000","Precio nivel 3 · net 30 · prioridad de ruta · reserva de medidas escasas · kit de co-branding"]]
+    : [["Tier 1","Up to $25,000 per quarter","Tier 1 pricing · net 15 · 1 daily delivery"],
+       ["Tier 2","$25,000 – 75,000","Tier 2 pricing · net 30 · 2 daily deliveries · assigned rep"],
+       ["Tier 3","Over $75,000","Tier 3 pricing · net 30 · route priority · scarce size reservation · co-branding kit"]];
+  return '<div class="wrap"><div class="pagehead"><h1>'+t("prog_t")+'</h1>'+
+    '<div class="answer">'+(S.lang==="es"
+      ? "Tres niveles por volumen trimestral. El precio publicado es el mismo para todos los dealers del mismo nivel: no se negocia por llamada. El nivel se revisa cada trimestre y solo sube, nunca baja dentro del año."
+      : "Three tiers by quarterly volume. Published pricing is identical for every dealer in a tier — it is not negotiated call by call. Tiers are reviewed quarterly and only move up within the year.")+'</div></div>'+
+    '<div class="tablewrap"><table><thead><tr><th>'+t("tier")+'</th><th>'+(S.lang==="es"?"Volumen":"Volume")+'</th><th>'+(S.lang==="es"?"Incluye":"Includes")+'</th></tr></thead><tbody>'+
+    rows.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td class="num">'+r[1]+'</td><td>'+r[2]+'</td></tr>';}).join("")+
+    '</tbody></table></div>'+
+    '<div class="gate"><div><b>'+t("gate_t")+'</b><div class="mono">'+t("gate_s")+'</div></div><a class="btn" href="#/cuenta">'+t("gate_b")+'</a></div></div>';
+}
+function viewAprende(){
+  const guides = S.lang==="es" ? [
+    {t:"Cómo leer el DOT de una llanta comercial", d:"Los cuatro dígitos finales dan semana y año. Con más de seis años de fabricación, el casco pierde valor de recauchutado aunque la banda se vea entera."},
+    {t:"Cuándo un casco ya no sirve", d:"Tres recauchutados, separación de cinturón, reparación en hombro o daño en talón: el casco sale. Una llanta barata montada sobre un casco muerto cuesta una grúa."},
+    {t:"Índice de carga y velocidad, sin adivinar", d:"146/143L significa 6,615 lb en sencillo y 5,842 lb en dual, a 75 mph máximo. Bajar un índice para ahorrar cuarenta dólares es la forma más cara de ahorrar."},
+    {t:"Dirección, tracción y arrastre: qué va en cada eje", d:"La banda de dirección no tracciona y la de tracción se come el eje delantero. Montar la equivocada dobla el costo por milla."},
+    {t:"Cómo bajar el costo por milla de una flota", d:"Presión semanal, alineación trimestral, rotación por desgaste irregular y una sola marca por eje. Sin eso, ninguna llanta rinde lo que promete la ficha."}
+  ] : [
+    {t:"How to read the DOT code on a commercial tire", d:"The last four digits give week and year. Past six years from manufacture, the casing loses retread value even if the tread looks fine."},
+    {t:"When a casing is done", d:"Three retreads, belt separation, shoulder repair or bead damage: the casing is out. A cheap tire on a dead casing costs a tow."},
+    {t:"Load and speed index without guessing", d:"146/143L means 6,615 lb single and 5,842 lb dual, 75 mph max. Dropping an index to save forty dollars is the most expensive saving there is."},
+    {t:"Steer, drive and trailer: what goes on each axle", d:"Steer tread does not pull and drive tread eats the front axle. The wrong fitment doubles cost per mile."},
+    {t:"How to cut a fleet's cost per mile", d:"Weekly pressure, quarterly alignment, rotation on irregular wear and one brand per axle. Without that, no tire delivers what the spec sheet promises."}
+  ];
+  return '<div class="wrap"><div class="pagehead"><h1>'+t("learn_t")+'</h1>'+
+    '<p class="sec-lede">'+(S.lang==="es"
+      ? "Contenido técnico de mostrador, en inglés y español. Está escrito para que lo cite un motor de búsqueda o un asistente de IA cuando alguien pregunte."
+      : "Counter-level technical content, in English and Spanish. Written so a search engine or an AI assistant can cite it when someone asks.")+'</p></div>'+
+    '<div class="grid g2">'+guides.map(function(g){return '<div class="card"><h3>'+esc(g.t)+'</h3><p>'+esc(g.d)+'</p></div>';}).join("")+'</div></div>';
+}
+function viewDesempeno(){
+  return '<div class="wrap"><div class="pagehead"><h1>'+t("perf_t")+'</h1><p class="sec-lede">'+t("perf_l")+'</p></div>'+
+    '<div class="stats">'+
+      '<div class="stat"><b class="tab">'+PERF.fill+'%</b><span>Fill rate · '+PERF.month+'</span></div>'+
+      '<div class="stat"><b class="tab">'+PERF.window+'%</b><span>'+t("compliance")+'</span></div>'+
+      '<div class="stat"><b class="tab">'+PERF.orders.toLocaleString("en-US")+'</b><span>'+(S.lang==="es"?"Pedidos surtidos":"Orders filled")+'</span></div>'+
+      '<div class="stat"><b class="tab">'+PERF.portalShare+'%</b><span>'+(S.lang==="es"?"Pedidos sin llamada":"Orders without a call")+'</span></div>'+
+    '</div>'+
+    '<div class="tablewrap" style="margin-top:22px"><table><thead><tr><th>'+(S.lang==="es"?"Zona":"Zone")+'</th><th>'+t("route")+'</th><th>'+t("compliance")+'</th><th>'+(S.lang==="es"?"Lectura":"Read")+'</th></tr></thead><tbody>'+
+      ZONES.map(function(z){
+        const bad = z.sla < 95;
+        return '<tr><td><b>'+z.city+'</b></td><td class="num">'+z.route+'</td><td class="num">'+z.sla+'%</td>'+
+          '<td>'+(bad ? '<span class="pill p-warn">'+(S.lang==="es"?"Por debajo de meta":"Below target")+'</span>' : '<span class="pill p-ok">'+(S.lang==="es"?"En meta":"On target")+'</span>')+'</td></tr>';
+      }).join("")+
+    '</tbody></table></div>'+
+    '<div class="notice" style="margin-top:18px">'+(S.lang==="es"
+      ? "Meta interna: 95% de cumplimiento de ventana por zona. LaBelle, Clewiston y Punta Gorda están por debajo y se corrigen con una segunda salida a partir de octubre."
+      : "Internal target: 95% window compliance per zone. LaBelle, Clewiston and Punta Gorda are below it and get a second run starting in October.")+'</div></div>';
+}
+
+/* ---------------- router ---------------- */
+function render(){
+  const hash = location.hash.replace(/^#/,"") || "/";
+  const parts = hash.split("/").filter(Boolean);
+  var body = "";
+  if(parts.length===0) body = viewHome();
+  else if(parts[0]==="stock") body = viewStock(parts[1]||"295-75R22-5");
+  else if(parts[0]==="entrega") body = viewZona(parts[1]||null);
+  else if(parts[0]==="cuenta") body = viewCuenta();
+  else if(parts[0]==="portal") body = viewPortal();
+  else if(parts[0]==="marcas") body = viewMarcas();
+  else if(parts[0]==="programa") body = viewPrograma();
+  else if(parts[0]==="aprende") body = viewAprende();
+  else if(parts[0]==="desempeno") body = viewDesempeno();
+  else body = viewHome();
+
+  document.documentElement.lang = S.lang;
+  if(S.theme) document.documentElement.setAttribute("data-theme", S.theme);
+  else document.documentElement.removeAttribute("data-theme");
+
+  document.getElementById("app").innerHTML =
+    header("/"+(parts[0]||"")) + '<main>' + body + '</main>' + footer();
+  wire();
+  updateSchema(parts);
+}
+function toast(msg){
+  var el = document.createElement("div");
+  el.textContent = msg;
+  el.setAttribute("role","status");
+  el.style.cssText = "position:fixed;left:50%;transform:translateX(-50%);bottom:24px;background:#0A0A0A;color:#fff;padding:12px 18px;border-radius:8px;font-family:var(--mono);font-size:.8rem;z-index:99;box-shadow:0 8px 30px rgba(0,0,0,.4);max-width:90vw;text-align:center";
+  document.body.appendChild(el);
+  setTimeout(function(){ el.remove(); }, 3200);
+}
+function wire(){
+  const $ = function(id){ return document.getElementById(id); };
+  const lang = $("btn-lang"); if(lang) lang.onclick = function(){ S.lang = S.lang==="es"?"en":"es"; save(); render(); };
+  const th = $("btn-theme"); if(th) th.onclick = function(){ S.theme = S.theme==="dark"?"light":"dark"; save(); render(); };
+  const lo = $("btn-logout"); if(lo) lo.onclick = function(){ S.session=null; S.cart=[]; save(); location.hash="#/"; render(); };
+  const demo = $("btn-demo"); if(demo) demo.onclick = function(){
+    S.session = {biz:"Ortega Truck Tire & Service", acct:"ORT-2041", tier:2, credit:11240, zip:"34142"};
+    S.zip = "34142"; save(); render();
+  };
+
+  const sf = $("search"); if(sf) sf.onsubmit = function(e){
+    e.preventDefault();
+    S.zip = $("q-zip").value; S.filters.app = $("q-app").value; S.filters.brand=""; save();
+    location.hash = "#/stock/" + $("q-size").value.replace(/[\/\.]/g,"-");
+  };
+  Array.prototype.forEach.call(document.querySelectorAll("[data-size]"), function(b){
+    b.onclick = function(){ location.hash = "#/stock/" + b.dataset.size.replace(/[\/\.]/g,"-"); };
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-go]"), function(b){
+    b.onclick = function(){ location.hash = b.dataset.go.replace(/^#/,"#"); };
+  });
+  const fs = $("f-size"); if(fs) fs.onchange = function(){ location.hash = "#/stock/"+fs.value.replace(/[\/\.]/g,"-"); };
+  const fa = $("f-app"); if(fa) fa.onchange = function(){ S.filters.app = fa.value; render(); };
+  const fb = $("f-brand"); if(fb) fb.onchange = function(){ S.filters.brand = fb.value; render(); };
+  const fz = $("f-zip"); if(fz) fz.onchange = function(){ S.zip = fz.value; save(); render(); };
+  const fst = $("f-stock"); if(fst) fst.onchange = function(){ S.filters.onlyStock = fst.checked; render(); };
+
+  Array.prototype.forEach.call(document.querySelectorAll("[data-add]"), function(b){
+    b.onclick = function(){
+      const sku = b.dataset.add; const ex = S.cart.find(function(i){return i.sku===sku;});
+      if(ex) ex.qty += 4; else S.cart.push({sku:sku, qty:4});
+      save(); render();
+      toast(S.lang==="es" ? "4 agregadas al carrito" : "4 added to cart");
+    };
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-del]"), function(b){
+    b.onclick = function(){ S.cart = S.cart.filter(function(i){return i.sku!==b.dataset.del;}); save(); render(); };
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-notify]"), function(b){
+    b.onclick = function(){ toast(S.lang==="es" ? "Te avisamos por WhatsApp en cuanto entre a bodega." : "We'll message you on WhatsApp the moment it lands."); };
+  });
+  Array.prototype.forEach.call(document.querySelectorAll("[data-reorder]"), function(b){
+    b.onclick = function(){
+      const h = HIST.find(function(x){return x.po===b.dataset.reorder;});
+      h.items.filter(function(it){return PROD.some(function(x){return x.sku===it[0];});}).forEach(function(it){
+        const ex = S.cart.find(function(i){return i.sku===it[0];});
+        if(ex) ex.qty += it[1]; else S.cart.push({sku:it[0], qty:it[1]});
+      });
+      save(); render();
+      toast(S.lang==="es" ? "Pedido "+h.po+" copiado al carrito" : "Order "+h.po+" copied to cart");
+    };
+  });
+  const place = $("btn-place"); if(place) place.onclick = function(){
+    const z = zone(S.session ? S.session.zip : S.zip); const c = nextCut(z);
+    S.cart = []; save(); render();
+    toast(t("placed")+" "+c.label+".");
+  };
+  const rma = $("btn-rma"); if(rma) rma.onclick = function(){
+    toast(S.lang==="es" ? "RMA-8842 generado. Imprime la etiqueta y pégala al casco." : "RMA-8842 generated. Print the label and tape it to the casing.");
+  };
+
+  const cert = $("s-cert"); if(cert){
+    const mark = function(){ cert.classList.add("done"); cert.textContent = t("cert_ok"); };
+    cert.onclick = mark;
+    cert.onkeydown = function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); mark(); } };
+  }
+  const su = $("signup"); if(su) su.onsubmit = function(e){
+    e.preventDefault();
+    const ids = ["s-biz","s-ein","s-phone","s-addr","s-zip"];
+    var ok = true;
+    ids.forEach(function(id){
+      const el = $(id); const wrap = el.parentNode;
+      const old = wrap.querySelector(".err"); if(old) old.remove();
+      if(!el.value.trim()){
+        ok = false; el.style.borderColor = "var(--bad)";
+        const p = document.createElement("p"); p.className="err"; p.textContent = t("req"); wrap.appendChild(p);
+      } else { el.style.borderColor = ""; }
+    });
+    if(!$("s-cert").classList.contains("done")){
+      ok = false; toast(t("fld_cert"));
+    }
+    if(!ok) return;
+    const zp = $("s-zip").value.trim();
+    if(!zone(zp)){ toast(t("bad_zip")); return; }
+    S.session = {biz:$("s-biz").value.trim(), acct:"NEW-"+(1000+Math.floor(Math.random()*8999)), tier:2, credit:5000, zip:zp, provisional:true};
+    S.zip = zp; save();
+    location.hash = "#/portal"; render();
+    toast(t("welcome")+" · "+S.session.acct);
+  };
+}
+
+/* ---------------- datos estructurados ---------------- */
+function updateSchema(parts){
+  var node = document.getElementById("ld");
+  if(!node){ node = document.createElement("script"); node.type="application/ld+json"; node.id="ld"; document.head.appendChild(node); }
+  const org = {
+    "@type":"Organization", "@id":"https://tirenexus.com/#org", name:"TireNexus",
+    description:"Wholesale tire distributor serving dealers, fleets and independent shops across Southwest Florida and the I-75 corridor.",
+    url:"https://tirenexus.com/", telephone:"+1-239-314-8100",
+    sameAs:["https://www.linkedin.com/company/tirenexus","https://www.wikidata.org/wiki/Q000000"]
+  };
+  const graph = [org];
+  if(parts[0]==="stock"){
+    const size = SIZES.map(function(s){return s.size;}).find(function(s){return s.replace(/[\/\.]/g,"-")===parts[1];}) || "295/75R22.5";
+    PROD.filter(function(p){return p.size===size;}).forEach(function(p){
+      graph.push({"@type":"Product", sku:p.sku, mpn:p.sku, name:p.brand+" "+p.model+" "+p.size,
+        brand:{"@type":"Brand",name:p.brand},
+        offers:{"@type":"Offer", priceCurrency:"USD", availability: stockOf(p)>0 ? "https://schema.org/InStock" : "https://schema.org/BackOrder",
+          seller:{"@id":"https://tirenexus.com/#org"}}});
+    });
+  }
+  if(parts[0]==="entrega" && parts[1]){
+    const z = zone(parts[1]);
+    if(z) graph.push({"@type":"AutoPartsStore", name:"TireNexus · "+WH[z.wh].name,
+      areaServed:{"@type":"PostalCodeSpecification", postalCode:z.zip, addressCountry:"US"},
+      openingHoursSpecification:[{"@type":"OpeningHoursSpecification",dayOfWeek:["Monday","Tuesday","Wednesday","Thursday","Friday"],opens:"07:00",closes:"18:00"}]});
+  }
+  if(!parts.length){
+    graph.push({"@type":"FAQPage", mainEntity: faqItems().map(function(f){
+      return {"@type":"Question", name:f.q, acceptedAnswer:{"@type":"Answer", text:f.a.replace(/<[^>]+>/g,"")}};
+    })});
+  }
+  node.textContent = JSON.stringify({"@context":"https://schema.org","@graph":graph});
+}
+
+/* ---------------- init ---------------- */
+load();
+window.addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
